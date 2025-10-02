@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - SGBU</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+        <nav>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="loans.html">Mis Préstamos</a></li>
+                <li><a href="reservations.html">Mis Reservas</a></li>
+                <li><a href="sanctions.html">Mis Sanciones</a></li>
+                <li><a href="profile.html">Mi Perfil</a></li>
+                <li><a href="../public/catalog.html">Buscar Libros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
+        <h1>Mi Perfil</h1>
+
+        <!-- Profile Information -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">Información Personal</div>
+            <div class="card-body">
+                <form id="profile-form">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="first-name" class="form-label">Nombre</label>
+                            <input type="text" id="first-name" class="form-input" value="Juan">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name" class="form-label">Apellido</label>
+                            <input type="text" id="last-name" class="form-input" value="Pérez">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo Institucional</label>
+                            <input type="email" id="email" class="form-input" value="juan.perez@fup.edu.co" readonly>
+                            <small style="color: var(--text-secondary);">El correo institucional no se puede cambiar</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="id-number" class="form-label">Número de Identificación</label>
+                            <input type="text" id="id-number" class="form-input" value="123456789" readonly>
+                            <small style="color: var(--text-secondary);">El número de ID no se puede cambiar</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Teléfono</label>
+                            <input type="tel" id="phone" class="form-input" value="+57 300 123 4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="program" class="form-label">Programa Académico</label>
+                            <select id="program" class="form-select">
+                                <option value="ingenieria">Ingeniería de Sistemas</option>
+                                <option value="medicina">Medicina</option>
+                                <option value="derecho">Derecho</option>
+                                <option value="economia">Economía</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="semester" class="form-label">Semestre</label>
+                            <select id="semester" class="form-select">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6" selected>6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="form-label">Rol</label>
+                            <input type="text" id="role" class="form-input" value="Estudiante" readonly>
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-outline" onclick="resetForm()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Change Password -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">Cambiar Contraseña</div>
+            <div class="card-body">
+                <form id="password-form">
+                    <div class="form-group">
+                        <label for="current-password" class="form-label">Contraseña Actual</label>
+                        <input type="password" id="current-password" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password" class="form-label">Nueva Contraseña</label>
+                        <input type="password" id="new-password" class="form-input" required>
+                        <small style="color: var(--text-secondary);">Mínimo 8 caracteres, incluir mayúsculas, minúsculas y números</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password" class="form-label">Confirmar Nueva Contraseña</label>
+                        <input type="password" id="confirm-password" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Account Statistics -->
+        <div class="card">
+            <div class="card-header">Estadísticas de Cuenta</div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                    <div style="text-align: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color);">47</div>
+                        <div style="color: var(--text-secondary);">Libros Prestados</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--secondary-color);">12</div>
+                        <div style="color: var(--text-secondary);">Reservas Realizadas</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--warning-color);">3</div>
+                        <div style="color: var(--text-secondary);">Sanciones Totales</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">98%</div>
+                        <div style="color: var(--text-secondary);">Tasa de Cumplimiento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="card" style="margin-top: 2rem;">
+            <div class="card-header">Configuración de Cuenta</div>
+            <div class="card-body">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem; margin-bottom: 1rem;">
+                    <div>
+                        <h4 style="margin: 0 0 0.5rem 0;">Notificaciones por Email</h4>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Recibe recordatorios de vencimiento y otras notificaciones</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                    <div>
+                        <h4 style="margin: 0 0 0.5rem 0;">Notificaciones Push</h4>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Recibe notificaciones en el navegador</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Add switch styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 50px;
+                height: 24px;
+            }
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .4s;
+                border-radius: 24px;
+            }
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                transition: .4s;
+                border-radius: 50%;
+            }
+            input:checked + .slider {
+                background-color: var(--primary-color);
+            }
+            input:checked + .slider:before {
+                transform: translateX(26px);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Form handling
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('Perfil actualizado exitosamente', 'success');
+        });
+
+        document.getElementById('password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newPass = document.getElementById('new-password').value;
+            const confirmPass = document.getElementById('confirm-password').value;
+
+            if (newPass === confirmPass) {
+                showToast('Contraseña cambiada exitosamente', 'success');
+                document.getElementById('password-form').reset();
+            } else {
+                showToast('Las contraseñas no coinciden', 'error');
+            }
+        });
+
+        function resetForm() {
+            document.getElementById('profile-form').reset();
+        }
+    </script>
+</body>
+</html>

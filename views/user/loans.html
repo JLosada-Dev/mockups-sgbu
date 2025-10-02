@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Préstamos - SGBU</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+        <nav>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="loans.html">Mis Préstamos</a></li>
+                <li><a href="reservations.html">Mis Reservas</a></li>
+                <li><a href="sanctions.html">Mis Sanciones</a></li>
+                <li><a href="profile.html">Mi Perfil</a></li>
+                <li><a href="../public/catalog.html">Buscar Libros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <h1>Mis Préstamos</h1>
+
+        <!-- Tabs -->
+        <div style="border-bottom: 1px solid var(--border-color); margin-bottom: 2rem;">
+            <button class="btn" style="border: none; background: none; border-bottom: 2px solid var(--primary-color); color: var(--primary-color); padding: 1rem 0; margin-right: 2rem;" onclick="showTab('active')">Préstamos Activos</button>
+            <button class="btn" style="border: none; background: none; color: var(--text-secondary); padding: 1rem 0;" onclick="showTab('history')">Historial de Préstamos</button>
+        </div>
+
+        <!-- Active Loans Tab -->
+        <div id="active-loans" class="loans-tab">
+            <div style="margin-bottom: 2rem;">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: 1fr auto auto auto; gap: 1rem; align-items: center; padding: 1rem; border-bottom: 1px solid var(--border-color);">
+                            <div>
+                                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">Cien años de soledad</h3>
+                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Gabriel García Márquez</p>
+                            </div>
+                            <div>
+                                <strong>Fecha de Préstamo</strong><br>
+                                15/09/2023
+                            </div>
+                            <div>
+                                <strong>Fecha de Vencimiento</strong><br>
+                                15/10/2023
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--warning-color); font-weight: 500; margin-bottom: 0.5rem;">5 días restantes</div>
+                                <button class="btn btn-primary btn-sm" onclick="simulateRenew('Cien años de soledad')">Renovar</button>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr auto auto auto; gap: 1rem; align-items: center; padding: 1rem; border-bottom: 1px solid var(--border-color);">
+                            <div>
+                                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">Clean Code</h3>
+                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Robert C. Martin</p>
+                            </div>
+                            <div>
+                                <strong>Fecha de Préstamo</strong><br>
+                                10/09/2023
+                            </div>
+                            <div>
+                                <strong>Fecha de Vencimiento</strong><br>
+                                10/10/2023
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--success-color); font-weight: 500; margin-bottom: 0.5rem;">10 días restantes</div>
+                                <button class="btn btn-primary btn-sm" onclick="simulateRenew('Clean Code')">Renovar</button>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr auto auto auto; gap: 1rem; align-items: center; padding: 1rem;">
+                            <div>
+                                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.1rem;">El código Da Vinci</h3>
+                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Dan Brown</p>
+                            </div>
+                            <div>
+                                <strong>Fecha de Préstamo</strong><br>
+                                05/09/2023
+                            </div>
+                            <div>
+                                <strong>Fecha de Vencimiento</strong><br>
+                                05/10/2023
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="color: var(--error-color); font-weight: 500; margin-bottom: 0.5rem;">Vencido</div>
+                                <button class="btn btn-error btn-sm" disabled>No renovable</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Renewal Rules Info -->
+            <div class="card">
+                <div class="card-header">Reglas de Renovación</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Los libros se pueden renovar hasta 2 veces por préstamo</li>
+                        <li>No se pueden renovar libros con reservas activas</li>
+                        <li>Los libros vencidos no pueden ser renovados hasta que sean devueltos</li>
+                        <li>El período de renovación es de 15 días adicionales</li>
+                        <li>Si tienes sanciones pendientes, algunas renovaciones pueden estar bloqueadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="loan-history" class="loans-tab" style="display: none;">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Filters -->
+                    <div style="margin-bottom: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="history-year" class="form-label">Año</label>
+                            <select id="history-year" class="form-select">
+                                <option value="">Todos los años</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="history-status" class="form-label">Estado</label>
+                            <select id="history-status" class="form-select">
+                                <option value="">Todos los estados</option>
+                                <option value="devuelto">Devuelto</option>
+                                <option value="vencido">Vencido</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; align-items: end;">
+                            <button class="btn btn-outline">Filtrar</button>
+                        </div>
+                    </div>
+
+                    <!-- History Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Libro</th>
+                                <th>Autor</th>
+                                <th>Fecha de Préstamo</th>
+                                <th>Fecha de Devolución</th>
+                                <th>Estado</th>
+                                <th>Renovaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cien años de soledad</td>
+                                <td>Gabriel García Márquez</td>
+                                <td>15/08/2023</td>
+                                <td>15/09/2023</td>
+                                <td><span style="color: var(--success-color);">Devuelto</span></td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Sapiens</td>
+                                <td>Yuval Noah Harari</td>
+                                <td>01/08/2023</td>
+                                <td>01/09/2023</td>
+                                <td><span style="color: var(--success-color);">Devuelto</span></td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Breve historia del tiempo</td>
+                                <td>Stephen Hawking</td>
+                                <td>15/07/2023</td>
+                                <td>20/08/2023</td>
+                                <td><span style="color: var(--error-color);">Vencido</span></td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Historia de Colombia</td>
+                                <td>Various Authors</td>
+                                <td>01/07/2023</td>
+                                <td>01/08/2023</td>
+                                <td><span style="color: var(--success-color);">Devuelto</span></td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Rayuela</td>
+                                <td>Julio Cortázar</td>
+                                <td>15/06/2023</td>
+                                <td>15/07/2023</td>
+                                <td><span style="color: var(--success-color);">Devuelto</span></td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function showTab(tabName) {
+            const activeTab = document.getElementById('active-loans');
+            const historyTab = document.getElementById('loan-history');
+            const activeBtn = document.querySelector('button[onclick="showTab(\'active\')"]');
+            const historyBtn = document.querySelector('button[onclick="showTab(\'history\')"]');
+
+            if (tabName === 'active') {
+                activeTab.style.display = 'block';
+                historyTab.style.display = 'none';
+                activeBtn.style.borderBottom = '2px solid var(--primary-color)';
+                activeBtn.style.color = 'var(--primary-color)';
+                historyBtn.style.borderBottom = 'none';
+                historyBtn.style.color = 'var(--text-secondary)';
+            } else {
+                activeTab.style.display = 'none';
+                historyTab.style.display = 'block';
+                historyBtn.style.borderBottom = '2px solid var(--primary-color)';
+                historyBtn.style.color = 'var(--primary-color)';
+                activeBtn.style.borderBottom = 'none';
+                activeBtn.style.color = 'var(--text-secondary)';
+            }
+        }
+    </script>
+</body>
+</html>

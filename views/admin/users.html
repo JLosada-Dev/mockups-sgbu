@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - SGBU</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+        <nav>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="inventory.html">Inventario</a></li>
+                <li><a href="users.html">Usuarios</a></li>
+                <li><a href="sanctions.html">Sanciones</a></li>
+                <li><a href="reports.html">Reportes</a></li>
+                <li><a href="quick-loan.html">Préstamo Rápido</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 1400px; margin: 2rem auto; padding: 0 1rem;">
+        <h1>Gestión de Usuarios</h1>
+
+        <!-- Filters -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: end;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="search-user" class="form-label">Buscar usuario</label>
+                        <input type="text" id="search-user" class="form-input" placeholder="Nombre, email, ID...">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="filter-role" class="form-label">Rol</label>
+                        <select id="filter-role" class="form-select">
+                            <option value="">Todos los roles</option>
+                            <option value="estudiante">Estudiante</option>
+                            <option value="docente">Docente</option>
+                            <option value="bibliotecario">Bibliotecario</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="filter-status" class="form-label">Estado</label>
+                        <select id="filter-status" class="form-select">
+                            <option value="">Todos los estados</option>
+                            <option value="active">Activo</option>
+                            <option value="blocked">Bloqueado</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline">Aplicar Filtros</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Programa</th>
+                            <th>Estado</th>
+                            <th>Préstamos Activos</th>
+                            <th>Sanciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>123456789</td>
+                            <td>Juan Pérez</td>
+                            <td>juan.perez@fup.edu.co</td>
+                            <td>Estudiante</td>
+                            <td>Ingeniería Sistemas</td>
+                            <td><span style="color: var(--success-color);">Activo</span></td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>
+                                <button class="btn btn-outline btn-sm" onclick="viewUserDetails('Juan Pérez')">Ver Detalle</button>
+                                <button class="btn btn-warning btn-sm" onclick="blockUser('Juan Pérez')">Bloquear</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>987654321</td>
+                            <td>María González</td>
+                            <td>maria.gonzalez@fup.edu.co</td>
+                            <td>Docente</td>
+                            <td>Matemáticas</td>
+                            <td><span style="color: var(--success-color);">Activo</span></td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>
+                                <button class="btn btn-outline btn-sm" onclick="viewUserDetails('María González')">Ver Detalle</button>
+                                <button class="btn btn-warning btn-sm" onclick="blockUser('María González')">Bloquear</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>456789123</td>
+                            <td>Carlos Rodríguez</td>
+                            <td>carlos.rodriguez@fup.edu.co</td>
+                            <td>Estudiante</td>
+                            <td>Derecho</td>
+                            <td><span style="color: var(--error-color);">Bloqueado</span></td>
+                            <td>0</td>
+                            <td>2</td>
+                            <td>
+                                <button class="btn btn-outline btn-sm" onclick="viewUserDetails('Carlos Rodríguez')">Ver Detalle</button>
+                                <button class="btn btn-success btn-sm" onclick="unblockUser('Carlos Rodríguez')">Desbloquear</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>789123456</td>
+                            <td>Ana López</td>
+                            <td>ana.lopez@fup.edu.co</td>
+                            <td>Estudiante</td>
+                            <td>Medicina</td>
+                            <td><span style="color: var(--success-color);">Activo</span></td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>
+                                <button class="btn btn-outline btn-sm" onclick="viewUserDetails('Ana López')">Ver Detalle</button>
+                                <button class="btn btn-warning btn-sm" onclick="blockUser('Ana López')">Bloquear</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>321654987</td>
+                            <td>Pedro Martínez</td>
+                            <td>pedro.martinez@fup.edu.co</td>
+                            <td>Bibliotecario</td>
+                            <td>-</td>
+                            <td><span style="color: var(--success-color);">Activo</span></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>
+                                <button class="btn btn-outline btn-sm" onclick="viewUserDetails('Pedro Martínez')">Ver Detalle</button>
+                                <button class="btn btn-secondary btn-sm" onclick="changeRole('Pedro Martínez')">Cambiar Rol</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function viewUserDetails(name) {
+            showToast(`Viendo detalles de ${name}`, 'info');
+        }
+
+        function blockUser(name) {
+            if (confirm(`¿Bloquear al usuario ${name}?`)) {
+                showToast(`Usuario ${name} bloqueado`, 'warning');
+            }
+        }
+
+        function unblockUser(name) {
+            showToast(`Usuario ${name} desbloqueado`, 'success');
+        }
+
+        function changeRole(name) {
+            showToast(`Cambiando rol de ${name}`, 'info');
+        }
+    </script>
+</body>
+</html>

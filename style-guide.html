@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estilos - SGBU</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+        <nav>
+            <ul class="navbar-nav">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="style-guide.html">Guía de Estilos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <h1>Guía de Estilos - Sistema de Gestión de Bibliotecas Universitarias</h1>
+
+        <section class="card">
+            <div class="card-header">Paleta de Colores</div>
+            <div class="card-body">
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                    <div style="text-align: center;">
+                        <div style="width: 100px; height: 100px; background-color: var(--primary-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
+                        <strong>Primary</strong><br>
+                        #003366
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 100px; height: 100px; background-color: var(--secondary-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
+                        <strong>Secondary</strong><br>
+                        #0066CC
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 100px; height: 100px; background-color: var(--accent-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
+                        <strong>Accent</strong><br>
+                        #FFD700
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 100px; height: 100px; background-color: var(--success-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
+                        <strong>Success</strong><br>
+                        #28A745
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 100px; height: 100px; background-color: var(--warning-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
+                        <strong>Warning</strong><br>
+                        #FFC107
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 100px; height: 100px; background-color: var(--error-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
+                        <strong>Error</strong><br>
+                        #DC3545
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">Tipografía</div>
+            <div class="card-body">
+                <h1>Encabezado H1 - 2.5rem, 700</h1>
+                <h2>Encabezado H2 - 2rem, 600</h2>
+                <h3>Encabezado H3 - 1.5rem, 500</h3>
+                <h4>Encabezado H4 - 1.25rem, 500</h4>
+                <p>Texto de párrafo normal - 16px, line-height 1.5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p><strong>Texto en negrita</strong> y <em>texto en cursiva</em> para énfasis.</p>
+                <p style="color: var(--text-secondary);">Texto secundario - #666666</p>
+                <p style="color: var(--text-muted);">Texto muted - #999999</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">Botones</div>
+            <div class="card-body">
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                    <button class="btn btn-primary">Botón Primario</button>
+                    <button class="btn btn-secondary">Botón Secundario</button>
+                    <button class="btn btn-accent">Botón Accent</button>
+                    <button class="btn btn-outline">Botón Outline</button>
+                    <button class="btn btn-success">Botón Success</button>
+                    <button class="btn btn-warning">Botón Warning</button>
+                    <button class="btn btn-error">Botón Error</button>
+                </div>
+                <p style="margin-top: 1rem;">Los botones tienen estados hover y focus para mejor accesibilidad.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">Formularios</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="example-input" class="form-label">Campo de Texto</label>
+                    <input type="text" id="example-input" class="form-input" placeholder="Ingrese texto aquí">
+                </div>
+                <div class="form-group">
+                    <label for="example-email" class="form-label">Correo Electrónico</label>
+                    <input type="email" id="example-email" class="form-input" placeholder="usuario@fup.edu.co">
+                </div>
+                <div class="form-group">
+                    <label for="example-select" class="form-label">Selector</label>
+                    <select id="example-select" class="form-select">
+                        <option value="">Seleccione una opción</option>
+                        <option value="1">Opción 1</option>
+                        <option value="2">Opción 2</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-primary">Enviar</button>
+                    <button class="btn btn-outline">Cancelar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">Tarjetas y Componentes</div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                    <div class="card">
+                        <div class="card-header">Tarjeta de Ejemplo</div>
+                        <div class="card-body">
+                            <p>Contenido de la tarjeta. Puede contener texto, imágenes o otros elementos.</p>
+                            <button class="btn btn-primary">Acción</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Otra Tarjeta</div>
+                        <div class="card-body">
+                            <p>Las tarjetas son componentes reutilizables para organizar contenido.</p>
+                            <button class="btn btn-secondary">Otra Acción</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">Tablas</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Columna 1</th>
+                            <th>Columna 2</th>
+                            <th>Columna 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dato 1</td>
+                            <td>Dato 2</td>
+                            <td>Dato 3</td>
+                        </tr>
+                        <tr>
+                            <td>Dato 4</td>
+                            <td>Dato 5</td>
+                            <td>Dato 6</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">Notificaciones y Modales</div>
+            <div class="card-body">
+                <p>Las notificaciones toast aparecen en la esquina superior derecha.</p>
+                <button class="btn btn-info" onclick="showToast('Esta es una notificación de información')">Mostrar Notificación</button>
+                <p style="margin-top: 1rem;">Los modales se usan para confirmaciones y acciones importantes.</p>
+                <button class="btn btn-primary" onclick="showModal()">Mostrar Modal</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">Accesibilidad</div>
+            <div class="card-body">
+                <p>El diseño cumple con WCAG 2.1 Nivel AA:</p>
+                <ul>
+                    <li>Contraste adecuado entre texto y fondo</li>
+                    <li>Etiquetas descriptivas para lectores de pantalla</li>
+                    <li>Estados de foco visibles</li>
+                    <li>Navegación por teclado</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="example-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirmación</h2>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de que desea realizar esta acción?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="hideModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="hideModal()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        <span id="toast-message"></span>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

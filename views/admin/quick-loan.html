@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préstamo Rápido - SGBU</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+        <nav>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="inventory.html">Inventario</a></li>
+                <li><a href="users.html">Usuarios</a></li>
+                <li><a href="sanctions.html">Sanciones</a></li>
+                <li><a href="reports.html">Reportes</a></li>
+                <li><a href="quick-loan.html">Préstamo Rápido</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
+        <h1>Registro Rápido de Préstamo/Devolución</h1>
+
+        <!-- Loan Section -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">Nuevo Préstamo</div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                        <label for="user-code" class="form-label">Código de Usuario</label>
+                        <input type="text" id="user-code" class="form-input" placeholder="Escanear código">
+                    </div>
+                    <div class="form-group">
+                        <label for="book-code" class="form-label">Código de Libro</label>
+                        <input type="text" id="book-code" class="form-input" placeholder="Escanear código">
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="simulateQuickLoan()">Registrar Préstamo</button>
+            </div>
+        </div>
+
+        <!-- Return Section -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">Devolución</div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                        <label for="user-code-return" class="form-label">Código de Usuario</label>
+                        <input type="text" id="user-code-return" class="form-input" placeholder="Escanear código">
+                    </div>
+                    <div class="form-group">
+                        <label for="book-code-return" class="form-label">Código de Libro</label>
+                        <input type="text" id="book-code-return" class="form-input" placeholder="Escanear código">
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label>
+                        <input type="checkbox" id="apply-sanction"> Aplicar sanción por daño/retraso
+                    </label>
+                </div>
+                <button class="btn btn-success" onclick="simulateQuickReturn()">Registrar Devolución</button>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="card">
+            <div class="card-header">Transacciones Recientes</div>
+            <div class="card-body">
+                <div style="margin-bottom: 0.5rem; padding: 0.5rem; border-left: 4px solid var(--success-color); background-color: var(--surface-color);">
+                    <small>14:30 - Préstamo: "Clean Code" a María González</small>
+                </div>
+                <div style="margin-bottom: 0.5rem; padding: 0.5rem; border-left: 4px solid var(--primary-color); background-color: var(--surface-color);">
+                    <small>14:25 - Devolución: "Cien años de soledad" por Juan Pérez</small>
+                </div>
+                <div style="padding: 0.5rem; border-left: 4px solid var(--success-color); background-color: var(--surface-color);">
+                    <small>14:20 - Préstamo: "Sapiens" a Ana López</small>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

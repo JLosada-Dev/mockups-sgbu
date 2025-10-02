@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo - SGBU</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+        <nav>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="inventory.html">Inventario</a></li>
+                <li><a href="users.html">Usuarios</a></li>
+                <li><a href="sanctions.html">Sanciones</a></li>
+                <li><a href="reports.html">Reportes</a></li>
+                <li><a href="quick-loan.html">Préstamo Rápido</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h1>Dashboard Administrativo</h1>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="color: var(--text-secondary); font-size: 0.9rem;">Última actualización: 22:30</span>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div class="updating-indicator" style="width: 8px; height: 8px; background-color: var(--success-color); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">Actualizando...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 3rem;">
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📚</div>
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Total Libros</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary-color);">2,847</div>
+                    <div style="color: var(--success-color); font-size: 0.8rem;">↗️ +12 este mes</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📖</div>
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Prestados</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--secondary-color);">423</div>
+                    <div style="color: var(--success-color); font-size: 0.8rem;">↗️ +8% vs mes anterior</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Disponibles</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--success-color);">2,312</div>
+                    <div style="color: var(--text-secondary); font-size: 0.8rem;">81.3% del total</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏰</div>
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Reservados</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--warning-color);">112</div>
+                    <div style="color: var(--warning-color); font-size: 0.8rem;">↗️ +15 hoy</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚠️</div>
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Con Retraso</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--error-color);">28</div>
+                    <div style="color: var(--error-color); font-size: 0.8rem;">↗️ +3 esta semana</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
+                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Usuarios Activos</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent-color);">1,256</div>
+                    <div style="color: var(--success-color); font-size: 0.8rem;">↗️ +5% vs mes anterior</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+            <!-- Loans by Month Chart -->
+            <div class="card">
+                <div class="card-header">Préstamos por Mes</div>
+                <div class="card-body">
+                    <div style="height: 300px; display: flex; align-items: end; justify-content: space-between; padding: 1rem 0;">
+                        <!-- Mock bar chart -->
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 200px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Ene</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 180px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Feb</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 220px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Mar</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 250px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Abr</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 280px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">May</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 320px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Jun</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 290px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Jul</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 260px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Ago</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+                            <div style="height: 310px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
+                            <span style="font-size: 0.8rem;">Sep</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Distribution -->
+            <div class="card">
+                <div class="card-header">Distribución por Categorías</div>
+                <div class="card-body">
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 16px; height: 16px; background-color: var(--primary-color); border-radius: 2px;"></div>
+                            <span style="flex: 1;">Ficción</span>
+                            <span style="font-weight: 500;">35%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 16px; height: 16px; background-color: var(--secondary-color); border-radius: 2px;"></div>
+                            <span style="flex: 1;">Ciencia</span>
+                            <span style="font-weight: 500;">25%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 16px; height: 16px; background-color: var(--accent-color); border-radius: 2px;"></div>
+                            <span style="flex: 1;">Tecnología</span>
+                            <span style="font-weight: 500;">20%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 16px; height: 16px; background-color: var(--success-color); border-radius: 2px;"></div>
+                            <span style="flex: 1;">Historia</span>
+                            <span style="font-weight: 500;">12%</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 16px; height: 16px; background-color: var(--warning-color); border-radius: 2px;"></div>
+                            <span style="flex: 1;">Otros</span>
+                            <span style="font-weight: 500;">8%</span>
+                        </div>
+                    </div>
+                    <!-- Mock pie chart -->
+                    <div style="margin-top: 2rem; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(var(--primary-color) 0% 35%, var(--secondary-color) 35% 60%, var(--accent-color) 60% 80%, var(--success-color) 80% 92%, var(--warning-color) 92% 100%); margin: 2rem auto 0;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts and Recent Activity -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <!-- Stock Alerts -->
+            <div class="card">
+                <div class="card-header">Alertas de Stock Bajo</div>
+                <div class="card-body">
+                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--error-color); border-radius: 0.375rem; background-color: rgba(220, 53, 69, 0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="color: var(--error-color); font-size: 1.5rem;">⚠️</div>
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0; color: var(--error-color);">Breve historia del tiempo</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">Solo quedan 2 ejemplares disponibles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--warning-color); border-radius: 0.375rem; background-color: rgba(255, 193, 7, 0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="color: var(--warning-color); font-size: 1.5rem;">⚠️</div>
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0; color: var(--warning-color);">Sapiens</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">Solo quedan 3 ejemplares disponibles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 1rem; border: 1px solid var(--warning-color); border-radius: 0.375rem; background-color: rgba(255, 193, 7, 0.1);">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="color: var(--warning-color); font-size: 1.5rem;">⚠️</div>
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0; color: var(--warning-color);">El código Da Vinci</h4>
+                                <p style="margin: 0; font-size: 0.9rem;">Solo quedan 4 ejemplares disponibles</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <div class="card-header">Actividad Reciente</div>
+                <div class="card-body">
+                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--success-color); background-color: var(--surface-color);">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>Préstamo:</strong> "Clean Code" a María González</p>
+                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 5 minutos</p>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--primary-color); background-color: var(--surface-color);">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>Devolución:</strong> "Cien años de soledad" por Carlos Rodríguez</p>
+                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 12 minutos</p>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--warning-color); background-color: var(--surface-color);">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>Reserva:</strong> "Sapiens" por Ana López</p>
+                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 18 minutos</p>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--error-color); background-color: var(--surface-color);">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>Sanción:</strong> Aplicada por retraso a Juan Pérez</p>
+                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 25 minutos</p>
+                    </div>
+
+                    <div style="padding: 0.75rem; border-left: 4px solid var(--info-color); background-color: var(--surface-color);">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>Registro:</strong> Nuevo usuario Laura Martínez</p>
+                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 32 minutos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

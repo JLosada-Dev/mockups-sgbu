@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Usuario - SGBU</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+        <nav>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="loans.html">Mis Préstamos</a></li>
+                <li><a href="reservations.html">Mis Reservas</a></li>
+                <li><a href="sanctions.html">Mis Sanciones</a></li>
+                <li><a href="profile.html">Mi Perfil</a></li>
+                <li><a href="../public/catalog.html">Buscar Libros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h1>Dashboard de Usuario</h1>
+            <div>
+                <span style="color: var(--text-secondary);">Bienvenido, </span>
+                <strong>Juan Pérez</strong>
+                <span style="color: var(--text-secondary); margin-left: 1rem;">Estudiante</span>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                    <h3 style="margin: 0 0 0.5rem 0;">Préstamos Activos</h3>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color);">3</div>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Libros actualmente prestados</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⏰</div>
+                    <h3 style="margin: 0 0 0.5rem 0;">Reservas Activas</h3>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--secondary-color);">2</div>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Libros reservados</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+                    <h3 style="margin: 0 0 0.5rem 0;">Estado de Cuenta</h3>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--warning-color);">Con Sanción</div>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">$25.000 pendiente</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📖</div>
+                    <h3 style="margin: 0 0 0.5rem 0;">Total Prestado</h3>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent-color);">47</div>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--text-secondary);">Libros en toda la historia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card" style="margin-bottom: 3rem;">
+            <div class="card-header">Acciones Rápidas</div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <a href="loans.html" class="btn btn-primary">Ver Mis Préstamos</a>
+                    <a href="reservations.html" class="btn btn-secondary">Ver Mis Reservas</a>
+                    <a href="../public/catalog.html" class="btn btn-accent">Buscar Libros</a>
+                    <a href="sanctions.html" class="btn btn-warning">Ver Sanciones</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <!-- Current Loans -->
+            <div class="card">
+                <div class="card-header">Préstamos Actuales</div>
+                <div class="card-body">
+                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Cien años de soledad</h4>
+                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Gabriel García Márquez</p>
+                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Préstamo: 15/09/2023</p>
+                                <p style="margin: 0; font-size: 0.9rem;">Vencimiento: 15/10/2023</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="color: var(--warning-color); font-weight: 500;">5 días restantes</span>
+                                <br>
+                                <button class="btn btn-outline btn-sm" style="margin-top: 0.5rem;" onclick="simulateRenew('Cien años de soledad')">Renovar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Clean Code</h4>
+                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Robert C. Martin</p>
+                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Préstamo: 10/09/2023</p>
+                                <p style="margin: 0; font-size: 0.9rem;">Vencimiento: 10/10/2023</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="color: var(--success-color); font-weight: 500;">10 días restantes</span>
+                                <br>
+                                <button class="btn btn-outline btn-sm" style="margin-top: 0.5rem;" onclick="simulateRenew('Clean Code')">Renovar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="loans.html" class="btn btn-outline" style="width: 100%;">Ver Todos los Préstamos</a>
+                </div>
+            </div>
+
+            <!-- Current Reservations -->
+            <div class="card">
+                <div class="card-header">Reservas Activas</div>
+                <div class="card-body">
+                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Sapiens</h4>
+                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Yuval Noah Harari</p>
+                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Reserva: 20/09/2023</p>
+                                <p style="margin: 0; font-size: 0.9rem;">Vencimiento: 23/09/2023</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: var(--error-color); font-weight: 500; margin-bottom: 0.5rem;">Expira en 2h 30m</div>
+                                <button class="btn btn-outline btn-sm" onclick="simulateCancelReservation('Sapiens')">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem;">El código Da Vinci</h4>
+                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Dan Brown</p>
+                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Reserva: 18/09/2023</p>
+                                <p style="margin: 0; font-size: 0.9rem;">Vencimiento: 21/09/2023</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: var(--warning-color); font-weight: 500; margin-bottom: 0.5rem;">Expira en 1 día</div>
+                                <button class="btn btn-outline btn-sm" onclick="simulateCancelReservation('El código Da Vinci')">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="reservations.html" class="btn btn-outline" style="width: 100%;">Ver Todas las Reservas</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="card" style="margin-top: 2rem;">
+            <div class="card-header">Notificaciones Recientes</div>
+            <div class="card-body">
+                <div style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem; margin-bottom: 1rem;">
+                    <div style="color: var(--warning-color); margin-right: 1rem;">⚠️</div>
+                    <div>
+                        <p style="margin: 0; font-weight: 500;">Recordatorio de vencimiento</p>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">"Cien años de soledad" vence en 5 días</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem; margin-bottom: 1rem;">
+                    <div style="color: var(--error-color); margin-right: 1rem;">🚫</div>
+                    <div>
+                        <p style="margin: 0; font-weight: 500;">Sanción aplicada</p>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Se ha aplicado una sanción por retraso en la devolución</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
+                    <div style="color: var(--success-color); margin-right: 1rem;">✅</div>
+                    <div>
+                        <p style="margin: 0; font-weight: 500;">Reserva confirmada</p>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Tu reserva de "Sapiens" ha sido confirmada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>
