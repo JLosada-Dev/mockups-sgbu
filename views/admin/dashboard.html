@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Administrativo - SGBU</title>
     <link rel="stylesheet" href="../../assets/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
@@ -23,70 +22,113 @@
     </header>
 
     <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-            <h1>Dashboard Administrativo</h1>
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <span style="color: var(--text-secondary); font-size: 0.9rem;">Última actualización: 22:30</span>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <div class="updating-indicator" style="width: 8px; height: 8px; background-color: var(--success-color); border-radius: 50%; animation: pulse 2s infinite;"></div>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem;">Actualizando...</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xxl);">
+            <div>
+                <h1 style="margin-bottom: var(--spacing-sm);">Dashboard Administrativo</h1>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 1rem;">Sistema de Gestión de Bibliotecas Universitarias - FUP</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: var(--spacing-lg);">
+                <div style="text-align: right;">
+                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Última actualización</div>
+                    <div style="font-weight: 600; font-family: monospace;" id="last-update">22:30:45</div>
                 </div>
+                <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div class="updating-indicator" style="width: 10px; height: 10px; background-color: var(--success-color); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">En vivo</span>
+                </div>
+                <button class="btn btn-outline" onclick="refreshDashboard()">
+                    <span style="margin-right: var(--spacing-xs);">🔄</span>
+                    Actualizar
+                </button>
             </div>
         </div>
 
         <!-- KPI Cards -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 3rem;">
-            <div class="card">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-xl); margin-bottom: var(--spacing-xxxl);">
+            <div class="card border-left-primary">
                 <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📚</div>
-                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Total Libros</h3>
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary-color);">2,847</div>
-                    <div style="color: var(--success-color); font-size: 0.8rem;">↗️ +12 este mes</div>
+                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--primary-color);">📚</div>
+                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Total Libros</h3>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--primary-color); margin-bottom: var(--spacing-sm);" id="total-books">2,847</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
+                        <span style="color: var(--success-color); font-size: 0.9rem; font-weight: 500;">↗️ +12</span>
+                        <span style="color: var(--text-secondary); font-size: 0.8rem;">este mes</span>
+                    </div>
+                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
+                        <div style="width: 85%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); border-radius: 2px;"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card border-left-secondary">
                 <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📖</div>
-                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Prestados</h3>
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--secondary-color);">423</div>
-                    <div style="color: var(--success-color); font-size: 0.8rem;">↗️ +8% vs mes anterior</div>
+                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--secondary-color);">📖</div>
+                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Prestados</h3>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--secondary-color); margin-bottom: var(--spacing-sm);" id="loaned-books">423</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
+                        <span style="color: var(--success-color); font-size: 0.9rem; font-weight: 500;">↗️ +8%</span>
+                        <span style="color: var(--text-secondary); font-size: 0.8rem;">vs mes anterior</span>
+                    </div>
+                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
+                        <div style="width: 15%; height: 100%; background: linear-gradient(90deg, var(--secondary-color), #22a699); border-radius: 2px;"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card border-left-success">
                 <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Disponibles</h3>
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--success-color);">2,312</div>
-                    <div style="color: var(--text-secondary); font-size: 0.8rem;">81.3% del total</div>
+                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--success-color);">✅</div>
+                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Disponibles</h3>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--success-color); margin-bottom: var(--spacing-sm);" id="available-books">2,312</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">81.3% del total</div>
+                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
+                        <div style="width: 81%; height: 100%; background: linear-gradient(90deg, var(--success-color), #455e22); border-radius: 2px;"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card border-left-warning">
                 <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏰</div>
-                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Reservados</h3>
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--warning-color);">112</div>
-                    <div style="color: var(--warning-color); font-size: 0.8rem;">↗️ +15 hoy</div>
+                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--warning-color);">⏰</div>
+                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Reservados</h3>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--warning-color); margin-bottom: var(--spacing-sm);" id="reserved-books">112</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
+                        <span style="color: var(--warning-color); font-size: 0.9rem; font-weight: 500;">↗️ +15</span>
+                        <span style="color: var(--text-secondary); font-size: 0.8rem;">hoy</span>
+                    </div>
+                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
+                        <div style="width: 4%; height: 100%; background: linear-gradient(90deg, var(--warning-color), #b8731a); border-radius: 2px;"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card border-left-error">
                 <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚠️</div>
-                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Con Retraso</h3>
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--error-color);">28</div>
-                    <div style="color: var(--error-color); font-size: 0.8rem;">↗️ +3 esta semana</div>
+                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--error-color);">⚠️</div>
+                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Con Retraso</h3>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--error-color); margin-bottom: var(--spacing-sm);" id="overdue-books">28</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
+                        <span style="color: var(--error-color); font-size: 0.9rem; font-weight: 500;">↗️ +3</span>
+                        <span style="color: var(--text-secondary); font-size: 0.8rem;">esta semana</span>
+                    </div>
+                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
+                        <div style="width: 1%; height: 100%; background: linear-gradient(90deg, var(--error-color), #751018); border-radius: 2px;"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card border-left-primary">
                 <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
-                    <h3 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">Usuarios Activos</h3>
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent-color);">1,256</div>
-                    <div style="color: var(--success-color); font-size: 0.8rem;">↗️ +5% vs mes anterior</div>
+                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--accent-color);">👥</div>
+                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Usuarios Activos</h3>
+                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--accent-color); margin-bottom: var(--spacing-sm);" id="active-users">1,256</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
+                        <span style="color: var(--success-color); font-size: 0.9rem; font-weight: 500;">↗️ +5%</span>
+                        <span style="color: var(--text-secondary); font-size: 0.8rem;">vs mes anterior</span>
+                    </div>
+                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
+                        <div style="width: 44%; height: 100%; background: linear-gradient(90deg, var(--accent-color), #22a699); border-radius: 2px;"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -256,5 +298,71 @@
     </style>
 
     <script src="../../assets/js/main.js"></script>
+    <script>
+        // Real-time dashboard updates
+        function updateTimestamp() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('es-CO', {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('last-update').textContent = timeString;
+        }
+
+        function refreshDashboard() {
+            showToast('Actualizando datos...', 'info');
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // Simulate small changes in KPIs
+                const totalBooks = document.getElementById('total-books');
+                const currentTotal = parseInt(totalBooks.textContent.replace(',', ''));
+                const newTotal = currentTotal + Math.floor(Math.random() * 3) - 1; // -1, 0, or +1
+                totalBooks.textContent = newTotal.toLocaleString();
+
+                const loanedBooks = document.getElementById('loaned-books');
+                const currentLoaned = parseInt(loanedBooks.textContent.replace(',', ''));
+                const newLoaned = Math.max(400, currentLoaned + Math.floor(Math.random() * 5) - 2);
+                loanedBooks.textContent = newLoaned.toLocaleString();
+
+                const availableBooks = document.getElementById('available-books');
+                const newAvailable = parseInt(totalBooks.textContent.replace(',', '')) - newLoaned - 112 - 28;
+                availableBooks.textContent = newAvailable.toLocaleString();
+
+                const reservedBooks = document.getElementById('reserved-books');
+                const currentReserved = parseInt(reservedBooks.textContent.replace(',', ''));
+                const newReserved = Math.max(100, currentReserved + Math.floor(Math.random() * 7) - 3);
+                reservedBooks.textContent = newReserved.toLocaleString();
+
+                const overdueBooks = document.getElementById('overdue-books');
+                const currentOverdue = parseInt(overdueBooks.textContent.replace(',', ''));
+                const newOverdue = Math.max(20, currentOverdue + Math.floor(Math.random() * 3) - 1);
+                overdueBooks.textContent = newOverdue.toLocaleString();
+
+                const activeUsers = document.getElementById('active-users');
+                const currentUsers = parseInt(activeUsers.textContent.replace(',', ''));
+                const newUsers = Math.max(1200, currentUsers + Math.floor(Math.random() * 11) - 5);
+                activeUsers.textContent = newUsers.toLocaleString();
+
+                updateTimestamp();
+                showToast('Datos actualizados correctamente', 'success');
+            }, 1500);
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            refreshDashboard();
+        }, 30000);
+
+        // Update timestamp every second
+        setInterval(updateTimestamp, 1000);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTimestamp();
+        });
+    </script>
 </body>
 </html>
