@@ -1,87 +1,760 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Préstamo Rápido - SGBU</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+  </head>
+  <body>
     <header class="navbar">
-        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
-        <nav>
-            <ul class="navbar-nav">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="inventory.html">Inventario</a></li>
-                <li><a href="users.html">Usuarios</a></li>
-                <li><a href="sanctions.html">Sanciones</a></li>
-                <li><a href="reports.html">Reportes</a></li>
-                <li><a href="quick-loan.html">Préstamo Rápido</a></li>
-            </ul>
+      <div class="navbar-container">
+        <a href="../../index.html" class="navbar-brand"
+          >SGBU - Fundación Universitaria de Popayán</a
+        >
+
+        <nav class="navbar-nav-desktop">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="inventory.html">Inventario</a></li>
+            <li><a href="users.html">Usuarios</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="reports.html">Reportes</a></li>
+            <li><a href="quick-loan.html">Préstamo Rápido</a></li>
+            <li><a href="../public/login.html">Cerrar Sesión</a></li>
+          </ul>
         </nav>
+
+        <button class="navbar-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="navbar-mobile-menu" id="mobileMenu">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="inventory.html">Inventario</a></li>
+            <li><a href="users.html">Usuarios</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="reports.html">Reportes</a></li>
+            <li><a href="quick-loan.html">Préstamo Rápido</a></li>
+            <li><a href="../public/login.html">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
     </header>
 
-    <main style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
-        <h1>Registro Rápido de Préstamo/Devolución</h1>
+    <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+        "
+      >
+        <div>
+          <h1 style="margin: 0 0 0.5rem 0">Préstamo Rápido</h1>
+          <p style="margin: 0; color: var(--text-secondary)">
+            Registro ágil de préstamos y devoluciones en mostrador
+          </p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center">
+          <div style="text-align: right">
+            <p
+              style="
+                margin: 0;
+                font-size: 0.875rem;
+                color: var(--text-secondary);
+              "
+            >
+              Operador
+            </p>
+            <p style="margin: 0; font-weight: 600">Admin Usuario</p>
+          </div>
+        </div>
+      </div>
 
-        <!-- Loan Section -->
-        <div class="card" style="margin-bottom: 2rem;">
-            <div class="card-header">Nuevo Préstamo</div>
-            <div class="card-body">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                    <div class="form-group">
-                        <label for="user-code" class="form-label">Código de Usuario</label>
-                        <input type="text" id="user-code" class="form-input" placeholder="Escanear código">
-                    </div>
-                    <div class="form-group">
-                        <label for="book-code" class="form-label">Código de Libro</label>
-                        <input type="text" id="book-code" class="form-input" placeholder="Escanear código">
-                    </div>
-                </div>
-                <button class="btn btn-primary" onclick="simulateQuickLoan()">Registrar Préstamo</button>
+      <!-- Estadísticas Rápidas de Hoy -->
+      <div
+        class="grid grid-cols-4"
+        style="gap: var(--space-3); margin-bottom: 2rem"
+      >
+        <div class="card" style="border-left: 4px solid #10b981">
+          <div class="card-body" style="padding: var(--space-3)">
+            <p
+              style="
+                margin: 0;
+                font-size: 0.75rem;
+                color: var(--text-secondary);
+                text-transform: uppercase;
+              "
+            >
+              Préstamos Hoy
+            </p>
+            <h2 style="margin: 0.5rem 0 0 0; color: #10b981; font-size: 2rem">
+              18
+            </h2>
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--primary-color)">
+          <div class="card-body" style="padding: var(--space-3)">
+            <p
+              style="
+                margin: 0;
+                font-size: 0.75rem;
+                color: var(--text-secondary);
+                text-transform: uppercase;
+              "
+            >
+              Devoluciones
+            </p>
+            <h2
+              style="
+                margin: 0.5rem 0 0 0;
+                color: var(--primary-color);
+                font-size: 2rem;
+              "
+            >
+              12
+            </h2>
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid #f59e0b">
+          <div class="card-body" style="padding: var(--space-3)">
+            <p
+              style="
+                margin: 0;
+                font-size: 0.75rem;
+                color: var(--text-secondary);
+                text-transform: uppercase;
+              "
+            >
+              Con Retraso
+            </p>
+            <h2 style="margin: 0.5rem 0 0 0; color: #f59e0b; font-size: 2rem">
+              3
+            </h2>
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--secondary-color)">
+          <div class="card-body" style="padding: var(--space-3)">
+            <p
+              style="
+                margin: 0;
+                font-size: 0.75rem;
+                color: var(--text-secondary);
+                text-transform: uppercase;
+              "
+            >
+              En Sala
+            </p>
+            <h2
+              style="
+                margin: 0.5rem 0 0 0;
+                color: var(--secondary-color);
+                font-size: 2rem;
+              "
+            >
+              45
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-2"
+        style="gap: var(--space-4); margin-bottom: 2rem"
+      >
+        <!-- Nuevo Préstamo -->
+        <div class="card" style="border-top: 4px solid #10b981">
+          <div
+            class="card-header"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(16, 185, 129, 0.1) 0%,
+                rgba(16, 185, 129, 0.05) 100%
+              );
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 0.75rem">
+              <div
+                style="
+                  width: 40px;
+                  height: 40px;
+                  background: #10b981;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 5v14M5 12h14"></path>
+                </svg>
+              </div>
+              <h3 style="margin: 0">Nuevo Préstamo</h3>
             </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="user-code" class="form-label">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="vertical-align: middle; margin-right: 0.5rem"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Código de Usuario *
+              </label>
+              <div style="position: relative">
+                <input
+                  type="text"
+                  id="user-code"
+                  class="form-input"
+                  placeholder="Escanear o escribir código"
+                  style="padding-right: 40px"
+                />
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="var(--text-secondary)"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                  "
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <line x1="7" y1="4" x2="7" y2="10"></line>
+                  <line x1="14" y1="4" x2="14" y2="10"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="book-code" class="form-label">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="vertical-align: middle; margin-right: 0.5rem"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path
+                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  ></path>
+                </svg>
+                Código de Libro/ISBN *
+              </label>
+              <div style="position: relative">
+                <input
+                  type="text"
+                  id="book-code"
+                  class="form-input"
+                  placeholder="Escanear o escribir código"
+                  style="padding-right: 40px"
+                />
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="var(--text-secondary)"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                  "
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <line x1="7" y1="4" x2="7" y2="10"></line>
+                  <line x1="14" y1="4" x2="14" y2="10"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="loan-type" class="form-label">Tipo de Préstamo</label>
+              <select id="loan-type" class="form-select">
+                <option>Préstamo a domicilio (7 días)</option>
+                <option>Préstamo extendido (15 días)</option>
+                <option>Solo consulta en sala</option>
+              </select>
+            </div>
+            <button
+              class="btn btn-success"
+              style="width: 100%; font-size: 1.1rem; padding: 0.875rem"
+              onclick="simulateQuickLoan()"
+            >
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                style="margin-right: 0.5rem"
+              >
+                <polyline points="9 11 12 14 22 4"></polyline>
+                <path
+                  d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                ></path>
+              </svg>
+              Registrar Préstamo
+            </button>
+          </div>
         </div>
 
-        <!-- Return Section -->
-        <div class="card" style="margin-bottom: 2rem;">
-            <div class="card-header">Devolución</div>
-            <div class="card-body">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                    <div class="form-group">
-                        <label for="user-code-return" class="form-label">Código de Usuario</label>
-                        <input type="text" id="user-code-return" class="form-input" placeholder="Escanear código">
-                    </div>
-                    <div class="form-group">
-                        <label for="book-code-return" class="form-label">Código de Libro</label>
-                        <input type="text" id="book-code-return" class="form-input" placeholder="Escanear código">
-                    </div>
-                </div>
-                <div style="margin-bottom: 1rem;">
-                    <label>
-                        <input type="checkbox" id="apply-sanction"> Aplicar sanción por daño/retraso
-                    </label>
-                </div>
-                <button class="btn btn-success" onclick="simulateQuickReturn()">Registrar Devolución</button>
+        <!-- Devolución -->
+        <div class="card" style="border-top: 4px solid var(--primary-color)">
+          <div
+            class="card-header"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(0, 87, 144, 0.1) 0%,
+                rgba(0, 87, 144, 0.05) 100%
+              );
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 0.75rem">
+              <div
+                style="
+                  width: 40px;
+                  height: 40px;
+                  background: var(--primary-color);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                  ></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+              <h3 style="margin: 0">Devolución</h3>
             </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="user-code-return" class="form-label">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="vertical-align: middle; margin-right: 0.5rem"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Código de Usuario *
+              </label>
+              <div style="position: relative">
+                <input
+                  type="text"
+                  id="user-code-return"
+                  class="form-input"
+                  placeholder="Escanear o escribir código"
+                  style="padding-right: 40px"
+                />
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="var(--text-secondary)"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                  "
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <line x1="7" y1="4" x2="7" y2="10"></line>
+                  <line x1="14" y1="4" x2="14" y2="10"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="book-code-return" class="form-label">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="vertical-align: middle; margin-right: 0.5rem"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path
+                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  ></path>
+                </svg>
+                Código de Libro/ISBN *
+              </label>
+              <div style="position: relative">
+                <input
+                  type="text"
+                  id="book-code-return"
+                  class="form-input"
+                  placeholder="Escanear o escribir código"
+                  style="padding-right: 40px"
+                />
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="var(--text-secondary)"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  style="
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                  "
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <line x1="7" y1="4" x2="7" y2="10"></line>
+                  <line x1="14" y1="4" x2="14" y2="10"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="book-condition" class="form-label"
+                >Estado del Libro</label
+              >
+              <select id="book-condition" class="form-select">
+                <option>Excelente estado</option>
+                <option>Buen estado</option>
+                <option>Estado regular</option>
+                <option>Con daños (aplicar sanción)</option>
+              </select>
+            </div>
+            <div
+              class="alert alert-info"
+              style="margin-bottom: 1rem; padding: 0.75rem; font-size: 0.875rem"
+            >
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                style="vertical-align: middle; margin-right: 0.5rem"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Se verificará automáticamente si hay retrasos
+            </div>
+            <button
+              class="btn btn-primary"
+              style="width: 100%; font-size: 1.1rem; padding: 0.875rem"
+              onclick="simulateQuickReturn()"
+            >
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                style="margin-right: 0.5rem"
+              >
+                <polyline points="9 11 12 14 22 4"></polyline>
+                <path
+                  d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                ></path>
+              </svg>
+              Registrar Devolución
+            </button>
+          </div>
         </div>
+      </div>
 
-        <!-- Recent Transactions -->
-        <div class="card">
-            <div class="card-header">Transacciones Recientes</div>
-            <div class="card-body">
-                <div style="margin-bottom: 0.5rem; padding: 0.5rem; border-left: 4px solid var(--success-color); background-color: var(--surface-color);">
-                    <small>14:30 - Préstamo: "Clean Code" a María González</small>
-                </div>
-                <div style="margin-bottom: 0.5rem; padding: 0.5rem; border-left: 4px solid var(--primary-color); background-color: var(--surface-color);">
-                    <small>14:25 - Devolución: "Cien años de soledad" por Juan Pérez</small>
-                </div>
-                <div style="padding: 0.5rem; border-left: 4px solid var(--success-color); background-color: var(--surface-color);">
-                    <small>14:20 - Préstamo: "Sapiens" a Ana López</small>
-                </div>
-            </div>
+      <!-- Transacciones Recientes -->
+      <div class="card">
+        <div class="card-header">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h3 style="margin: 0">Transacciones Recientes</h3>
+            <span class="badge" style="background: var(--secondary-color)"
+              >Últimas 10</span
+            >
+          </div>
         </div>
+        <div class="card-body" style="padding: 0">
+          <div style="overflow-x: auto">
+            <table style="width: 100%; border-collapse: collapse">
+              <thead style="background: var(--gray-very-light)">
+                <tr>
+                  <th
+                    style="
+                      padding: 0.75rem;
+                      text-align: left;
+                      font-size: 0.875rem;
+                      font-weight: 600;
+                    "
+                  >
+                    Hora
+                  </th>
+                  <th
+                    style="
+                      padding: 0.75rem;
+                      text-align: left;
+                      font-size: 0.875rem;
+                      font-weight: 600;
+                    "
+                  >
+                    Tipo
+                  </th>
+                  <th
+                    style="
+                      padding: 0.75rem;
+                      text-align: left;
+                      font-size: 0.875rem;
+                      font-weight: 600;
+                    "
+                  >
+                    Usuario
+                  </th>
+                  <th
+                    style="
+                      padding: 0.75rem;
+                      text-align: left;
+                      font-size: 0.875rem;
+                      font-weight: 600;
+                    "
+                  >
+                    Libro
+                  </th>
+                  <th
+                    style="
+                      padding: 0.75rem;
+                      text-align: left;
+                      font-size: 0.875rem;
+                      font-weight: 600;
+                    "
+                  >
+                    Estado
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-color)">
+                  <td style="padding: 0.75rem">14:35</td>
+                  <td style="padding: 0.75rem">
+                    <span class="badge badge-success" style="font-size: 0.75rem"
+                      >Préstamo</span
+                    >
+                  </td>
+                  <td style="padding: 0.75rem">María González</td>
+                  <td style="padding: 0.75rem">Clean Code - Robert Martin</td>
+                  <td style="padding: 0.75rem">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="#10b981"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color)">
+                  <td style="padding: 0.75rem">14:30</td>
+                  <td style="padding: 0.75rem">
+                    <span class="badge badge-primary" style="font-size: 0.75rem"
+                      >Devolución</span
+                    >
+                  </td>
+                  <td style="padding: 0.75rem">Juan Pérez López</td>
+                  <td style="padding: 0.75rem">Cien años de soledad</td>
+                  <td style="padding: 0.75rem">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="#10b981"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color)">
+                  <td style="padding: 0.75rem">14:28</td>
+                  <td style="padding: 0.75rem">
+                    <span class="badge badge-success" style="font-size: 0.75rem"
+                      >Préstamo</span
+                    >
+                  </td>
+                  <td style="padding: 0.75rem">Ana López Ruiz</td>
+                  <td style="padding: 0.75rem">Sapiens - Yuval Noah</td>
+                  <td style="padding: 0.75rem">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="#10b981"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color)">
+                  <td style="padding: 0.75rem">14:20</td>
+                  <td style="padding: 0.75rem">
+                    <span class="badge badge-primary" style="font-size: 0.75rem"
+                      >Devolución</span
+                    >
+                  </td>
+                  <td style="padding: 0.75rem">Carlos Martínez</td>
+                  <td style="padding: 0.75rem">El Quijote</td>
+                  <td style="padding: 0.75rem">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="#f59e0b"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color)">
+                  <td style="padding: 0.75rem">14:15</td>
+                  <td style="padding: 0.75rem">
+                    <span class="badge badge-success" style="font-size: 0.75rem"
+                      >Préstamo</span
+                    >
+                  </td>
+                  <td style="padding: 0.75rem">Laura Sánchez</td>
+                  <td style="padding: 0.75rem">Estructura de Datos</td>
+                  <td style="padding: 0.75rem">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="none"
+                      stroke="#10b981"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </main>
 
+    <!-- Toast Container -->
+    <div id="toast" class="toast">
+      <span id="toast-message"></span>
+    </div>
+
     <script src="../../assets/js/main.js"></script>
-</body>
+    <script>
+      function simulateQuickLoan() {
+        const userCode = document.getElementById('user-code').value;
+        const bookCode = document.getElementById('book-code').value;
+
+        if (userCode && bookCode) {
+          showToast('Préstamo registrado exitosamente', 'success');
+          document.getElementById('user-code').value = '';
+          document.getElementById('book-code').value = '';
+          setTimeout(() => {
+            document.getElementById('user-code').focus();
+          }, 500);
+        } else {
+          showToast('Por favor complete todos los campos requeridos', 'error');
+        }
+      }
+
+      function simulateQuickReturn() {
+        const userCode = document.getElementById('user-code-return').value;
+        const bookCode = document.getElementById('book-code-return').value;
+
+        if (userCode && bookCode) {
+          showToast('Devolución registrada exitosamente', 'success');
+          document.getElementById('user-code-return').value = '';
+          document.getElementById('book-code-return').value = '';
+          setTimeout(() => {
+            document.getElementById('user-code-return').focus();
+          }, 500);
+        } else {
+          showToast('Por favor complete todos los campos requeridos', 'error');
+        }
+      }
+
+      // Auto-focus en el primer campo al cargar
+      window.addEventListener('load', function () {
+        document.getElementById('user-code').focus();
+      });
+    </script>
+  </body>
 </html>

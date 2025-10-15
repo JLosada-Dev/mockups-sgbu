@@ -1,188 +1,767 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SGBU - Sistema de Gestión de Bibliotecas Universitarias</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header class="navbar">
-        <a href="index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-brand"
+          >SGBU - Fundación Universitaria de Popayán</a
+        >
+        <button
+          class="navbar-toggle"
+          aria-label="Abrir menú de navegación"
+          onclick="toggleMobileMenu()"
+        ></button>
         <nav>
-            <ul class="navbar-nav">
-                <li><a href="views/public/login.html">Login</a></li>
-                <li><a href="views/public/catalog.html">Catálogo</a></li>
-                <li><a href="views/user/dashboard.html">Usuario</a></li>
-                <li><a href="views/admin/dashboard.html">Admin</a></li>
-                <li><a href="style-guide.html">Guía de Estilos</a></li>
-            </ul>
+          <ul class="navbar-nav">
+            <li><a href="views/public/login.html">Iniciar Sesión</a></li>
+            <li><a href="views/public/catalog.html">Catálogo</a></li>
+            <li><a href="views/user/dashboard.html">Panel Usuario</a></li>
+            <li><a href="views/admin/dashboard.html">Panel Admin</a></li>
+           <!--  <li><a href="style-guide.html">Guía de Estilos</a></li> -->
+          </ul>
         </nav>
+        <div class="navbar-mobile-menu" id="mobile-menu">
+          <ul class="navbar-nav">
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#catalog">Catálogo</a></li>
+            <li><a href="#about">Acerca de</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li>
+              <a href="views/public/login.html" class="btn btn-primary btn-sm"
+                >Acceder</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
-    <section style="background-color: var(--primary-color); color: white; min-height: 400px; padding: var(--space-7) 0; text-align: center;">
-        <div class="container">
-            <h1 style="margin-bottom: var(--space-4);">Sistema de Gestión de Bibliotecas Universitarias</h1>
-            <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-6); max-width: 600px; margin-left: auto; margin-right: auto; line-height: var(--line-height-relaxed);">
-                Fundación Universitaria FUP - Accede a miles de recursos bibliográficos con nuestro sistema moderno y eficiente.
-            </p>
+    <section
+      style="
+        background: linear-gradient(
+          135deg,
+          #005790 0%,
+          #003d66 50%,
+          #004a73 100%
+        );
+        color: white;
+        min-height: 500px;
+        padding: var(--space-8) 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      "
+    >
+      <!-- Decorative Background Elements -->
+      <div
+        style="
+          position: absolute;
+          top: -50%;
+          right: -10%;
+          width: 600px;
+          height: 600px;
+          background: radial-gradient(
+            circle,
+            rgba(0, 180, 165, 0.15) 0%,
+            transparent 70%
+          );
+          border-radius: 50%;
+          pointer-events: none;
+        "
+      ></div>
+      <div
+        style="
+          position: absolute;
+          bottom: -30%;
+          left: -5%;
+          width: 400px;
+          height: 400px;
+          background: radial-gradient(
+            circle,
+            rgba(0, 180, 165, 0.1) 0%,
+            transparent 70%
+          );
+          border-radius: 50%;
+          pointer-events: none;
+        "
+      ></div>
 
-            <!-- Prominent Search Bar -->
-            <div style="max-width: 600px; margin: 0 auto var(--space-6);">
-                <div style="display: flex; gap: var(--space-2);">
-                    <input type="text" placeholder="Buscar libros, autores, ISBN..." class="form-input" style="border-radius: var(--border-radius-base) 0 0 var(--border-radius-base); font-size: var(--font-size-lg);">
-                    <button class="btn btn-secondary" style="border-radius: 0 var(--border-radius-base) var(--border-radius-base) 0;">
-                        Buscar
-                    </button>
-                </div>
-            </div>
+      <div class="container" style="position: relative; z-index: 1">
+        <h1
+          style="
+            margin-bottom: var(--space-4);
+            color: white;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+          "
+        >
+          Sistema de Gestión de<br />
+          <span
+            style="
+              background: linear-gradient(135deg, #00b4a5 0%, #00e5d0 100%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+            >Bibliotecas Universitarias</span
+          >
+        </h1>
+        <p
+          style="
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: var(--space-6);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+          "
+        >
+          <strong style="color: var(--secondary-color)"
+            >Fundación Universitaria de Popayán</strong
+          ><br />
+          Accede a miles de recursos bibliográficos con nuestro sistema moderno
+          y eficiente.
+        </p>
 
-            <!-- Role-based Access Shortcuts -->
-            <div class="grid grid-cols-4" style="max-width: 800px; margin: 0 auto; gap: var(--space-3);">
-                <a href="views/public/catalog.html" class="card" style="text-decoration: none; color: inherit; background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
-                    <div class="card-body" style="text-align: center; padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--secondary-color);">L</div>
-                        <h3 style="margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg);">Catálogo Público</h3>
-                        <p style="margin: 0; font-size: var(--font-size-sm); opacity: 0.9;">Explora nuestra colección</p>
-                    </div>
-                </a>
-
-                <a href="views/user/dashboard.html" class="card" style="text-decoration: none; color: inherit; background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
-                    <div class="card-body" style="text-align: center; padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--secondary-color);">U</div>
-                        <h3 style="margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg);">Mi Cuenta</h3>
-                        <p style="margin: 0; font-size: var(--font-size-sm); opacity: 0.9;">Préstamos y reservas</p>
-                    </div>
-                </a>
-
-                <a href="views/admin/dashboard.html" class="card" style="text-decoration: none; color: inherit; background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
-                    <div class="card-body" style="text-align: center; padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--secondary-color);">A</div>
-                        <h3 style="margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg);">Administración</h3>
-                        <p style="margin: 0; font-size: var(--font-size-sm); opacity: 0.9;">Panel de control</p>
-                    </div>
-                </a>
-
-                <a href="views/public/login.html" class="card" style="text-decoration: none; color: inherit; background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
-                    <div class="card-body" style="text-align: center; padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--secondary-color);">I</div>
-                        <h3 style="margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg);">Iniciar Sesión</h3>
-                        <p style="margin: 0; font-size: var(--font-size-sm); opacity: 0.9;">Accede a tu cuenta</p>
-                    </div>
-                </a>
-            </div>
+        <!-- Prominent Search Bar -->
+        <div style="max-width: 650px; margin: 0 auto var(--space-7)">
+          <div
+            style="
+              display: flex;
+              gap: 0;
+              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+              border-radius: var(--border-radius-lg);
+              overflow: hidden;
+              background: white;
+            "
+          >
+            <input
+              type="text"
+              placeholder="Buscar libros, autores, ISBN..."
+              class="form-input"
+              style="
+                flex: 1;
+                border: none;
+                border-radius: 0;
+                font-size: 1.1rem;
+                padding: 1.2rem 1.5rem;
+                color: var(--text-primary);
+                background: white;
+              "
+            />
+            <button
+              class="btn btn-secondary"
+              style="
+                border-radius: 0;
+                padding: 1.2rem 2.5rem;
+                font-weight: 600;
+                font-size: 1.1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+                border: none;
+                background: linear-gradient(
+                  135deg,
+                  var(--secondary-color) 0%,
+                  #00d4c0 100%
+                );
+                box-shadow: none;
+              "
+            >
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+              Buscar
+            </button>
+          </div>
         </div>
+
+        <!-- Role-based Access Shortcuts -->
+        <div
+          class="grid grid-cols-4"
+          style="max-width: 900px; margin: 0 auto; gap: var(--space-4)"
+        >
+          <a
+            href="views/public/catalog.html"
+            class="card"
+            style="
+              text-decoration: none;
+              color: white;
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(10px);
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
+          >
+            <div
+              class="card-body"
+              style="text-align: center; padding: var(--space-5)"
+            >
+              <div
+                style="
+                  font-size: 3rem;
+                  margin-bottom: var(--space-3);
+                  color: var(--secondary-color);
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(0, 180, 165, 0.15);
+                  border-radius: 50%;
+                "
+              >
+                <svg
+                  width="36"
+                  height="36"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path
+                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3
+                style="
+                  margin: 0 0 var(--space-2) 0;
+                  font-size: 1.1rem;
+                  font-weight: 600;
+                "
+              >
+                Catálogo Público
+              </h3>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 0.9rem;
+                  opacity: 0.85;
+                  color: rgba(255, 255, 255, 0.9);
+                "
+              >
+                Explora nuestra colección
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="views/user/dashboard.html"
+            class="card"
+            style="
+              text-decoration: none;
+              color: white;
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(10px);
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
+          >
+            <div
+              class="card-body"
+              style="text-align: center; padding: var(--space-5)"
+            >
+              <div
+                style="
+                  font-size: 3rem;
+                  margin-bottom: var(--space-3);
+                  color: var(--secondary-color);
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(0, 180, 165, 0.15);
+                  border-radius: 50%;
+                "
+              >
+                <svg
+                  width="36"
+                  height="36"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <h3
+                style="
+                  margin: 0 0 var(--space-2) 0;
+                  font-size: 1.1rem;
+                  font-weight: 600;
+                "
+              >
+                Mi Cuenta
+              </h3>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 0.9rem;
+                  opacity: 0.85;
+                  color: rgba(255, 255, 255, 0.9);
+                "
+              >
+                Préstamos y reservas
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="views/admin/dashboard.html"
+            class="card"
+            style="
+              text-decoration: none;
+              color: white;
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(10px);
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
+          >
+            <div
+              class="card-body"
+              style="text-align: center; padding: var(--space-5)"
+            >
+              <div
+                style="
+                  font-size: 3rem;
+                  margin-bottom: var(--space-3);
+                  color: var(--secondary-color);
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(0, 180, 165, 0.15);
+                  border-radius: 50%;
+                "
+              >
+                <svg
+                  width="36"
+                  height="36"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path
+                    d="M12 1v6m0 6v6m9.66-9.66-4.24 4.24M10.58 13.42l-4.24 4.24M23 12h-6m-6 0H1m20.66 9.66-4.24-4.24M10.58 10.58l-4.24-4.24"
+                  ></path>
+                </svg>
+              </div>
+              <h3
+                style="
+                  margin: 0 0 var(--space-2) 0;
+                  font-size: 1.1rem;
+                  font-weight: 600;
+                "
+              >
+                Administración
+              </h3>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 0.9rem;
+                  opacity: 0.85;
+                  color: rgba(255, 255, 255, 0.9);
+                "
+              >
+                Panel de control
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="views/public/login.html"
+            class="card"
+            style="
+              text-decoration: none;
+              color: white;
+              background: rgba(255, 255, 255, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(10px);
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
+          >
+            <div
+              class="card-body"
+              style="text-align: center; padding: var(--space-5)"
+            >
+              <div
+                style="
+                  font-size: 3rem;
+                  margin-bottom: var(--space-3);
+                  color: var(--secondary-color);
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(0, 180, 165, 0.15);
+                  border-radius: 50%;
+                "
+              >
+                <svg
+                  width="36"
+                  height="36"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                  <polyline points="10 17 15 12 10 7"></polyline>
+                  <line x1="15" y1="12" x2="3" y2="12"></line>
+                </svg>
+              </div>
+              <h3
+                style="
+                  margin: 0 0 var(--space-2) 0;
+                  font-size: 1.1rem;
+                  font-weight: 600;
+                "
+              >
+                Iniciar Sesión
+              </h3>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 0.9rem;
+                  opacity: 0.85;
+                  color: rgba(255, 255, 255, 0.9);
+                "
+              >
+                Accede a tu cuenta
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <main class="container" style="padding: var(--space-6) 0;">
-        <!-- News Carousel -->
-        <section style="margin-bottom: var(--space-6);">
-            <h2 style="text-align: center; margin-bottom: var(--space-5);">Noticias de la Biblioteca</h2>
-            <div class="grid grid-cols-3" style="gap: var(--space-4);">
-                <div class="card border-left-primary">
-                    <div class="card-body">
-                        <h3>Nueva Colección Digital</h3>
-                        <p>Accede a más de 500 libros electrónicos desde cualquier dispositivo. Disponible 24/7 para toda la comunidad universitaria.</p>
-                        <small style="color: var(--text-muted);">Publicado: 15 Oct 2023</small>
-                    </div>
-                </div>
-
-                <div class="card border-left-secondary">
-                    <div class="card-body">
-                        <h3>Horarios Extendidos</h3>
-                        <p>La biblioteca ahora permanece abierta hasta las 10:00 PM de lunes a jueves para facilitar el estudio nocturno.</p>
-                        <small style="color: var(--text-muted);">Publicado: 10 Oct 2023</small>
-                    </div>
-                </div>
-
-                <div class="card border-left-success">
-                    <div class="card-body">
-                        <h3>Programa de Renovación</h3>
-                    <p>Renueva tus préstamos en línea sin necesidad de acudir físicamente. Evita multas por retraso.</p>
-                        <small style="color: var(--text-muted);">Publicado: 5 Oct 2023</small>
-                    </div>
-                </div>
+    <main class="container" style="padding: var(--space-6) 0">
+      <!-- News Carousel -->
+      <section style="margin-bottom: var(--space-6)">
+        <h2 style="text-align: center; margin-bottom: var(--space-5)">
+          Noticias de la Biblioteca
+        </h2>
+        <div class="grid grid-cols-3" style="gap: var(--space-4)">
+          <div class="card border-left-primary">
+            <div class="card-body">
+              <h3>Nueva Colección Digital</h3>
+              <p>
+                Accede a más de 500 libros electrónicos desde cualquier
+                dispositivo. Disponible 24/7 para toda la comunidad
+                universitaria.
+              </p>
+              <small style="color: var(--text-muted)"
+                >Publicado: 15 Oct 2023</small
+              >
             </div>
-        </section>
+          </div>
 
-        <!-- Statistics Section -->
-        <section style="margin-bottom: var(--space-6);">
-            <h2 style="text-align: center; margin-bottom: var(--space-5);">Estadísticas del Sistema</h2>
-            <div class="grid grid-cols-4" style="gap: var(--space-3);">
-                <div class="card border-left-primary" style="text-align: center; background-color: var(--primary-color); color: white;">
-                    <div class="card-body" style="padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--secondary-color);">L</div>
-                        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">15,000+</div>
-                        <div style="font-size: var(--font-size-base);">Libros en colección</div>
-                    </div>
-                </div>
-
-                <div class="card border-left-success" style="text-align: center; background-color: var(--success-color); color: white;">
-                    <div class="card-body" style="padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--primary-color);">U</div>
-                        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">2,500+</div>
-                        <div style="font-size: var(--font-size-base);">Usuarios activos</div>
-                    </div>
-                </div>
-
-                <div class="card border-left-warning" style="text-align: center; background-color: var(--warning-color); color: var(--almost-black);">
-                    <div class="card-body" style="padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--primary-color);">P</div>
-                        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">850</div>
-                        <div style="font-size: var(--font-size-base);">Préstamos mensuales</div>
-                    </div>
-                </div>
-
-                <div class="card border-left-secondary" style="text-align: center; background-color: var(--secondary-color); color: white;">
-                    <div class="card-body" style="padding: var(--space-4);">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-3); color: var(--primary-color);">S</div>
-                        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-2);">98%</div>
-                        <div style="font-size: var(--font-size-base);">Satisfacción usuario</div>
-                    </div>
-                </div>
+          <div class="card border-left-secondary">
+            <div class="card-body">
+              <h3>Horarios Extendidos</h3>
+              <p>
+                La biblioteca ahora permanece abierta hasta las 10:00 PM de
+                lunes a jueves para facilitar el estudio nocturno.
+              </p>
+              <small style="color: var(--text-muted)"
+                >Publicado: 10 Oct 2023</small
+              >
             </div>
-        </section>
+          </div>
 
-        <!-- Features Section -->
-        <section>
-            <h2 style="text-align: center; margin-bottom: var(--space-5);">Funcionalidades Destacadas</h2>
-            <div class="grid grid-cols-4" style="gap: var(--space-4);">
-                <div class="card">
-                    <div class="card-body" style="text-align: center;">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4); color: var(--primary-color);">B</div>
-                        <h3>Búsqueda Avanzada</h3>
-                        <p>Encuentra libros por título, autor, ISBN o categoría con filtros inteligentes y resultados instantáneos.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body" style="text-align: center;">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4); color: var(--secondary-color);">R</div>
-                        <h3>Reservas en Tiempo Real</h3>
-                        <p>Reserva libros con 48 horas de anticipación y recibe notificaciones cuando estén disponibles.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body" style="text-align: center;">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4); color: var(--success-color);">D</div>
-                        <h3>Dashboard Personalizado</h3>
-                        <p>Visualiza tus préstamos activos, historial y límites con indicadores visuales claros.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body" style="text-align: center;">
-                        <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4); color: var(--warning-color);">M</div>
-                        <h3>Acceso Móvil</h3>
-                        <p>Utiliza el sistema desde cualquier dispositivo con una experiencia optimizada para móviles y tablets.</p>
-                    </div>
-                </div>
+          <div class="card border-left-success">
+            <div class="card-body">
+              <h3>Programa de Renovación</h3>
+              <p>
+                Renueva tus préstamos en línea sin necesidad de acudir
+                físicamente. Evita multas por retraso.
+              </p>
+              <small style="color: var(--text-muted)"
+                >Publicado: 5 Oct 2023</small
+              >
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- Statistics Section -->
+      <section style="margin-bottom: var(--space-6)">
+        <h2 style="text-align: center; margin-bottom: var(--space-5)">
+          Estadísticas del Sistema
+        </h2>
+        <div class="grid grid-cols-4" style="gap: var(--space-3)">
+          <div
+            class="card border-left-primary"
+            style="
+              text-align: center;
+              background-color: var(--primary-color);
+              color: white;
+            "
+          >
+            <div class="card-body" style="padding: var(--space-4)">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-3);
+                  color: var(--secondary-color);
+                "
+              >
+                📖
+              </div>
+              <div
+                style="
+                  font-size: var(--font-size-3xl);
+                  font-weight: var(--font-weight-bold);
+                  margin-bottom: var(--space-2);
+                "
+              >
+                15,000+
+              </div>
+              <div style="font-size: var(--font-size-base)">
+                Libros en colección
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card border-left-success"
+            style="
+              text-align: center;
+              background-color: var(--success-color);
+              color: white;
+            "
+          >
+            <div class="card-body" style="padding: var(--space-4)">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-3);
+                  color: var(--primary-color);
+                "
+              >
+                👥
+              </div>
+              <div
+                style="
+                  font-size: var(--font-size-3xl);
+                  font-weight: var(--font-weight-bold);
+                  margin-bottom: var(--space-2);
+                "
+              >
+                2,500+
+              </div>
+              <div style="font-size: var(--font-size-base)">
+                Usuarios activos
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card border-left-warning"
+            style="
+              text-align: center;
+              background-color: var(--warning-color);
+              color: var(--almost-black);
+            "
+          >
+            <div class="card-body" style="padding: var(--space-4)">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-3);
+                  color: var(--primary-color);
+                "
+              >
+                📋
+              </div>
+              <div
+                style="
+                  font-size: var(--font-size-3xl);
+                  font-weight: var(--font-weight-bold);
+                  margin-bottom: var(--space-2);
+                "
+              >
+                850
+              </div>
+              <div style="font-size: var(--font-size-base)">
+                Préstamos mensuales
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card border-left-secondary"
+            style="
+              text-align: center;
+              background-color: var(--secondary-color);
+              color: white;
+            "
+          >
+            <div class="card-body" style="padding: var(--space-4)">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-3);
+                  color: var(--primary-color);
+                "
+              >
+                ⭐
+              </div>
+              <div
+                style="
+                  font-size: var(--font-size-3xl);
+                  font-weight: var(--font-weight-bold);
+                  margin-bottom: var(--space-2);
+                "
+              >
+                98%
+              </div>
+              <div style="font-size: var(--font-size-base)">
+                Satisfacción usuario
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section>
+        <h2 style="text-align: center; margin-bottom: var(--space-5)">
+          Funcionalidades Destacadas
+        </h2>
+        <div class="grid grid-cols-4" style="gap: var(--space-4)">
+          <div class="card">
+            <div class="card-body" style="text-align: center">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-4);
+                  color: var(--primary-color);
+                "
+              >
+                🔍
+              </div>
+              <h3>Búsqueda Avanzada</h3>
+              <p>
+                Encuentra libros por título, autor, ISBN o categoría con filtros
+                inteligentes y resultados instantáneos.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body" style="text-align: center">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-4);
+                  color: var(--secondary-color);
+                "
+              >
+                🔖
+              </div>
+              <h3>Reservas en Tiempo Real</h3>
+              <p>
+                Reserva libros con 48 horas de anticipación y recibe
+                notificaciones cuando estén disponibles.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body" style="text-align: center">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-4);
+                  color: var(--success-color);
+                "
+              >
+                📊
+              </div>
+              <h3>Dashboard Personalizado</h3>
+              <p>
+                Visualiza tus préstamos activos, historial y límites con
+                indicadores visuales claros.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body" style="text-align: center">
+              <div
+                style="
+                  font-size: var(--font-size-4xl);
+                  margin-bottom: var(--space-4);
+                  color: var(--warning-color);
+                "
+              >
+                📱
+              </div>
+              <h3>Acceso Móvil</h3>
+              <p>
+                Utiliza el sistema desde cualquier dispositivo con una
+                experiencia optimizada para móviles y tablets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="assets/js/main.js"></script>
-</body>
+  </body>
 </html>

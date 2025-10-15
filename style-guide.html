@@ -5,49 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía de Estilos - SGBU</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
-        <a href="index.html" class="navbar-brand">SGBU - Fundación FUP</a>
-        <nav>
-            <ul class="navbar-nav">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="style-guide.html">Guía de Estilos</a></li>
-            </ul>
-        </nav>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">SGBU - Fundación Universitaria de Popayán</a>
+            <button
+                class="navbar-toggle"
+                aria-label="Abrir menú de navegación"
+                onclick="toggleMobileMenu()"
+            >
+            </button>
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="style-guide.html">Guía de Estilos</a></li>
+                </ul>
+            </nav>
+            <div class="navbar-mobile-menu" id="mobileMenu">
+                <ul class="navbar-nav">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="style-guide.html">Guía de Estilos</a></li>
+                </ul>
+            </div>
+        </div>
     </header>
 
-    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+    <main class="container" style="padding: var(--space-6) 0;">
         <h1>Guía de Estilos - Sistema de Gestión de Bibliotecas Universitarias</h1>
+        <p>Fundación Universitaria de Popayán</p>
 
         <section class="card">
-            <div class="card-header">Paleta de Colores</div>
+            <div class="card-header">Paleta de Colores Institucional</div>
             <div class="card-body">
-                <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <div class="grid grid-cols-6" style="gap: var(--space-4);">
                     <div style="text-align: center;">
-                        <div style="width: 100px; height: 100px; background-color: var(--primary-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
-                        <strong>Primary</strong><br>
-                        #003366
+                        <div style="width: 100px; height: 100px; background-color: var(--primary-color); border-radius: var(--border-radius-lg); margin-bottom: var(--space-2);"></div>
+                        <strong>Azul Institucional</strong><br>
+                        <code>#005790</code>
                     </div>
                     <div style="text-align: center;">
-                        <div style="width: 100px; height: 100px; background-color: var(--secondary-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
-                        <strong>Secondary</strong><br>
-                        #0066CC
+                        <div style="width: 100px; height: 100px; background-color: var(--secondary-color); border-radius: var(--border-radius-lg); margin-bottom: var(--space-2);"></div>
+                        <strong>Verde Azulado</strong><br>
+                        <code>#00B4A5</code>
                     </div>
                     <div style="text-align: center;">
-                        <div style="width: 100px; height: 100px; background-color: var(--accent-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
-                        <strong>Accent</strong><br>
-                        #FFD700
+                        <div style="width: 100px; height: 100px; background-color: var(--success-color); border-radius: var(--border-radius-lg); margin-bottom: var(--space-2);"></div>
+                        <strong>Verde</strong><br>
+                        <code>#516F27</code>
                     </div>
                     <div style="text-align: center;">
-                        <div style="width: 100px; height: 100px; background-color: var(--success-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
-                        <strong>Success</strong><br>
-                        #28A745
+                        <div style="width: 100px; height: 100px; background-color: var(--warning-color); border-radius: var(--border-radius-lg); margin-bottom: var(--space-2);"></div>
+                        <strong>Naranja</strong><br>
+                        <code>#C97F16</code>
                     </div>
                     <div style="text-align: center;">
-                        <div style="width: 100px; height: 100px; background-color: var(--warning-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
-                        <strong>Warning</strong><br>
-                        #FFC107
+                        <div style="width: 100px; height: 100px; background-color: var(--error-color); border-radius: var(--border-radius-lg); margin-bottom: var(--space-2);"></div>
+                        <strong>Rojo</strong><br>
+                        <code>#8F121A</code>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 100px; height: 100px; background-color: var(--dark-blue); border-radius: var(--border-radius-lg); margin-bottom: var(--space-2);"></div>
+                        <strong>Negro Azulado</strong><br>
+                        <code>#021324</code>
+                    </div>
+                </div>
+            </div>
+        </section>
                     </div>
                     <div style="text-align: center;">
                         <div style="width: 100px; height: 100px; background-color: var(--error-color); border-radius: 0.5rem; margin-bottom: 0.5rem;"></div>
@@ -97,7 +122,7 @@
                 </div>
                 <div class="form-group">
                     <label for="example-email" class="form-label">Correo Electrónico</label>
-                    <input type="email" id="example-email" class="form-input" placeholder="usuario@fup.edu.co">
+                    <input type="email" id="example-email" class="form-input" placeholder="usuario@funipopayandigital.edu.co">
                 </div>
                 <div class="form-group">
                     <label for="example-select" class="form-label">Selector</label>

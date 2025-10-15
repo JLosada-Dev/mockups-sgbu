@@ -1,216 +1,407 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis Reservas - SGBU</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+  </head>
+  <body>
     <header class="navbar">
-        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
-        <nav>
-            <ul class="navbar-nav">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="loans.html">Mis Préstamos</a></li>
-                <li><a href="reservations.html">Mis Reservas</a></li>
-                <li><a href="sanctions.html">Mis Sanciones</a></li>
-                <li><a href="profile.html">Mi Perfil</a></li>
-                <li><a href="../public/catalog.html">Buscar Libros</a></li>
-            </ul>
+      <div class="navbar-container">
+        <a href="../../index.html" class="navbar-brand"
+          >SGBU - Fundación Universitaria de Popayán</a
+        >
+
+        <nav class="navbar-nav-desktop">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="loans.html">Mis Préstamos</a></li>
+            <li><a href="reservations.html">Reservas</a></li>
+            <li><a href="profile.html">Mi Perfil</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="../public/login.html">Cerrar Sesión</a></li>
+          </ul>
         </nav>
+
+        <button class="navbar-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="navbar-mobile-menu" id="mobileMenu">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="loans.html">Mis Préstamos</a></li>
+            <li><a href="reservations.html">Reservas</a></li>
+            <li><a href="profile.html">Mi Perfil</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="../public/login.html">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
     </header>
 
-    <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem;">
-        <h1>Mis Reservas</h1>
+    <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem">
+      <h1>Mis Reservas</h1>
 
-        <div class="card">
-            <div class="card-header">Reservas Activas</div>
-            <div class="card-body">
-                <!-- Reservation 1 -->
-                <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;">
-                        <div>
-                            <h3 style="margin: 0 0 0.5rem 0; font-size: 1.2rem;">Sapiens: De animales a dioses</h3>
-                            <p style="margin: 0 0 1rem 0; color: var(--text-secondary);">Yuval Noah Harari</p>
+      <div class="card">
+        <div class="card-header">Reservas Activas</div>
+        <div class="card-body">
+          <!-- Reservation 1 -->
+          <div
+            style="
+              padding: 1.5rem;
+              border: 1px solid var(--border-color);
+              border-radius: 0.5rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 2rem;
+                align-items: start;
+              "
+            >
+              <div>
+                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.2rem">
+                  Sapiens: De animales a dioses
+                </h3>
+                <p style="margin: 0 0 1rem 0; color: var(--text-secondary)">
+                  Yuval Noah Harari
+                </p>
 
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                                <div>
-                                    <strong>Fecha de Reserva:</strong><br>
-                                    20/09/2023 14:30
-                                </div>
-                                <div>
-                                    <strong>Vencimiento:</strong><br>
-                                    23/09/2023 14:30
-                                </div>
-                                <div>
-                                    <strong>Posición en Cola:</strong><br>
-                                    1 de 3
-                                </div>
-                            </div>
-
-                            <div style="background-color: var(--warning-color); color: white; padding: 0.75rem; border-radius: 0.375rem; margin-bottom: 1rem;">
-                                <strong>⏰ Tiempo restante: 2 horas 15 minutos</strong>
-                            </div>
-
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
-                                Recuerda recoger el libro en la biblioteca antes del vencimiento. Si no lo haces, la reserva será cancelada automáticamente.
-                            </p>
-                        </div>
-                        <div style="text-align: right;">
-                            <button class="btn btn-error" onclick="simulateCancelReservation('Sapiens')">Cancelar Reserva</button>
-                            <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--text-secondary);">Disponible para recoger</p>
-                        </div>
-                    </div>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <div>
+                    <strong>Fecha de Reserva:</strong><br />
+                    20/09/2023 14:30
+                  </div>
+                  <div>
+                    <strong>Vencimiento:</strong><br />
+                    23/09/2023 14:30
+                  </div>
+                  <div>
+                    <strong>Posición en Cola:</strong><br />
+                    1 de 3
+                  </div>
                 </div>
 
-                <!-- Reservation 2 -->
-                <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;">
-                        <div>
-                            <h3 style="margin: 0 0 0.5rem 0; font-size: 1.2rem;">El código Da Vinci</h3>
-                            <p style="margin: 0 0 1rem 0; color: var(--text-secondary);">Dan Brown</p>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                                <div>
-                                    <strong>Fecha de Reserva:</strong><br>
-                                    18/09/2023 10:15
-                                </div>
-                                <div>
-                                    <strong>Vencimiento:</strong><br>
-                                    21/09/2023 10:15
-                                </div>
-                                <div>
-                                    <strong>Posición en Cola:</strong><br>
-                                    2 de 5
-                                </div>
-                            </div>
-
-                            <div style="background-color: var(--error-color); color: white; padding: 0.75rem; border-radius: 0.375rem; margin-bottom: 1rem;">
-                                <strong>⏰ Tiempo restante: 1 día 4 horas</strong>
-                            </div>
-
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
-                                Estás en la posición 2 de la cola de espera. Serás notificado cuando el libro esté disponible.
-                            </p>
-                        </div>
-                        <div style="text-align: right;">
-                            <button class="btn btn-error" onclick="simulateCancelReservation('El código Da Vinci')">Cancelar Reserva</button>
-                            <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--text-secondary);">En lista de espera</p>
-                        </div>
-                    </div>
+                <div
+                  style="
+                    background-color: var(--warning-color);
+                    color: white;
+                    padding: 0.75rem;
+                    border-radius: 0.375rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <strong>⏰ Tiempo restante: 2 horas 15 minutos</strong>
                 </div>
 
-                <!-- Reservation 3 -->
-                <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 0.5rem;">
-                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;">
-                        <div>
-                            <h3 style="margin: 0 0 0.5rem 0; font-size: 1.2rem;">Breve historia del tiempo</h3>
-                            <p style="margin: 0 0 1rem 0; color: var(--text-secondary);">Stephen Hawking</p>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                                <div>
-                                    <strong>Fecha de Reserva:</strong><br>
-                                    15/09/2023 16:45
-                                </div>
-                                <div>
-                                    <strong>Vencimiento:</strong><br>
-                                    18/09/2023 16:45
-                                </div>
-                                <div>
-                                    <strong>Posición en Cola:</strong><br>
-                                    1 de 2
-                                </div>
-                            </div>
-
-                            <div style="background-color: var(--success-color); color: white; padding: 0.75rem; border-radius: 0.375rem; margin-bottom: 1rem;">
-                                <strong>✅ Reserva expirada - Libro disponible</strong>
-                            </div>
-
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
-                                Esta reserva ha expirado. El libro está disponible para préstamo directo.
-                            </p>
-                        </div>
-                        <div style="text-align: right;">
-                            <button class="btn btn-primary" onclick="window.location.href='../public/book-detail.html?id=3'">Ver Libro</button>
-                            <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--text-secondary);">Reserva expirada</p>
-                        </div>
-                    </div>
-                </div>
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  Recuerda recoger el libro en la biblioteca antes del
+                  vencimiento. Si no lo haces, la reserva será cancelada
+                  automáticamente.
+                </p>
+              </div>
+              <div style="text-align: right">
+                <button
+                  class="btn btn-error"
+                  onclick="simulateCancelReservation('Sapiens')"
+                >
+                  Cancelar Reserva
+                </button>
+                <p
+                  style="
+                    margin: 0.5rem 0 0 0;
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  Disponible para recoger
+                </p>
+              </div>
             </div>
-        </div>
+          </div>
 
-        <!-- Reservation Rules -->
-        <div class="card" style="margin-top: 2rem;">
-            <div class="card-header">Reglas de Reservas</div>
-            <div class="card-body">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div>
-                        <h4>Tiempo de Validez</h4>
-                        <ul>
-                            <li>Las reservas son válidas por 48 horas</li>
-                            <li>Debes recoger el libro antes del vencimiento</li>
-                            <li>Si no lo haces, pierdes la prioridad</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Lista de Espera</h4>
-                        <ul>
-                            <li>Si hay más reservas que ejemplares disponibles</li>
-                            <li>Se forma una cola de espera</li>
-                            <li>Serás notificado cuando llegue tu turno</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Cancelación</h4>
-                        <ul>
-                            <li>Puedes cancelar tu reserva en cualquier momento</li>
-                            <li>Si cancelas, pierdes tu lugar en la cola</li>
-                            <li>No hay penalización por cancelación</li>
-                        </ul>
-                    </div>
+          <!-- Reservation 2 -->
+          <div
+            style="
+              padding: 1.5rem;
+              border: 1px solid var(--border-color);
+              border-radius: 0.5rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 2rem;
+                align-items: start;
+              "
+            >
+              <div>
+                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.2rem">
+                  El código Da Vinci
+                </h3>
+                <p style="margin: 0 0 1rem 0; color: var(--text-secondary)">
+                  Dan Brown
+                </p>
+
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <div>
+                    <strong>Fecha de Reserva:</strong><br />
+                    18/09/2023 10:15
+                  </div>
+                  <div>
+                    <strong>Vencimiento:</strong><br />
+                    21/09/2023 10:15
+                  </div>
+                  <div>
+                    <strong>Posición en Cola:</strong><br />
+                    2 de 5
+                  </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Reservation History -->
-        <div class="card" style="margin-top: 2rem;">
-            <div class="card-header">Historial de Reservas (Últimos 30 días)</div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Libro</th>
-                            <th>Fecha de Reserva</th>
-                            <th>Estado</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Cien años de soledad</td>
-                            <td>10/09/2023</td>
-                            <td><span style="color: var(--success-color);">Completada</span></td>
-                            <td>Convertida a préstamo</td>
-                        </tr>
-                        <tr>
-                            <td>Historia de Colombia</td>
-                            <td>05/09/2023</td>
-                            <td><span style="color: var(--error-color);">Expirada</span></td>
-                            <td>No recogida</td>
-                        </tr>
-                        <tr>
-                            <td>Rayuela</td>
-                            <td>28/08/2023</td>
-                            <td><span style="color: var(--success-color);">Completada</span></td>
-                            <td>Convertida a préstamo</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div
+                  style="
+                    background-color: var(--error-color);
+                    color: white;
+                    padding: 0.75rem;
+                    border-radius: 0.375rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <strong>⏰ Tiempo restante: 1 día 4 horas</strong>
+                </div>
+
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  Estás en la posición 2 de la cola de espera. Serás notificado
+                  cuando el libro esté disponible.
+                </p>
+              </div>
+              <div style="text-align: right">
+                <button
+                  class="btn btn-error"
+                  onclick="simulateCancelReservation('El código Da Vinci')"
+                >
+                  Cancelar Reserva
+                </button>
+                <p
+                  style="
+                    margin: 0.5rem 0 0 0;
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  En lista de espera
+                </p>
+              </div>
             </div>
+          </div>
+
+          <!-- Reservation 3 -->
+          <div
+            style="
+              padding: 1.5rem;
+              border: 1px solid var(--border-color);
+              border-radius: 0.5rem;
+            "
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 2rem;
+                align-items: start;
+              "
+            >
+              <div>
+                <h3 style="margin: 0 0 0.5rem 0; font-size: 1.2rem">
+                  Breve historia del tiempo
+                </h3>
+                <p style="margin: 0 0 1rem 0; color: var(--text-secondary)">
+                  Stephen Hawking
+                </p>
+
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <div>
+                    <strong>Fecha de Reserva:</strong><br />
+                    15/09/2023 16:45
+                  </div>
+                  <div>
+                    <strong>Vencimiento:</strong><br />
+                    18/09/2023 16:45
+                  </div>
+                  <div>
+                    <strong>Posición en Cola:</strong><br />
+                    1 de 2
+                  </div>
+                </div>
+
+                <div
+                  style="
+                    background-color: var(--success-color);
+                    color: white;
+                    padding: 0.75rem;
+                    border-radius: 0.375rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <strong>✅ Reserva expirada - Libro disponible</strong>
+                </div>
+
+                <p
+                  style="
+                    margin: 0;
+                    font-size: 0.9rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  Esta reserva ha expirado. El libro está disponible para
+                  préstamo directo.
+                </p>
+              </div>
+              <div style="text-align: right">
+                <button
+                  class="btn btn-primary"
+                  onclick="window.location.href='../public/book-detail.html?id=3'"
+                >
+                  Ver Libro
+                </button>
+                <p
+                  style="
+                    margin: 0.5rem 0 0 0;
+                    font-size: 0.8rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  Reserva expirada
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Reservation Rules -->
+      <div class="card" style="margin-top: 2rem">
+        <div class="card-header">Reglas de Reservas</div>
+        <div class="card-body">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 2rem;
+            "
+          >
+            <div>
+              <h4>Tiempo de Validez</h4>
+              <ul>
+                <li>Las reservas son válidas por 48 horas</li>
+                <li>Debes recoger el libro antes del vencimiento</li>
+                <li>Si no lo haces, pierdes la prioridad</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Lista de Espera</h4>
+              <ul>
+                <li>Si hay más reservas que ejemplares disponibles</li>
+                <li>Se forma una cola de espera</li>
+                <li>Serás notificado cuando llegue tu turno</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Cancelación</h4>
+              <ul>
+                <li>Puedes cancelar tu reserva en cualquier momento</li>
+                <li>Si cancelas, pierdes tu lugar en la cola</li>
+                <li>No hay penalización por cancelación</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reservation History -->
+      <div class="card" style="margin-top: 2rem">
+        <div class="card-header">Historial de Reservas (Últimos 30 días)</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Libro</th>
+                <th>Fecha de Reserva</th>
+                <th>Estado</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cien años de soledad</td>
+                <td>10/09/2023</td>
+                <td>
+                  <span style="color: var(--success-color)">Completada</span>
+                </td>
+                <td>Convertida a préstamo</td>
+              </tr>
+              <tr>
+                <td>Historia de Colombia</td>
+                <td>05/09/2023</td>
+                <td><span style="color: var(--error-color)">Expirada</span></td>
+                <td>No recogida</td>
+              </tr>
+              <tr>
+                <td>Rayuela</td>
+                <td>28/08/2023</td>
+                <td>
+                  <span style="color: var(--success-color)">Completada</span>
+                </td>
+                <td>Convertida a préstamo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
 
     <script src="../../assets/js/main.js"></script>
-</body>
+  </body>
 </html>

@@ -1,296 +1,1504 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Usuario - SGBU</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <style>
+      /* Dashboard Responsive Styles */
+      @media (max-width: 1200px) {
+        .grid {
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+        }
+      }
+
+      @media (max-width: 767px) {
+        main.container {
+          padding: var(--space-4) var(--space-3) !important;
+        }
+
+        .grid {
+          grid-template-columns: 1fr !important;
+          gap: 1rem !important;
+        }
+
+        .card-header {
+          font-size: 1rem !important;
+        }
+
+        h1 {
+          font-size: 1.5rem !important;
+        }
+
+        .btn {
+          padding: 0.625rem 1rem !important;
+          font-size: 0.875rem !important;
+        }
+
+        /* Notifications responsive */
+        div[style*="border-left: 4px solid"] {
+          padding: 1rem !important;
+        }
+
+        div[style*="border-left: 4px solid"] > div:last-child {
+          display: none !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card-body {
+          padding: 1rem !important;
+        }
+
+        .btn-group {
+          flex-direction: column !important;
+        }
+
+        .btn-group .btn {
+          width: 100% !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <header class="navbar">
-        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+      <div class="navbar-container">
+        <a href="../../index.html" class="navbar-brand"
+          >SGBU - Fundación Universitaria de Popayán</a
+        >
+        <button
+          class="navbar-toggle"
+          aria-label="Abrir menú de navegación"
+          onclick="toggleMobileMenu()"
+        ></button>
         <nav>
-            <ul class="navbar-nav">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="loans.html">Mis Préstamos</a></li>
-                <li><a href="reservations.html">Mis Reservas</a></li>
-                <li><a href="sanctions.html">Mis Sanciones</a></li>
-                <li><a href="profile.html">Mi Perfil</a></li>
-                <li><a href="../public/catalog.html">Buscar Libros</a></li>
-            </ul>
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="loans.html">Mis Préstamos</a></li>
+            <li><a href="reservations.html">Mis Reservas</a></li>
+            <li><a href="sanctions.html">Mis Sanciones</a></li>
+            <li><a href="profile.html">Mi Perfil</a></li>
+            <li><a href="../public/catalog.html">Buscar Libros</a></li>
+          </ul>
         </nav>
+        <div class="navbar-mobile-menu" id="mobileMenu">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="loans.html">Mis Préstamos</a></li>
+            <li><a href="reservations.html">Mis Reservas</a></li>
+            <li><a href="sanctions.html">Mis Sanciones</a></li>
+            <li><a href="profile.html">Mi Perfil</a></li>
+            <li><a href="../public/catalog.html">Buscar Libros</a></li>
+          </ul>
+        </div>
+      </div>
     </header>
 
-    <main class="container" style="padding: var(--space-6) 0;">
-        <div class="flex justify-between items-center mb-6">
-            <h1>Dashboard de Usuario</h1>
-            <div>
-                <span style="color: var(--gray-medium);">Bienvenido, </span>
-                <strong>Juan Pérez</strong>
-                <span style="color: var(--gray-medium); margin-left: var(--space-3);">Estudiante</span>
+    <main class="container" style="padding: var(--space-6) 0; max-width: 1400px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="margin: 0 0 0.5rem 0;">Dashboard de Usuario</h1>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 0.95rem;">
+            Gestiona tus préstamos, reservas y actividad en la biblioteca
+          </p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1.25rem; background: linear-gradient(135deg, rgba(0, 87, 144, 0.1) 0%, rgba(0, 180, 165, 0.1) 100%); border-radius: 12px; border: 1px solid var(--border-color);">
+          <div style="
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+          ">JP</div>
+          <div>
+            <div style="font-weight: 600; color: var(--text-primary);">Jose Losada</div>
+            <div style="color: var(--text-secondary); font-size: 0.875rem;">Estudiante</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        <div class="card" style="border-top: 4px solid var(--primary-color); overflow: hidden;">
+          <div class="card-body" style="padding: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="
+                width: 56px;
+                height: 56px;
+                background: linear-gradient(135deg, var(--primary-color) 0%, rgba(0, 87, 144, 0.7) 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="28" height="28" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0;">
+                <h3 style="margin: 0 0 0.25rem 0; font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600;">
+                  Préstamos Activos
+                </h3>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color); line-height: 1;">
+                  3
+                </div>
+              </div>
             </div>
+
+            <!-- Progress bar for loan limit -->
+            <div style="margin-bottom: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                <span>Límite de préstamos</span>
+                <span style="font-weight: 600;">3/5</span>
+              </div>
+              <div
+                style="
+                  width: 100%;
+                  height: 6px;
+                  background-color: var(--gray-very-light);
+                  border-radius: 3px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 60%;
+                    height: 100%;
+                    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+                    border-radius: 3px;
+                    transition: width 0.3s ease;
+                  "
+                ></div>
+              </div>
+            </div>
+
+            <p style="margin: 0; color: var(--text-secondary); font-size: 0.875rem;">
+              Libros actualmente prestados
+            </p>
+          </div>
         </div>
 
-        <!-- Summary Cards -->
-        <div class="grid grid-cols-4 gap-4 mb-6">
-            <div class="card">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4); color: var(--primary-color);">P</div>
-                    <h3 style="margin: 0 0 var(--space-2) 0;">Préstamos Activos</h3>
-                    <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--primary-color); margin-bottom: var(--space-2);">3</div>
-
-                    <!-- Progress bar for loan limit -->
-                    <div style="margin-bottom: var(--space-2);">
-                        <div class="flex justify-between text-xs text-gray-medium mb-1">
-                            <span>Límite de préstamos</span>
-                            <span>3/5</span>
-                        </div>
-                        <div style="width: 100%; height: 8px; background-color: var(--gray-very-light); border-radius: 4px; overflow: hidden;">
-                            <div style="width: 60%; height: 100%; background-color: var(--primary-color); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-
-                    <p style="margin: 0; color: var(--gray-medium); font-size: var(--font-size-sm);">Libros actualmente prestados</p>
+        <div class="card" style="border-top: 4px solid #f59e0b; overflow: hidden;">
+          <div class="card-body" style="padding: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="
+                width: 56px;
+                height: 56px;
+                background: linear-gradient(135deg, #f59e0b 0%, rgba(245, 158, 11, 0.7) 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="28" height="28" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0;">
+                <h3 style="margin: 0 0 0.25rem 0; font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600;">
+                  Reservas Activas
+                </h3>
+                <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; line-height: 1;">
+                  2
                 </div>
+              </div>
             </div>
 
-            <div class="card">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: var(--spacing-lg); color: var(--secondary-color);">⏰</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0;">Reservas Activas</h3>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--secondary-color); margin-bottom: var(--spacing-sm);">2</div>
-
-                    <!-- Progress bar for reservation limit -->
-                    <div style="margin-bottom: var(--spacing-sm);">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: var(--spacing-xs);">
-                            <span>Límite de reservas</span>
-                            <span>2/3</span>
-                        </div>
-                        <div style="width: 100%; height: 8px; background-color: var(--surface-color); border-radius: 4px; overflow: hidden;">
-                            <div style="width: 67%; height: 100%; background: linear-gradient(90deg, var(--secondary-color), #22a699); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-
-                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Libros reservados</p>
-                </div>
+            <!-- Progress bar for reservation limit -->
+            <div style="margin-bottom: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                <span>Límite de reservas</span>
+                <span style="font-weight: 600;">2/3</span>
+              </div>
+              <div
+                style="
+                  width: 100%;
+                  height: 6px;
+                  background-color: var(--gray-very-light);
+                  border-radius: 3px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 67%;
+                    height: 100%;
+                    background: linear-gradient(90deg, #f59e0b, #d97706);
+                    border-radius: 3px;
+                    transition: width 0.3s ease;
+                  "
+                ></div>
+              </div>
             </div>
 
-            <div class="card border-left-error">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: var(--spacing-lg); color: var(--error-color);">⚠️</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0;">Estado de Cuenta</h3>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--error-color); margin-bottom: var(--spacing-sm);">Con Sanción</div>
-                    <div style="font-size: 1.2rem; font-weight: 600; color: var(--error-color); margin-bottom: var(--spacing-sm);">$25.000</div>
-                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">pendiente de pago</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: var(--spacing-lg); color: var(--accent-color);">📖</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0;">Historial</h3>
-                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-color); margin-bottom: var(--spacing-sm);">47</div>
-
-                    <!-- Progress bar for reading goal -->
-                    <div style="margin-bottom: var(--spacing-sm);">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: var(--spacing-xs);">
-                            <span>Meta anual</span>
-                            <span>47/50</span>
-                        </div>
-                        <div style="width: 100%; height: 8px; background-color: var(--surface-color); border-radius: 4px; overflow: hidden;">
-                            <div style="width: 94%; height: 100%; background: linear-gradient(90deg, var(--accent-color), #22a699); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-
-                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Libros prestados este año</p>
-                </div>
-            </div>
+            <p style="margin: 0; color: var(--text-secondary); font-size: 0.875rem;">
+              Libros reservados
+            </p>
+          </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="card" style="margin-bottom: var(--spacing-xxxl);">
-            <div class="card-header">Acciones Rápidas</div>
-            <div class="card-body">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--spacing-lg);">
-                    <a href="loans.html" class="btn btn-primary" style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                        <span style="font-size: 1.2rem;">📚</span>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600;">Mis Préstamos</div>
-                            <div style="font-size: 0.8rem; opacity: 0.8;">Gestionar libros prestados</div>
-                        </div>
-                    </a>
-                    <a href="reservations.html" class="btn btn-secondary" style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                        <span style="font-size: 1.2rem;">⏰</span>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600;">Mis Reservas</div>
-                            <div style="font-size: 0.8rem; opacity: 0.8;">Ver reservas activas</div>
-                        </div>
-                    </a>
-                    <a href="../public/catalog.html" class="btn btn-success" style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                        <span style="font-size: 1.2rem;">🔍</span>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600;">Buscar Libros</div>
-                            <div style="font-size: 0.8rem; opacity: 0.8;">Explorar catálogo</div>
-                        </div>
-                    </a>
-                    <a href="sanctions.html" class="btn btn-error" style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                        <span style="font-size: 1.2rem;">⚠️</span>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 600;">Mis Sanciones</div>
-                            <div style="font-size: 0.8rem; opacity: 0.8;">Revisar estado</div>
-                        </div>
-                    </a>
+        <div class="card" style="border-top: 4px solid #ef4444; overflow: hidden;">
+          <div class="card-body" style="padding: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="
+                width: 56px;
+                height: 56px;
+                background: linear-gradient(135deg, #ef4444 0%, rgba(239, 68, 68, 0.7) 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="28" height="28" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0;">
+                <h3 style="margin: 0 0 0.25rem 0; font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600;">
+                  Estado de Cuenta
+                </h3>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #ef4444; line-height: 1;">
+                  Con Sanción
                 </div>
+              </div>
             </div>
+
+            <div style="
+              padding: 0.75rem;
+              background: linear-gradient(90deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+              border-radius: 8px;
+              margin-bottom: 0.75rem;
+            ">
+              <div style="font-size: 1.5rem; font-weight: 700; color: #ef4444; margin-bottom: 0.25rem;">
+                $25.000
+              </div>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">
+                pendiente de pago
+              </div>
+            </div>
+
+            <a href="sanctions.html" class="btn btn-error btn-sm" style="width: 100%; font-size: 0.875rem;">
+              Ver Detalles
+            </a>
+          </div>
         </div>
 
-        <!-- Recent Activity -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <!-- Current Loans -->
-            <div class="card">
-                <div class="card-header">Préstamos Actuales</div>
-                <div class="card-body">
-                    <div style="margin-bottom: var(--spacing-lg); padding: var(--spacing-lg); border: 1px solid var(--border-color); border-radius: var(--border-radius); border-left: 4px solid var(--warning-color);">
-                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-sm);">
-                            <div>
-                                <h4 style="margin: 0 0 var(--spacing-xs) 0; font-size: 1.1rem;">Cien años de soledad</h4>
-                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Gabriel García Márquez</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="background-color: var(--warning-color); color: white; padding: var(--spacing-xs) var(--spacing-sm); border-radius: var(--border-radius); font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: var(--spacing-sm);">5 días restantes</div>
-                            </div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--spacing-lg); align-items: center;">
-                            <div>
-                                <div style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: var(--spacing-xs);">Préstamo: 15/09/2023 • Vencimiento: 15/10/2023</div>
-                                <div style="width: 100%; height: 6px; background-color: var(--surface-color); border-radius: 3px; overflow: hidden;">
-                                    <div style="width: 83%; height: 100%; background: linear-gradient(90deg, var(--warning-color), #b8731a); border-radius: 3px;"></div>
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
-                                <button class="btn btn-primary btn-sm" onclick="simulateRenew('Cien años de soledad')">Renovar</button>
-                                <button class="btn btn-outline btn-sm" onclick="extendLoan('Cien años de soledad')">Extender</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom: var(--spacing-lg); padding: var(--spacing-lg); border: 1px solid var(--border-color); border-radius: var(--border-radius); border-left: 4px solid var(--success-color);">
-                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--spacing-sm);">
-                            <div>
-                                <h4 style="margin: 0 0 var(--spacing-xs) 0; font-size: 1.1rem;">Clean Code</h4>
-                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Robert C. Martin</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="background-color: var(--success-color); color: white; padding: var(--spacing-xs) var(--spacing-sm); border-radius: var(--border-radius); font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: var(--spacing-sm);">10 días restantes</div>
-                            </div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: var(--spacing-lg); align-items: center;">
-                            <div>
-                                <div style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: var(--spacing-xs);">Préstamo: 10/09/2023 • Vencimiento: 10/10/2023</div>
-                                <div style="width: 100%; height: 6px; background-color: var(--surface-color); border-radius: 3px; overflow: hidden;">
-                                    <div style="width: 67%; height: 100%; background: linear-gradient(90deg, var(--success-color), #455e22); border-radius: 3px;"></div>
-                                </div>
-                            </div>
-                            <div style="display: flex; flex-direction: column; gap: var(--spacing-xs);">
-                                <button class="btn btn-primary btn-sm" onclick="simulateRenew('Clean Code')">Renovar</button>
-                                <button class="btn btn-outline btn-sm" onclick="returnEarly('Clean Code')">Devolver</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; gap: var(--spacing-sm);">
-                        <a href="loans.html" class="btn btn-outline" style="flex: 1;">Ver Todos los Préstamos</a>
-                        <button class="btn btn-secondary" onclick="renewAll()">Renovar Todos</button>
-                    </div>
+        <div class="card" style="border-top: 4px solid #10b981; overflow: hidden;">
+          <div class="card-body" style="padding: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div style="
+                width: 56px;
+                height: 56px;
+                background: linear-gradient(135deg, #10b981 0%, rgba(16, 185, 129, 0.7) 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="28" height="28" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0;">
+                <h3 style="margin: 0 0 0.25rem 0; font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 600;">
+                  Historial
+                </h3>
+                <div style="font-size: 2rem; font-weight: 700; color: #10b981; line-height: 1;">
+                  47
                 </div>
+              </div>
             </div>
 
-            <!-- Current Reservations -->
-            <div class="card">
-                <div class="card-header">Reservas Activas</div>
-                <div class="card-body">
-                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
-                        <div style="display: flex; justify-content: space-between; align-items: start;">
-                            <div>
-                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem;">Sapiens</h4>
-                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Yuval Noah Harari</p>
-                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Reserva: 20/09/2023</p>
-                                <p style="margin: 0; font-size: 0.9rem;">Vencimiento: 23/09/2023</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="color: var(--error-color); font-weight: 500; margin-bottom: 0.5rem;">Expira en 2h 30m</div>
-                                <button class="btn btn-outline btn-sm" onclick="simulateCancelReservation('Sapiens')">Cancelar</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
-                        <div style="display: flex; justify-content: space-between; align-items: start;">
-                            <div>
-                                <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem;">El código Da Vinci</h4>
-                                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Dan Brown</p>
-                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Reserva: 18/09/2023</p>
-                                <p style="margin: 0; font-size: 0.9rem;">Vencimiento: 21/09/2023</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="color: var(--warning-color); font-weight: 500; margin-bottom: 0.5rem;">Expira en 1 día</div>
-                                <button class="btn btn-outline btn-sm" onclick="simulateCancelReservation('El código Da Vinci')">Cancelar</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="reservations.html" class="btn btn-outline" style="width: 100%;">Ver Todas las Reservas</a>
-                </div>
+            <!-- Progress bar for reading goal -->
+            <div style="margin-bottom: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+                <span>Meta anual</span>
+                <span style="font-weight: 600;">47/50</span>
+              </div>
+              <div
+                style="
+                  width: 100%;
+                  height: 6px;
+                  background-color: var(--gray-very-light);
+                  border-radius: 3px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  style="
+                    width: 94%;
+                    height: 100%;
+                    background: linear-gradient(90deg, #10b981, #059669);
+                    border-radius: 3px;
+                    transition: width 0.3s ease;
+                  "
+                ></div>
+              </div>
             </div>
+
+            <p style="margin: 0; color: var(--text-secondary); font-size: 0.875rem;">
+              Libros prestados este año
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 16 16 12 12 8"></polyline>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <h3 style="margin: 0;">Acciones Rápidas</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+            <a
+              href="loans.html"
+              class="btn btn-primary"
+              style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; height: auto; text-align: left;"
+            >
+              <div style="
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 0.25rem;">Mis Préstamos</div>
+                <div style="font-size: 0.875rem; opacity: 0.9;">
+                  Gestionar libros prestados
+                </div>
+              </div>
+            </a>
+            <a
+              href="reservations.html"
+              class="btn btn-warning"
+              style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; height: auto; text-align: left;"
+            >
+              <div style="
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 0.25rem;">Mis Reservas</div>
+                <div style="font-size: 0.875rem; opacity: 0.9;">
+                  Ver reservas activas
+                </div>
+              </div>
+            </a>
+            <a
+              href="../public/catalog.html"
+              class="btn btn-success"
+              style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; height: auto; text-align: left;"
+            >
+              <div style="
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 0.25rem;">Buscar Libros</div>
+                <div style="font-size: 0.875rem; opacity: 0.9;">
+                  Explorar catálogo
+                </div>
+              </div>
+            </a>
+            <a
+              href="sanctions.html"
+              class="btn btn-error"
+              style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; height: auto; text-align: left;"
+            >
+              <div style="
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              ">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 0.25rem;">Mis Sanciones</div>
+                <div style="font-size: 0.875rem; opacity: 0.9;">
+                  Revisar estado
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+        <!-- Current Loans -->
+        <div class="card">
+          <div class="card-header">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                <h3 style="margin: 0;">Préstamos Actuales</h3>
+              </div>
+              <span class="badge badge-primary">3</span>
+            </div>
+          </div>
+          <div class="card-body" style="padding: 1rem;">
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-left: 4px solid #f59e0b;
+                border-radius: 0.5rem;
+                background: linear-gradient(90deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.03) 100%);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <div style="flex: 1;">
+                  <h4
+                    style="margin: 0 0 0.25rem 0; font-size: 1rem; font-weight: 600;"
+                  >
+                    Cien años de soledad
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      color: var(--text-secondary);
+                      font-size: 0.875rem;
+                    "
+                  >
+                    Gabriel García Márquez
+                  </p>
+                </div>
+                <div style="text-align: right;">
+                  <div class="badge" style="background: #f59e0b; font-size: 0.75rem;">
+                    5 días restantes
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 1rem;
+                  align-items: center;
+                  flex-wrap: wrap;
+                "
+              >
+                <div style="flex: 1; min-width: 200px;">
+                  <div
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.75rem;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    Préstamo: 15/09/2025 • Vencimiento: 15/10/2025
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 6px;
+                      background-color: var(--gray-very-light);
+                      border-radius: 3px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 83%;
+                        height: 100%;
+                        background: linear-gradient(90deg, #f59e0b, #d97706);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    gap: 0.5rem;
+                  "
+                >
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="simulateRenew('Cien años de soledad')"
+                    title="Renovar préstamo"
+                  >
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <polyline points="23 4 23 10 17 10"></polyline>
+                      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                  </button>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="extendLoan('Cien años de soledad')"
+                    title="Extender préstamo"
+                  >
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-left: 4px solid #10b981;
+                border-radius: 0.5rem;
+                background: linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.03) 100%);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                <div style="flex: 1;">
+                  <h4
+                    style="margin: 0 0 0.25rem 0; font-size: 1rem; font-weight: 600;"
+                  >
+                    Clean Code
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      color: var(--text-secondary);
+                      font-size: 0.875rem;
+                    "
+                  >
+                    Robert C. Martin
+                  </p>
+                </div>
+                <div style="text-align: right;">
+                  <div class="badge badge-success" style="font-size: 0.75rem;">
+                    10 días restantes
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 1rem;
+                  align-items: center;
+                  flex-wrap: wrap;
+                "
+              >
+                <div style="flex: 1; min-width: 200px;">
+                  <div
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.75rem;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    Préstamo: 10/09/2025 • Vencimiento: 10/10/2025
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 6px;
+                      background-color: var(--gray-very-light);
+                      border-radius: 3px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 67%;
+                        height: 100%;
+                        background: linear-gradient(90deg, #10b981, #059669);
+                        border-radius: 3px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    gap: 0.5rem;
+                  "
+                >
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="simulateRenew('Clean Code')"
+                    title="Renovar préstamo"
+                  >
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <polyline points="23 4 23 10 17 10"></polyline>
+                      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                  </button>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="returnEarly('Clean Code')"
+                    title="Devolver anticipadamente"
+                  >
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="loans.html" class="btn btn-outline" style="flex: 1; min-width: 150px;">Ver Todos</a>
+              <button class="btn btn-secondary" onclick="renewAll()" style="flex: 1; min-width: 150px;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-right: 0.5rem;">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                Renovar Todos
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Notifications -->
-        <div class="card" style="margin-top: 2rem;">
-            <div class="card-header">Notificaciones Recientes</div>
-            <div class="card-body">
-                <div style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem; margin-bottom: 1rem;">
-                    <div style="color: var(--warning-color); margin-right: 1rem;">⚠️</div>
-                    <div>
-                        <p style="margin: 0; font-weight: 500;">Recordatorio de vencimiento</p>
-                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">"Cien años de soledad" vence en 5 días</p>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem; margin-bottom: 1rem;">
-                    <div style="color: var(--error-color); margin-right: 1rem;">🚫</div>
-                    <div>
-                        <p style="margin: 0; font-weight: 500;">Sanción aplicada</p>
-                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Se ha aplicado una sanción por retraso en la devolución</p>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; padding: 1rem; border: 1px solid var(--border-color); border-radius: 0.375rem;">
-                    <div style="color: var(--success-color); margin-right: 1rem;">✅</div>
-                    <div>
-                        <p style="margin: 0; font-weight: 500;">Reserva confirmada</p>
-                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Tu reserva de "Sapiens" ha sido confirmada</p>
-                    </div>
-                </div>
+        <!-- Current Reservations -->
+        <div class="card">
+          <div class="card-header">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <h3 style="margin: 0;">Reservas Activas</h3>
+              </div>
+              <span class="badge" style="background: #f59e0b;">2</span>
             </div>
+          </div>
+          <div class="card-body" style="padding: 1rem;">
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-left: 4px solid #ef4444;
+                border-radius: 0.5rem;
+                background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.03) 100%);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                  gap: 1rem;
+                "
+              >
+                <div style="flex: 1;">
+                  <h4 style="margin: 0 0 0.25rem 0; font-size: 1rem; font-weight: 600;">Sapiens</h4>
+                  <p
+                    style="
+                      margin: 0 0 0.5rem 0;
+                      color: var(--text-secondary);
+                      font-size: 0.875rem;
+                    "
+                  >
+                    Yuval Noah Harari
+                  </p>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">
+                    <div>Reserva: 20/09/2025</div>
+                    <div>Vencimiento: 23/09/2025</div>
+                  </div>
+                </div>
+                <div style="text-align: right;">
+                  <div class="badge badge-error" style="font-size: 0.75rem; margin-bottom: 0.75rem; display: inline-block;">
+                    Expira en 2h 30m
+                  </div>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="simulateCancelReservation('Sapiens')"
+                    style="width: 100%;"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-left: 4px solid #f59e0b;
+                border-radius: 0.5rem;
+                background: linear-gradient(90deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.03) 100%);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                  gap: 1rem;
+                "
+              >
+                <div style="flex: 1;">
+                  <h4 style="margin: 0 0 0.25rem 0; font-size: 1rem; font-weight: 600;">
+                    El código Da Vinci
+                  </h4>
+                  <p
+                    style="
+                      margin: 0 0 0.5rem 0;
+                      color: var(--text-secondary);
+                      font-size: 0.875rem;
+                    "
+                  >
+                    Dan Brown
+                  </p>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">
+                    <div>Reserva: 18/09/2025</div>
+                    <div>Vencimiento: 21/09/2025</div>
+                  </div>
+                </div>
+                <div style="text-align: right;">
+                  <div class="badge" style="background: #f59e0b; font-size: 0.75rem; margin-bottom: 0.75rem; display: inline-block;">
+                    Expira en 1 día
+                  </div>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="simulateCancelReservation('El código Da Vinci')"
+                    style="width: 100%;"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="reservations.html"
+              class="btn btn-outline"
+              style="width: 100%"
+              >Ver Todas las Reservas</a
+            >
+          </div>
         </div>
+      </div>
+            <div
+              style="
+                margin-bottom: var(--spacing-lg);
+                padding: var(--spacing-lg);
+                border: 1px solid var(--border-color);
+                border-radius: var(--border-radius);
+                border-left: 4px solid var(--warning-color);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                  margin-bottom: var(--spacing-sm);
+                "
+              >
+                <div>
+                  <h4
+                    style="margin: 0 0 var(--spacing-xs) 0; font-size: 1.1rem"
+                  >
+                    Cien años de soledad
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      color: var(--text-secondary);
+                      font-size: 0.9rem;
+                    "
+                  >
+                    Gabriel García Márquez
+                  </p>
+                </div>
+                <div style="text-align: right">
+                  <div
+                    style="
+                      background-color: var(--warning-color);
+                      color: white;
+                      padding: var(--spacing-xs) var(--spacing-sm);
+                      border-radius: var(--border-radius);
+                      font-size: 0.8rem;
+                      font-weight: 600;
+                      display: inline-block;
+                      margin-bottom: var(--spacing-sm);
+                    "
+                  >
+                    5 días restantes
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr auto;
+                  gap: var(--spacing-lg);
+                  align-items: center;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.8rem;
+                      margin-bottom: var(--spacing-xs);
+                    "
+                  >
+                    Préstamo: 15/09/2023 • Vencimiento: 15/10/2023
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 6px;
+                      background-color: var(--surface-color);
+                      border-radius: 3px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 83%;
+                        height: 100%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--warning-color),
+                          #b8731a
+                        );
+                        border-radius: 3px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--spacing-xs);
+                  "
+                >
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="simulateRenew('Cien años de soledad')"
+                  >
+                    Renovar
+                  </button>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="extendLoan('Cien años de soledad')"
+                  >
+                    Extender
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: var(--spacing-lg);
+                padding: var(--spacing-lg);
+                border: 1px solid var(--border-color);
+                border-radius: var(--border-radius);
+                border-left: 4px solid var(--success-color);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                  margin-bottom: var(--spacing-sm);
+                "
+              >
+                <div>
+                  <h4
+                    style="margin: 0 0 var(--spacing-xs) 0; font-size: 1.1rem"
+                  >
+                    Clean Code
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      color: var(--text-secondary);
+                      font-size: 0.9rem;
+                    "
+                  >
+                    Robert C. Martin
+                  </p>
+                </div>
+                <div style="text-align: right">
+                  <div
+                    style="
+                      background-color: var(--success-color);
+                      color: white;
+                      padding: var(--spacing-xs) var(--spacing-sm);
+                      border-radius: var(--border-radius);
+                      font-size: 0.8rem;
+                      font-weight: 600;
+                      display: inline-block;
+                      margin-bottom: var(--spacing-sm);
+                    "
+                  >
+                    10 días restantes
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr auto;
+                  gap: var(--spacing-lg);
+                  align-items: center;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      color: var(--text-secondary);
+                      font-size: 0.8rem;
+                      margin-bottom: var(--spacing-xs);
+                    "
+                  >
+                    Préstamo: 10/09/2023 • Vencimiento: 10/10/2023
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 6px;
+                      background-color: var(--surface-color);
+                      border-radius: 3px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 67%;
+                        height: 100%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--success-color),
+                          #455e22
+                        );
+                        border-radius: 3px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--spacing-xs);
+                  "
+                >
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="simulateRenew('Clean Code')"
+                  >
+                    Renovar
+                  </button>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="returnEarly('Clean Code')"
+                  >
+                    Devolver
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--spacing-sm)">
+              <a href="loans.html" class="btn btn-outline" style="flex: 1"
+                >Ver Todos los Préstamos</a
+              >
+              <button class="btn btn-secondary" onclick="renewAll()">
+                Renovar Todos
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Reservations -->
+        <div class="card">
+          <div class="card-header">Reservas Activas</div>
+          <div class="card-body">
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 0.375rem;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                "
+              >
+                <div>
+                  <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem">Sapiens</h4>
+                  <p
+                    style="
+                      margin: 0;
+                      color: var(--text-secondary);
+                      font-size: 0.9rem;
+                    "
+                  >
+                    Yuval Noah Harari
+                  </p>
+                  <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem">
+                    Reserva: 20/09/2023
+                  </p>
+                  <p style="margin: 0; font-size: 0.9rem">
+                    Vencimiento: 23/09/2023
+                  </p>
+                </div>
+                <div style="text-align: right">
+                  <div
+                    style="
+                      color: var(--error-color);
+                      font-weight: 500;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    Expira en 2h 30m
+                  </div>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="simulateCancelReservation('Sapiens')"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 0.375rem;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                "
+              >
+                <div>
+                  <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem">
+                    El código Da Vinci
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      color: var(--text-secondary);
+                      font-size: 0.9rem;
+                    "
+                  >
+                    Dan Brown
+                  </p>
+                  <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem">
+                    Reserva: 18/09/2023
+                  </p>
+                  <p style="margin: 0; font-size: 0.9rem">
+                    Vencimiento: 21/09/2023
+                  </p>
+                </div>
+                <div style="text-align: right">
+                  <div
+                    style="
+                      color: var(--warning-color);
+                      font-weight: 500;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    Expira en 1 día
+                  </div>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    onclick="simulateCancelReservation('El código Da Vinci')"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="reservations.html"
+              class="btn btn-outline"
+              style="width: 100%"
+              >Ver Todas las Reservas</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="card" style="margin-top: 2rem">
+        <div class="card-header">
+          <div style="display: flex; align-items: center; gap: 0.5rem">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            Notificaciones Recientes
+          </div>
+        </div>
+        <div class="card-body" style="padding: 0">
+          <!-- Warning Notification -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding: 1.25rem;
+              border-left: 4px solid var(--warning-color);
+              background: linear-gradient(
+                135deg,
+                rgba(245, 158, 11, 0.05),
+                rgba(245, 158, 11, 0.02)
+              );
+              border-bottom: 1px solid var(--border-color);
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.03))'"
+            onmouseout="this.style.background='linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.02))'"
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: rgba(245, 158, 11, 0.15);
+                flex-shrink: 0;
+              "
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--warning-color)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                ></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <div style="flex: 1; min-width: 0">
+              <p
+                style="
+                  margin: 0 0 0.25rem 0;
+                  font-weight: 600;
+                  color: var(--text-primary);
+                  font-size: 0.95rem;
+                "
+              >
+                Recordatorio de vencimiento
+              </p>
+              <p
+                style="
+                  margin: 0;
+                  color: var(--text-secondary);
+                  font-size: 0.875rem;
+                  line-height: 1.4;
+                "
+              >
+                "Cien años de soledad" vence en 5 días
+              </p>
+            </div>
+            <div
+              style="
+                font-size: 0.75rem;
+                color: var(--text-secondary);
+                flex-shrink: 0;
+              "
+            >
+              Hace 2h
+            </div>
+          </div>
+
+          <!-- Error Notification -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding: 1.25rem;
+              border-left: 4px solid var(--error-color);
+              background: linear-gradient(
+                135deg,
+                rgba(239, 68, 68, 0.05),
+                rgba(239, 68, 68, 0.02)
+              );
+              border-bottom: 1px solid var(--border-color);
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.03))'"
+            onmouseout="this.style.background='linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.02))'"
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: rgba(239, 68, 68, 0.15);
+                flex-shrink: 0;
+              "
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--error-color)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+              </svg>
+            </div>
+            <div style="flex: 1; min-width: 0">
+              <p
+                style="
+                  margin: 0 0 0.25rem 0;
+                  font-weight: 600;
+                  color: var(--text-primary);
+                  font-size: 0.95rem;
+                "
+              >
+                Sanción aplicada
+              </p>
+              <p
+                style="
+                  margin: 0;
+                  color: var(--text-secondary);
+                  font-size: 0.875rem;
+                  line-height: 1.4;
+                "
+              >
+                Se ha aplicado una sanción por retraso en la devolución
+              </p>
+            </div>
+            <div
+              style="
+                font-size: 0.75rem;
+                color: var(--text-secondary);
+                flex-shrink: 0;
+              "
+            >
+              Hace 5h
+            </div>
+          </div>
+
+          <!-- Success Notification -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding: 1.25rem;
+              border-left: 4px solid var(--success-color);
+              background: linear-gradient(
+                135deg,
+                rgba(16, 185, 129, 0.05),
+                rgba(16, 185, 129, 0.02)
+              );
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.03))'"
+            onmouseout="this.style.background='linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.02))'"
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: rgba(16, 185, 129, 0.15);
+                flex-shrink: 0;
+              "
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--success-color)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div style="flex: 1; min-width: 0">
+              <p
+                style="
+                  margin: 0 0 0.25rem 0;
+                  font-weight: 600;
+                  color: var(--text-primary);
+                  font-size: 0.95rem;
+                "
+              >
+                Reserva confirmada
+              </p>
+              <p
+                style="
+                  margin: 0;
+                  color: var(--text-secondary);
+                  font-size: 0.875rem;
+                  line-height: 1.4;
+                "
+              >
+                Tu reserva de "Sapiens" ha sido confirmada
+              </p>
+            </div>
+            <div
+              style="
+                font-size: 0.75rem;
+                color: var(--text-secondary);
+                flex-shrink: 0;
+              "
+            >
+              Hace 1 día
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
+
+    <!-- Toast Container -->
+    <div id="toast" class="toast">
+      <span id="toast-message"></span>
+    </div>
 
     <script src="../../assets/js/main.js"></script>
     <script>
-        function extendLoan(bookTitle) {
-            showToast(`Solicitando extensión para: ${bookTitle}`, 'info');
-        }
+      function extendLoan(bookTitle) {
+        showToast(`Solicitando extensión para: ${bookTitle}`, 'info');
+      }
 
-        function returnEarly(bookTitle) {
-            if (confirm(`¿Devolver "${bookTitle}" antes de la fecha de vencimiento?`)) {
-                showToast(`Devolución anticipada registrada: ${bookTitle}`, 'success');
-            }
+      function returnEarly(bookTitle) {
+        if (
+          confirm(`¿Devolver "${bookTitle}" antes de la fecha de vencimiento?`)
+        ) {
+          showToast(
+            `Devolución anticipada registrada: ${bookTitle}`,
+            'success'
+          );
         }
+      }
 
-        function renewAll() {
-            showToast('Renovando todos los préstamos elegibles...', 'info');
-            setTimeout(() => {
-                showToast('Renovación completada para 2 de 3 libros', 'success');
-            }, 1500);
-        }
+      function renewAll() {
+        showToast('Renovando todos los préstamos elegibles...', 'info');
+        setTimeout(() => {
+          showToast('Renovación completada para 2 de 3 libros', 'success');
+        }, 1500);
+      }
     </script>
-</body>
+  </body>
 </html>

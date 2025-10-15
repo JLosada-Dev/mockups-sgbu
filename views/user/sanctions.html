@@ -1,153 +1,241 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis Sanciones - SGBU</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+  </head>
+  <body>
     <header class="navbar">
-        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
-        <nav>
-            <ul class="navbar-nav">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="loans.html">Mis Préstamos</a></li>
-                <li><a href="reservations.html">Mis Reservas</a></li>
-                <li><a href="sanctions.html">Mis Sanciones</a></li>
-                <li><a href="profile.html">Mi Perfil</a></li>
-                <li><a href="../public/catalog.html">Buscar Libros</a></li>
-            </ul>
+      <div class="navbar-container">
+        <a href="../../index.html" class="navbar-brand"
+          >SGBU - Fundación Universitaria de Popayán</a
+        >
+
+        <nav class="navbar-nav-desktop">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="loans.html">Mis Préstamos</a></li>
+            <li><a href="reservations.html">Reservas</a></li>
+            <li><a href="profile.html">Mi Perfil</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="../public/login.html">Cerrar Sesión</a></li>
+          </ul>
         </nav>
+
+        <button class="navbar-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="navbar-mobile-menu" id="mobileMenu">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="loans.html">Mis Préstamos</a></li>
+            <li><a href="reservations.html">Reservas</a></li>
+            <li><a href="profile.html">Mi Perfil</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="../public/login.html">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
     </header>
 
-    <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem;">
-        <h1>Mis Sanciones</h1>
+    <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem">
+      <h1>Mis Sanciones</h1>
 
-        <!-- Active Sanctions -->
-        <div class="card" style="margin-bottom: 2rem;">
-            <div class="card-header">Sanciones Activas</div>
-            <div class="card-body">
-                <div style="background-color: var(--error-color); color: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="margin: 0 0 0.5rem 0;">⚠️ Tienes sanciones pendientes</h3>
-                    <p style="margin: 0;">Algunas funcionalidades pueden estar restringidas hasta que pagues tus sanciones.</p>
-                </div>
+      <!-- Active Sanctions -->
+      <div class="card" style="margin-bottom: 2rem">
+        <div class="card-header">Sanciones Activas</div>
+        <div class="card-body">
+          <div
+            style="
+              background-color: var(--error-color);
+              color: white;
+              padding: 1rem;
+              border-radius: 0.5rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <h3 style="margin: 0 0 0.5rem 0">⚠️ Tienes sanciones pendientes</h3>
+            <p style="margin: 0">
+              Algunas funcionalidades pueden estar restringidas hasta que pagues
+              tus sanciones.
+            </p>
+          </div>
 
-                <div style="padding: 1.5rem; border: 2px solid var(--error-color); border-radius: 0.5rem; margin-bottom: 1rem;">
-                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;">
-                        <div>
-                            <h3 style="margin: 0 0 1rem 0; color: var(--error-color);">Sanción por Retraso</h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                                <div>
-                                    <strong>Libro:</strong><br>
-                                    Breve historia del tiempo
-                                </div>
-                                <div>
-                                    <strong>Fecha:</strong><br>
-                                    20/08/2023
-                                </div>
-                                <div>
-                                    <strong>Motivo:</strong><br>
-                                    Devolución tardía (15 días)
-                                </div>
-                            </div>
-                            <p style="margin: 0; color: var(--text-secondary);">
-                                Devolución programada: 01/08/2023<br>
-                                Devolución real: 16/08/2023
-                            </p>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--error-color); margin-bottom: 0.5rem;">
-                                $25.000
-                            </div>
-                            <button class="btn btn-primary" onclick="simulatePaySanction()">Pagar Sanción</button>
-                        </div>
-                    </div>
+          <div
+            style="
+              padding: 1.5rem;
+              border: 2px solid var(--error-color);
+              border-radius: 0.5rem;
+              margin-bottom: 1rem;
+            "
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 2rem;
+                align-items: start;
+              "
+            >
+              <div>
+                <h3 style="margin: 0 0 1rem 0; color: var(--error-color)">
+                  Sanción por Retraso
+                </h3>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  <div>
+                    <strong>Libro:</strong><br />
+                    Breve historia del tiempo
+                  </div>
+                  <div>
+                    <strong>Fecha:</strong><br />
+                    20/08/2023
+                  </div>
+                  <div>
+                    <strong>Motivo:</strong><br />
+                    Devolución tardía (15 días)
+                  </div>
                 </div>
+                <p style="margin: 0; color: var(--text-secondary)">
+                  Devolución programada: 01/08/2023<br />
+                  Devolución real: 16/08/2023
+                </p>
+              </div>
+              <div style="text-align: right">
+                <div
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--error-color);
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  $25.000
+                </div>
+                <button class="btn btn-primary" onclick="simulatePaySanction()">
+                  Pagar Sanción
+                </button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Sanctions History -->
-        <div class="card">
-            <div class="card-header">Historial de Sanciones</div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Motivo</th>
-                            <th>Libro</th>
-                            <th>Monto</th>
-                            <th>Estado</th>
-                            <th>Fecha de Pago</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>20/08/2023</td>
-                            <td>Retraso en devolución</td>
-                            <td>Breve historia del tiempo</td>
-                            <td>$25.000</td>
-                            <td><span style="color: var(--error-color);">Pendiente</span></td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>15/06/2023</td>
-                            <td>Daño al libro</td>
-                            <td>Rayuela</td>
-                            <td>$50.000</td>
-                            <td><span style="color: var(--success-color);">Pagada</span></td>
-                            <td>20/06/2023</td>
-                        </tr>
-                        <tr>
-                            <td>10/04/2023</td>
-                            <td>Retraso en devolución</td>
-                            <td>Cien años de soledad</td>
-                            <td>$15.000</td>
-                            <td><span style="color: var(--info-color);">Condonada</span></td>
-                            <td>15/04/2023</td>
-                        </tr>
-                        <tr>
-                            <td>05/02/2023</td>
-                            <td>Pérdida de libro</td>
-                            <td>El principito</td>
-                            <td>$120.000</td>
-                            <td><span style="color: var(--success-color);">Pagada</span></td>
-                            <td>10/02/2023</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <!-- Sanctions History -->
+      <div class="card">
+        <div class="card-header">Historial de Sanciones</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Motivo</th>
+                <th>Libro</th>
+                <th>Monto</th>
+                <th>Estado</th>
+                <th>Fecha de Pago</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>20/08/2023</td>
+                <td>Retraso en devolución</td>
+                <td>Breve historia del tiempo</td>
+                <td>$25.000</td>
+                <td>
+                  <span style="color: var(--error-color)">Pendiente</span>
+                </td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>15/06/2023</td>
+                <td>Daño al libro</td>
+                <td>Rayuela</td>
+                <td>$50.000</td>
+                <td><span style="color: var(--success-color)">Pagada</span></td>
+                <td>20/06/2023</td>
+              </tr>
+              <tr>
+                <td>10/04/2023</td>
+                <td>Retraso en devolución</td>
+                <td>Cien años de soledad</td>
+                <td>$15.000</td>
+                <td><span style="color: var(--info-color)">Condonada</span></td>
+                <td>15/04/2023</td>
+              </tr>
+              <tr>
+                <td>05/02/2023</td>
+                <td>Pérdida de libro</td>
+                <td>El principito</td>
+                <td>$120.000</td>
+                <td><span style="color: var(--success-color)">Pagada</span></td>
+                <td>10/02/2023</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        <!-- Payment Information -->
-        <div class="card" style="margin-top: 2rem;">
-            <div class="card-header">Información de Pago</div>
-            <div class="card-body">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div>
-                        <h4>Métodos de Pago</h4>
-                        <ul>
-                            <li>Pago en efectivo en la biblioteca</li>
-                            <li>Transferencia bancaria</li>
-                            <li>Pago en línea (próximamente)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>Cuenta Bancaria</h4>
-                        <p><strong>Banco:</strong> Banco de la República<br>
-                        <strong>Cuenta:</strong> 123-456789-0<br>
-                        <strong>A nombre de:</strong> Fundación Universitaria FUP<br>
-                        <strong>Referencia:</strong> Tu número de identificación</p>
-                    </div>
-                </div>
-                <div style="margin-top: 1rem; padding: 1rem; background-color: var(--surface-color); border-radius: 0.375rem;">
-                    <p style="margin: 0;"><strong>Importante:</strong> Una vez realizado el pago, presenta el comprobante en la biblioteca para que actualicen tu estado. Las sanciones pendientes pueden restringir la renovación de libros y nuevas reservas.</p>
-                </div>
+      <!-- Payment Information -->
+      <div class="card" style="margin-top: 2rem">
+        <div class="card-header">Información de Pago</div>
+        <div class="card-body">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 2rem;
+            "
+          >
+            <div>
+              <h4>Métodos de Pago</h4>
+              <ul>
+                <li>Pago en efectivo en la biblioteca</li>
+                <li>Transferencia bancaria</li>
+                <li>Pago en línea (próximamente)</li>
+              </ul>
             </div>
+            <div>
+              <h4>Cuenta Bancaria</h4>
+              <p>
+                <strong>Banco:</strong> Banco de la República<br />
+                <strong>Cuenta:</strong> 123-456789-0<br />
+                <strong>A nombre de:</strong> Fundación Universitaria de
+                Popayán<br />
+                <strong>Referencia:</strong> Tu número de identificación
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 1rem;
+              padding: 1rem;
+              background-color: var(--surface-color);
+              border-radius: 0.375rem;
+            "
+          >
+            <p style="margin: 0">
+              <strong>Importante:</strong> Una vez realizado el pago, presenta
+              el comprobante en la biblioteca para que actualicen tu estado. Las
+              sanciones pendientes pueden restringir la renovación de libros y
+              nuevas reservas.
+            </p>
+          </div>
         </div>
+      </div>
     </main>
 
     <script src="../../assets/js/main.js"></script>
-</body>
+  </body>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba de Navegación - SGBU</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-brand"
+          >SGBU - Fundación Universitaria de Popayán</a
+        >
+
+        <nav class="navbar-nav-desktop">
+          <ul class="navbar-nav">
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#catalog">Catálogo</a></li>
+            <li><a href="#about">Acerca de</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li>
+              <a href="views/public/login.html" class="btn btn-primary btn-sm"
+                >Acceder</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <button class="navbar-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="navbar-mobile-menu" id="mobile-menu">
+          <ul class="navbar-nav">
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#catalog">Catálogo</a></li>
+            <li><a href="#about">Acerca de</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li>
+              <a href="views/public/login.html" class="btn btn-primary btn-sm"
+                >Acceder</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main style="padding: 2rem">
+      <div class="container">
+        <h1>Prueba de Navegación Móvil</h1>
+        <p>
+          Esta es una página de prueba para verificar que el menú móvil funciona
+          correctamente.
+        </p>
+
+        <div class="card" style="margin-top: 2rem">
+          <div class="card-body">
+            <h2>Instrucciones de Prueba</h2>
+            <ol>
+              <li>Reduce el ancho de la ventana a menos de 768px</li>
+              <li>
+                Haz clic en el botón hamburguesa (☰) en la esquina superior
+                derecha
+              </li>
+              <li>El menú móvil debería aparecer con una animación suave</li>
+              <li>Haz clic fuera del menú para cerrarlo</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="alert alert-info" style="margin-top: 2rem">
+          <strong>Estado del Sistema:</strong>
+          <ul style="margin: 0.5rem 0">
+            <li>✅ CSS Framework con paleta azul profesional</li>
+            <li>✅ Nombre de universidad corregido</li>
+            <li>✅ Navegación responsive implementada</li>
+            <li>✅ JavaScript para menú móvil</li>
+            <li>✅ Consistencia en paneles de usuario y admin</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast" class="toast">
+      <span id="toast-message"></span>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+      // Mostrar estado al cargar la página
+      window.addEventListener('load', function () {
+        showToast('Sistema de navegación cargado correctamente', 'success');
+      });
+    </script>
+  </body>
+</html>

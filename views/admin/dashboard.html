@@ -1,368 +1,2036 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Administrativo - SGBU</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+  </head>
+  <body>
     <header class="navbar">
-        <a href="../../index.html" class="navbar-brand">SGBU - Fundación FUP</a>
+      <div class="navbar-container">
+        <a href="../../index.html" class="navbar-brand"
+          >SGBU - Fundación Universitaria de Popayán</a
+        >
+        <button
+          class="navbar-toggle"
+          aria-label="Abrir menú de navegación"
+          onclick="toggleMobileMenu()"
+        ></button>
         <nav>
-            <ul class="navbar-nav">
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="inventory.html">Inventario</a></li>
-                <li><a href="users.html">Usuarios</a></li>
-                <li><a href="sanctions.html">Sanciones</a></li>
-                <li><a href="reports.html">Reportes</a></li>
-                <li><a href="quick-loan.html">Préstamo Rápido</a></li>
-            </ul>
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="inventory.html">Inventario</a></li>
+            <li><a href="users.html">Usuarios</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="reports.html">Reportes</a></li>
+            <li><a href="quick-loan.html">Préstamo Rápido</a></li>
+          </ul>
         </nav>
+        <div class="navbar-mobile-menu" id="mobileMenu">
+          <ul class="navbar-nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="inventory.html">Inventario</a></li>
+            <li><a href="users.html">Usuarios</a></li>
+            <li><a href="sanctions.html">Sanciones</a></li>
+            <li><a href="reports.html">Reportes</a></li>
+            <li><a href="quick-loan.html">Préstamo Rápido</a></li>
+          </ul>
+        </div>
+      </div>
     </header>
 
-    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xxl);">
-            <div>
-                <h1 style="margin-bottom: var(--spacing-sm);">Dashboard Administrativo</h1>
-                <p style="margin: 0; color: var(--text-secondary); font-size: 1rem;">Sistema de Gestión de Bibliotecas Universitarias - FUP</p>
+    <main
+      class="container"
+      style="padding: var(--space-6) 0; max-width: 1400px; margin: 0 auto"
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+          flex-wrap: wrap;
+          gap: 1rem;
+        "
+      >
+        <div>
+          <h1 style="margin: 0 0 0.5rem 0">Dashboard Administrativo</h1>
+          <p style="margin: 0; color: var(--text-secondary); font-size: 1rem">
+            Sistema de Gestión de Bibliotecas Universitarias - FUP
+          </p>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+          "
+        >
+          <div style="text-align: right">
+            <div
+              style="
+                color: var(--text-secondary);
+                font-size: 0.75rem;
+                text-transform: uppercase;
+              "
+            >
+              Última actualización
             </div>
-            <div style="display: flex; align-items: center; gap: var(--spacing-lg);">
-                <div style="text-align: right;">
-                    <div style="color: var(--text-secondary); font-size: 0.8rem;">Última actualización</div>
-                    <div style="font-weight: 600; font-family: monospace;" id="last-update">22:30:45</div>
-                </div>
-                <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <div class="updating-indicator" style="width: 10px; height: 10px; background-color: var(--success-color); border-radius: 50%; animation: pulse 2s infinite;"></div>
-                    <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">En vivo</span>
-                </div>
-                <button class="btn btn-outline" onclick="refreshDashboard()">
-                    <span style="margin-right: var(--spacing-xs);">🔄</span>
-                    Actualizar
-                </button>
+            <div
+              style="
+                font-weight: 600;
+                font-family: monospace;
+                color: var(--primary-color);
+              "
+              id="last-update"
+            >
+              22:30:45
             </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              padding: 0.5rem 1rem;
+              background: rgba(16, 185, 129, 0.1);
+              border-radius: 20px;
+            "
+          >
+            <div
+              class="updating-indicator"
+              style="
+                width: 8px;
+                height: 8px;
+                background-color: var(--success-color);
+                border-radius: 50%;
+                animation: pulse 2s infinite;
+              "
+            ></div>
+            <span
+              style="
+                color: var(--success-color);
+                font-size: 0.875rem;
+                font-weight: 600;
+              "
+              >En vivo</span
+            >
+          </div>
+          <button class="btn btn-primary" onclick="refreshDashboard()">
+            <svg
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              style="margin-right: 0.5rem"
+            >
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            Actualizar
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div
+        class="grid"
+        style="
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 1.5rem;
+          margin-bottom: 3rem;
+        "
+      >
+        <div
+          class="card"
+          style="border-top: 4px solid var(--primary-color); overflow: hidden"
+        >
+          <div class="card-body" style="padding: 1.5rem">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <div
+                style="
+                  width: 56px;
+                  height: 56px;
+                  background: linear-gradient(
+                    135deg,
+                    var(--primary-color) 0%,
+                    rgba(0, 87, 144, 0.7) 100%
+                  );
+                  border-radius: 12px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path
+                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <h3
+                  style="
+                    margin: 0 0 0.25rem 0;
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+                    font-weight: 600;
+                  "
+                >
+                  Total Libros
+                </h3>
+                <div
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: var(--primary-color);
+                    line-height: 1;
+                  "
+                  id="total-books"
+                >
+                  2,847
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#10b981"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <span
+                  style="color: #10b981; font-size: 0.875rem; font-weight: 600"
+                  >+12</span
+                >
+              </div>
+              <span style="color: var(--text-secondary); font-size: 0.875rem"
+                >este mes</span
+              >
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 6px;
+                background-color: var(--gray-very-light);
+                border-radius: 3px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  width: 85%;
+                  height: 100%;
+                  background: linear-gradient(
+                    90deg,
+                    var(--primary-color),
+                    var(--secondary-color)
+                  );
+                  border-radius: 3px;
+                  transition: width 0.3s ease;
+                "
+              ></div>
+            </div>
+          </div>
         </div>
 
-        <!-- KPI Cards -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-xl); margin-bottom: var(--spacing-xxxl);">
-            <div class="card border-left-primary">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--primary-color);">📚</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Total Libros</h3>
-                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--primary-color); margin-bottom: var(--spacing-sm);" id="total-books">2,847</div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
-                        <span style="color: var(--success-color); font-size: 0.9rem; font-weight: 500;">↗️ +12</span>
-                        <span style="color: var(--text-secondary); font-size: 0.8rem;">este mes</span>
-                    </div>
-                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
-                        <div style="width: 85%; height: 100%; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); border-radius: 2px;"></div>
-                    </div>
+        <div
+          class="card"
+          style="border-top: 4px solid var(--secondary-color); overflow: hidden"
+        >
+          <div class="card-body" style="padding: 1.5rem">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <div
+                style="
+                  width: 56px;
+                  height: 56px;
+                  background: linear-gradient(
+                    135deg,
+                    var(--secondary-color) 0%,
+                    rgba(0, 180, 165, 0.7) 100%
+                  );
+                  border-radius: 12px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <h3
+                  style="
+                    margin: 0 0 0.25rem 0;
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+                    font-weight: 600;
+                  "
+                >
+                  Prestados
+                </h3>
+                <div
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: var(--secondary-color);
+                    line-height: 1;
+                  "
+                  id="loaned-books"
+                >
+                  423
                 </div>
+              </div>
             </div>
-
-            <div class="card border-left-secondary">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--secondary-color);">📖</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Prestados</h3>
-                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--secondary-color); margin-bottom: var(--spacing-sm);" id="loaned-books">423</div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
-                        <span style="color: var(--success-color); font-size: 0.9rem; font-weight: 500;">↗️ +8%</span>
-                        <span style="color: var(--text-secondary); font-size: 0.8rem;">vs mes anterior</span>
-                    </div>
-                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
-                        <div style="width: 15%; height: 100%; background: linear-gradient(90deg, var(--secondary-color), #22a699); border-radius: 2px;"></div>
-                    </div>
-                </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#10b981"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <span
+                  style="color: #10b981; font-size: 0.875rem; font-weight: 600"
+                  >+8%</span
+                >
+              </div>
+              <span style="color: var(--text-secondary); font-size: 0.875rem"
+                >vs mes anterior</span
+              >
             </div>
-
-            <div class="card border-left-success">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--success-color);">✅</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Disponibles</h3>
-                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--success-color); margin-bottom: var(--spacing-sm);" id="available-books">2,312</div>
-                    <div style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">81.3% del total</div>
-                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
-                        <div style="width: 81%; height: 100%; background: linear-gradient(90deg, var(--success-color), #455e22); border-radius: 2px;"></div>
-                    </div>
-                </div>
+            <div
+              style="
+                width: 100%;
+                height: 6px;
+                background-color: var(--gray-very-light);
+                border-radius: 3px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  width: 15%;
+                  height: 100%;
+                  background: linear-gradient(
+                    90deg,
+                    var(--secondary-color),
+                    #22a699
+                  );
+                  border-radius: 3px;
+                  transition: width 0.3s ease;
+                "
+              ></div>
             </div>
-
-            <div class="card border-left-warning">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--warning-color);">⏰</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Reservados</h3>
-                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--warning-color); margin-bottom: var(--spacing-sm);" id="reserved-books">112</div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
-                        <span style="color: var(--warning-color); font-size: 0.9rem; font-weight: 500;">↗️ +15</span>
-                        <span style="color: var(--text-secondary); font-size: 0.8rem;">hoy</span>
-                    </div>
-                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
-                        <div style="width: 4%; height: 100%; background: linear-gradient(90deg, var(--warning-color), #b8731a); border-radius: 2px;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card border-left-error">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--error-color);">⚠️</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Con Retraso</h3>
-                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--error-color); margin-bottom: var(--spacing-sm);" id="overdue-books">28</div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
-                        <span style="color: var(--error-color); font-size: 0.9rem; font-weight: 500;">↗️ +3</span>
-                        <span style="color: var(--text-secondary); font-size: 0.8rem;">esta semana</span>
-                    </div>
-                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
-                        <div style="width: 1%; height: 100%; background: linear-gradient(90deg, var(--error-color), #751018); border-radius: 2px;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card border-left-primary">
-                <div class="card-body" style="text-align: center;">
-                    <div style="font-size: 3.5rem; margin-bottom: var(--spacing-lg); color: var(--accent-color);">👥</div>
-                    <h3 style="margin: 0 0 var(--spacing-sm) 0; font-size: 1rem;">Usuarios Activos</h3>
-                    <div style="font-size: 2.2rem; font-weight: 700; color: var(--accent-color); margin-bottom: var(--spacing-sm);" id="active-users">1,256</div>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xs);">
-                        <span style="color: var(--success-color); font-size: 0.9rem; font-weight: 500;">↗️ +5%</span>
-                        <span style="color: var(--text-secondary); font-size: 0.8rem;">vs mes anterior</span>
-                    </div>
-                    <div style="margin-top: var(--spacing-sm); width: 100%; height: 4px; background-color: var(--surface-color); border-radius: 2px; overflow: hidden;">
-                        <div style="width: 44%; height: 100%; background: linear-gradient(90deg, var(--accent-color), #22a699); border-radius: 2px;"></div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <!-- Charts Section -->
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 3rem;">
-            <!-- Loans by Month Chart -->
-            <div class="card">
-                <div class="card-header">Préstamos por Mes</div>
-                <div class="card-body">
-                    <div style="height: 300px; display: flex; align-items: end; justify-content: space-between; padding: 1rem 0;">
-                        <!-- Mock bar chart -->
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 200px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Ene</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 180px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Feb</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 220px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Mar</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 250px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Abr</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 280px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">May</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 320px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Jun</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 290px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Jul</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 260px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Ago</span>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
-                            <div style="height: 310px; width: 30px; background-color: var(--primary-color); margin-bottom: 0.5rem; border-radius: 4px 4px 0 0;"></div>
-                            <span style="font-size: 0.8rem;">Sep</span>
-                        </div>
-                    </div>
+        <div
+          class="card"
+          style="border-top: 4px solid #10b981; overflow: hidden"
+        >
+          <div class="card-body" style="padding: 1.5rem">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <div
+                style="
+                  width: 56px;
+                  height: 56px;
+                  background: linear-gradient(
+                    135deg,
+                    #10b981 0%,
+                    rgba(16, 185, 129, 0.7) 100%
+                  );
+                  border-radius: 12px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <h3
+                  style="
+                    margin: 0 0 0.25rem 0;
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+                    font-weight: 600;
+                  "
+                >
+                  Disponibles
+                </h3>
+                <div
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #10b981;
+                    line-height: 1;
+                  "
+                  id="available-books"
+                >
+                  2,312
                 </div>
+              </div>
             </div>
-
-            <!-- Category Distribution -->
-            <div class="card">
-                <div class="card-header">Distribución por Categorías</div>
-                <div class="card-body">
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 16px; height: 16px; background-color: var(--primary-color); border-radius: 2px;"></div>
-                            <span style="flex: 1;">Ficción</span>
-                            <span style="font-weight: 500;">35%</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 16px; height: 16px; background-color: var(--secondary-color); border-radius: 2px;"></div>
-                            <span style="flex: 1;">Ciencia</span>
-                            <span style="font-weight: 500;">25%</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 16px; height: 16px; background-color: var(--accent-color); border-radius: 2px;"></div>
-                            <span style="flex: 1;">Tecnología</span>
-                            <span style="font-weight: 500;">20%</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 16px; height: 16px; background-color: var(--success-color); border-radius: 2px;"></div>
-                            <span style="flex: 1;">Historia</span>
-                            <span style="font-weight: 500;">12%</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="width: 16px; height: 16px; background-color: var(--warning-color); border-radius: 2px;"></div>
-                            <span style="flex: 1;">Otros</span>
-                            <span style="font-weight: 500;">8%</span>
-                        </div>
-                    </div>
-                    <!-- Mock pie chart -->
-                    <div style="margin-top: 2rem; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(var(--primary-color) 0% 35%, var(--secondary-color) 35% 60%, var(--accent-color) 60% 80%, var(--success-color) 80% 92%, var(--warning-color) 92% 100%); margin: 2rem auto 0;"></div>
-                </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+              "
+            >
+              <span
+                style="
+                  color: var(--text-secondary);
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                "
+                >81.3% del total</span
+              >
             </div>
+            <div
+              style="
+                width: 100%;
+                height: 6px;
+                background-color: var(--gray-very-light);
+                border-radius: 3px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  width: 81%;
+                  height: 100%;
+                  background: linear-gradient(90deg, #10b981, #059669);
+                  border-radius: 3px;
+                  transition: width 0.3s ease;
+                "
+              ></div>
+            </div>
+          </div>
         </div>
 
-        <!-- Alerts and Recent Activity -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <!-- Stock Alerts -->
-            <div class="card">
-                <div class="card-header">Alertas de Stock Bajo</div>
-                <div class="card-body">
-                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--error-color); border-radius: 0.375rem; background-color: rgba(220, 53, 69, 0.1);">
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="color: var(--error-color); font-size: 1.5rem;">⚠️</div>
-                            <div>
-                                <h4 style="margin: 0 0 0.5rem 0; color: var(--error-color);">Breve historia del tiempo</h4>
-                                <p style="margin: 0; font-size: 0.9rem;">Solo quedan 2 ejemplares disponibles</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--warning-color); border-radius: 0.375rem; background-color: rgba(255, 193, 7, 0.1);">
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="color: var(--warning-color); font-size: 1.5rem;">⚠️</div>
-                            <div>
-                                <h4 style="margin: 0 0 0.5rem 0; color: var(--warning-color);">Sapiens</h4>
-                                <p style="margin: 0; font-size: 0.9rem;">Solo quedan 3 ejemplares disponibles</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="padding: 1rem; border: 1px solid var(--warning-color); border-radius: 0.375rem; background-color: rgba(255, 193, 7, 0.1);">
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <div style="color: var(--warning-color); font-size: 1.5rem;">⚠️</div>
-                            <div>
-                                <h4 style="margin: 0 0 0.5rem 0; color: var(--warning-color);">El código Da Vinci</h4>
-                                <p style="margin: 0; font-size: 0.9rem;">Solo quedan 4 ejemplares disponibles</p>
-                            </div>
-                        </div>
-                    </div>
+        <div
+          class="card"
+          style="border-top: 4px solid #f59e0b; overflow: hidden"
+        >
+          <div class="card-body" style="padding: 1.5rem">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <div
+                style="
+                  width: 56px;
+                  height: 56px;
+                  background: linear-gradient(
+                    135deg,
+                    #f59e0b 0%,
+                    rgba(245, 158, 11, 0.7) 100%
+                  );
+                  border-radius: 12px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <h3
+                  style="
+                    margin: 0 0 0.25rem 0;
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+                    font-weight: 600;
+                  "
+                >
+                  Reservados
+                </h3>
+                <div
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #f59e0b;
+                    line-height: 1;
+                  "
+                  id="reserved-books"
+                >
+                  112
                 </div>
+              </div>
             </div>
-
-            <!-- Recent Activity -->
-            <div class="card">
-                <div class="card-header">Actividad Reciente</div>
-                <div class="card-body">
-                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--success-color); background-color: var(--surface-color);">
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Préstamo:</strong> "Clean Code" a María González</p>
-                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 5 minutos</p>
-                    </div>
-
-                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--primary-color); background-color: var(--surface-color);">
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Devolución:</strong> "Cien años de soledad" por Carlos Rodríguez</p>
-                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 12 minutos</p>
-                    </div>
-
-                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--warning-color); background-color: var(--surface-color);">
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Reserva:</strong> "Sapiens" por Ana López</p>
-                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 18 minutos</p>
-                    </div>
-
-                    <div style="margin-bottom: 1rem; padding: 0.75rem; border-left: 4px solid var(--error-color); background-color: var(--surface-color);">
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Sanción:</strong> Aplicada por retraso a Juan Pérez</p>
-                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 25 minutos</p>
-                    </div>
-
-                    <div style="padding: 0.75rem; border-left: 4px solid var(--info-color); background-color: var(--surface-color);">
-                        <p style="margin: 0; font-size: 0.9rem;"><strong>Registro:</strong> Nuevo usuario Laura Martínez</p>
-                        <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">Hace 32 minutos</p>
-                    </div>
-                </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#10b981"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <span
+                  style="color: #10b981; font-size: 0.875rem; font-weight: 600"
+                  >+15</span
+                >
+              </div>
+              <span style="color: var(--text-secondary); font-size: 0.875rem"
+                >hoy</span
+              >
             </div>
+            <div
+              style="
+                width: 100%;
+                height: 6px;
+                background-color: var(--gray-very-light);
+                border-radius: 3px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  width: 4%;
+                  height: 100%;
+                  background: linear-gradient(90deg, #f59e0b, #d97706);
+                  border-radius: 3px;
+                  transition: width 0.3s ease;
+                "
+              ></div>
+            </div>
+          </div>
         </div>
+
+        <div
+          class="card"
+          style="border-top: 4px solid #ef4444; overflow: hidden"
+        >
+          <div class="card-body" style="padding: 1.5rem">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <div
+                style="
+                  width: 56px;
+                  height: 56px;
+                  background: linear-gradient(
+                    135deg,
+                    #ef4444 0%,
+                    rgba(239, 68, 68, 0.7) 100%
+                  );
+                  border-radius: 12px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <h3
+                  style="
+                    margin: 0 0 0.25rem 0;
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+                    font-weight: 600;
+                  "
+                >
+                  Con Retraso
+                </h3>
+                <div
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #ef4444;
+                    line-height: 1;
+                  "
+                  id="overdue-books"
+                >
+                  28
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#ef4444"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                  <polyline points="17 18 23 18 23 12"></polyline>
+                </svg>
+                <span
+                  style="color: #ef4444; font-size: 0.875rem; font-weight: 600"
+                  >+3</span
+                >
+              </div>
+              <span style="color: var(--text-secondary); font-size: 0.875rem"
+                >esta semana</span
+              >
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 6px;
+                background-color: var(--gray-very-light);
+                border-radius: 3px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  width: 1%;
+                  height: 100%;
+                  background: linear-gradient(90deg, #ef4444, #dc2626);
+                  border-radius: 3px;
+                  transition: width 0.3s ease;
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card"
+          style="border-top: 4px solid #8b5cf6; overflow: hidden"
+        >
+          <div class="card-body" style="padding: 1.5rem">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <div
+                style="
+                  width: 56px;
+                  height: 56px;
+                  background: linear-gradient(
+                    135deg,
+                    #8b5cf6 0%,
+                    rgba(139, 92, 246, 0.7) 100%
+                  );
+                  border-radius: 12px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-shrink: 0;
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <h3
+                  style="
+                    margin: 0 0 0.25rem 0;
+                    font-size: 0.875rem;
+                    color: var(--text-secondary);
+                    text-transform: uppercase;
+                    font-weight: 600;
+                  "
+                >
+                  Usuarios Activos
+                </h3>
+                <div
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: #8b5cf6;
+                    line-height: 1;
+                  "
+                  id="active-users"
+                >
+                  1,256
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#10b981"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <span
+                  style="color: #10b981; font-size: 0.875rem; font-weight: 600"
+                  >+5%</span
+                >
+              </div>
+              <span style="color: var(--text-secondary); font-size: 0.875rem"
+                >vs mes anterior</span
+              >
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 6px;
+                background-color: var(--gray-very-light);
+                border-radius: 3px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  width: 44%;
+                  height: 100%;
+                  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+                  border-radius: 3px;
+                  transition: width 0.3s ease;
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div
+        class="grid"
+        style="grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 2rem"
+      >
+        <!-- Loans by Month Chart -->
+        <div class="card">
+          <div class="card-header">
+            <div style="display: flex; align-items: center; gap: 0.75rem">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              <h3 style="margin: 0">Préstamos por Mes (2025)</h3>
+            </div>
+          </div>
+          <div class="card-body">
+            <div
+              style="
+                height: 300px;
+                display: flex;
+                align-items: end;
+                justify-content: space-around;
+                padding: 1rem 0.5rem;
+                gap: 0.5rem;
+              "
+            >
+              <!-- Mock bar chart -->
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 200px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--primary-color),
+                      rgba(0, 87, 144, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Ene</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 180px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--primary-color),
+                      rgba(0, 87, 144, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Feb</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 220px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--primary-color),
+                      rgba(0, 87, 144, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Mar</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 250px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--primary-color),
+                      rgba(0, 87, 144, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Abr</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 280px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--secondary-color),
+                      rgba(0, 180, 165, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">May</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 300px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--secondary-color),
+                      rgba(0, 180, 165, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    box-shadow: 0 4px 12px rgba(0, 180, 165, 0.3);
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Jun</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 270px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--secondary-color),
+                      rgba(0, 180, 165, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Jul</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 240px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--secondary-color),
+                      rgba(0, 180, 165, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Ago</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 290px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      var(--secondary-color),
+                      rgba(0, 180, 165, 0.7)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                  "
+                  onmouseover="this.style.transform='scaleY(1.05)'; this.style.opacity='0.8'"
+                  onmouseout="this.style.transform='scaleY(1)'; this.style.opacity='1'"
+                ></div>
+                <span style="font-size: 0.75rem; font-weight: 600">Sep</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  flex: 1;
+                "
+              >
+                <div
+                  style="
+                    height: 230px;
+                    width: 100%;
+                    max-width: 40px;
+                    background: linear-gradient(
+                      180deg,
+                      #9ca3af,
+                      rgba(156, 163, 175, 0.5)
+                    );
+                    margin-bottom: 0.5rem;
+                    border-radius: 6px 6px 0 0;
+                    border: 2px dashed var(--border-color);
+                    opacity: 0.5;
+                  "
+                ></div>
+                <span
+                  style="
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    color: var(--text-secondary);
+                  "
+                  >Oct</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Distribution -->
+        <div class="card">
+          <div class="card-header">
+            <div style="display: flex; align-items: center; gap: 0.75rem">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+              </svg>
+              <h3 style="margin: 0">Distribución por Categorías</h3>
+            </div>
+          </div>
+          <div class="card-body">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-bottom: 2rem;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 20px;
+                    height: 20px;
+                    background: var(--primary-color);
+                    border-radius: 4px;
+                    flex-shrink: 0;
+                  "
+                ></div>
+                <span style="flex: 1; font-size: 0.9rem">Ficción</span>
+                <span style="font-weight: 700; color: var(--primary-color)"
+                  >35%</span
+                >
+              </div>
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 20px;
+                    height: 20px;
+                    background: var(--secondary-color);
+                    border-radius: 4px;
+                    flex-shrink: 0;
+                  "
+                ></div>
+                <span style="flex: 1; font-size: 0.9rem">Ciencia</span>
+                <span style="font-weight: 700; color: var(--secondary-color)"
+                  >25%</span
+                >
+              </div>
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 20px;
+                    height: 20px;
+                    background: #8b5cf6;
+                    border-radius: 4px;
+                    flex-shrink: 0;
+                  "
+                ></div>
+                <span style="flex: 1; font-size: 0.9rem">Tecnología</span>
+                <span style="font-weight: 700; color: #8b5cf6">20%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 20px;
+                    height: 20px;
+                    background: #10b981;
+                    border-radius: 4px;
+                    flex-shrink: 0;
+                  "
+                ></div>
+                <span style="flex: 1; font-size: 0.9rem">Historia</span>
+                <span style="font-weight: 700; color: #10b981">12%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 1rem">
+                <div
+                  style="
+                    width: 20px;
+                    height: 20px;
+                    background: #f59e0b;
+                    border-radius: 4px;
+                    flex-shrink: 0;
+                  "
+                ></div>
+                <span style="flex: 1; font-size: 0.9rem">Otros</span>
+                <span style="font-weight: 700; color: #f59e0b">8%</span>
+              </div>
+            </div>
+            <!-- Mock pie chart -->
+            <div
+              style="
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                background: conic-gradient(
+                  var(--primary-color) 0% 35%,
+                  var(--secondary-color) 35% 60%,
+                  #8b5cf6 60% 80%,
+                  #10b981 80% 92%,
+                  #f59e0b 92% 100%
+                );
+                margin: 0 auto;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+                position: relative;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 100px;
+                  height: 100px;
+                  background: white;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+                "
+              >
+                <div
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--primary-color);
+                  "
+                >
+                  2,847
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-secondary)">
+                  Total Libros
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alerts and Recent Activity -->
+      <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 2rem">
+        <!-- Stock Alerts -->
+        <div class="card">
+          <div class="card-header">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.75rem">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                  ></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <h3 style="margin: 0">Alertas de Stock Bajo</h3>
+              </div>
+              <span class="badge badge-error">3</span>
+            </div>
+          </div>
+          <div class="card-body" style="padding: 1rem">
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-left: 4px solid #ef4444;
+                border-radius: 0.5rem;
+                background: linear-gradient(
+                  90deg,
+                  rgba(239, 68, 68, 0.1) 0%,
+                  rgba(239, 68, 68, 0.05) 100%
+                );
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='linear-gradient(90deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.08) 100%)'"
+              onmouseout="this.style.background='linear-gradient(90deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%)'"
+            >
+              <div style="display: flex; align-items: start; gap: 1rem">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    background: #ef4444;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <h4
+                    style="
+                      margin: 0 0 0.5rem 0;
+                      color: #ef4444;
+                      font-size: 0.95rem;
+                    "
+                  >
+                    Breve historia del tiempo
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.875rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Solo quedan
+                    <strong style="color: #ef4444">2 ejemplares</strong>
+                    disponibles
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-left: 4px solid #f59e0b;
+                border-radius: 0.5rem;
+                background: linear-gradient(
+                  90deg,
+                  rgba(245, 158, 11, 0.1) 0%,
+                  rgba(245, 158, 11, 0.05) 100%
+                );
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.08) 100%)'"
+              onmouseout="this.style.background='linear-gradient(90deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%)'"
+            >
+              <div style="display: flex; align-items: start; gap: 1rem">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    background: #f59e0b;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <h4
+                    style="
+                      margin: 0 0 0.5rem 0;
+                      color: #f59e0b;
+                      font-size: 0.95rem;
+                    "
+                  >
+                    Sapiens - Yuval Noah Harari
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.875rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Solo quedan
+                    <strong style="color: #f59e0b">3 ejemplares</strong>
+                    disponibles
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                padding: 1rem;
+                border-left: 4px solid #f59e0b;
+                border-radius: 0.5rem;
+                background: linear-gradient(
+                  90deg,
+                  rgba(245, 158, 11, 0.1) 0%,
+                  rgba(245, 158, 11, 0.05) 100%
+                );
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.08) 100%)'"
+              onmouseout="this.style.background='linear-gradient(90deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%)'"
+            >
+              <div style="display: flex; align-items: start; gap: 1rem">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    background: #f59e0b;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <h4
+                    style="
+                      margin: 0 0 0.5rem 0;
+                      color: #f59e0b;
+                      font-size: 0.95rem;
+                    "
+                  >
+                    El código Da Vinci
+                  </h4>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.875rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Solo quedan
+                    <strong style="color: #f59e0b">4 ejemplares</strong>
+                    disponibles
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card">
+          <div class="card-header">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 0.75rem">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                <h3 style="margin: 0">Actividad Reciente</h3>
+              </div>
+              <button
+                class="btn btn-outline btn-sm"
+                onclick="showToast('Cargando más actividad...', 'info')"
+              >
+                Ver todo
+              </button>
+            </div>
+          </div>
+          <div class="card-body" style="padding: 1rem">
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 0.875rem;
+                border-left: 4px solid #10b981;
+                background: linear-gradient(
+                  90deg,
+                  rgba(16, 185, 129, 0.08) 0%,
+                  rgba(16, 185, 129, 0.03) 100%
+                );
+                border-radius: 0.5rem;
+              "
+            >
+              <div style="display: flex; align-items: start; gap: 0.75rem">
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: #10b981;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem">
+                    <strong>Préstamo:</strong> "Clean Code" a María González
+                  </p>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.75rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Hace 5 minutos
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 0.875rem;
+                border-left: 4px solid var(--primary-color);
+                background: linear-gradient(
+                  90deg,
+                  rgba(0, 87, 144, 0.08) 0%,
+                  rgba(0, 87, 144, 0.03) 100%
+                );
+                border-radius: 0.5rem;
+              "
+            >
+              <div style="display: flex; align-items: start; gap: 0.75rem">
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: var(--primary-color);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                    ></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem">
+                    <strong>Devolución:</strong> "Cien años de soledad" por
+                    Carlos Rodríguez
+                  </p>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.75rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Hace 12 minutos
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 0.875rem;
+                border-left: 4px solid #f59e0b;
+                background: linear-gradient(
+                  90deg,
+                  rgba(245, 158, 11, 0.08) 0%,
+                  rgba(245, 158, 11, 0.03) 100%
+                );
+                border-radius: 0.5rem;
+              "
+            >
+              <div style="display: flex; align-items: start; gap: 0.75rem">
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: #f59e0b;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem">
+                    <strong>Reserva:</strong> "Sapiens" por Ana López
+                  </p>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.75rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Hace 18 minutos
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 1rem;
+                padding: 0.875rem;
+                border-left: 4px solid #ef4444;
+                background: linear-gradient(
+                  90deg,
+                  rgba(239, 68, 68, 0.08) 0%,
+                  rgba(239, 68, 68, 0.03) 100%
+                );
+                border-radius: 0.5rem;
+              "
+            >
+              <div style="display: flex; align-items: start; gap: 0.75rem">
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: #ef4444;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem">
+                    <strong>Sanción:</strong> Aplicada por retraso a Juan Pérez
+                  </p>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.75rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Hace 25 minutos
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="
+                padding: 0.875rem;
+                border-left: 4px solid var(--secondary-color);
+                background: linear-gradient(
+                  90deg,
+                  rgba(0, 180, 165, 0.08) 0%,
+                  rgba(0, 180, 165, 0.03) 100%
+                );
+                border-radius: 0.5rem;
+              "
+            >
+              <div style="display: flex; align-items: start; gap: 0.75rem">
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: var(--secondary-color);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="white"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="20" y1="8" x2="20" y2="14"></line>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                  </svg>
+                </div>
+                <div style="flex: 1">
+                  <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem">
+                    <strong>Registro:</strong> Nuevo usuario Laura Martínez
+                  </p>
+                  <p
+                    style="
+                      margin: 0;
+                      font-size: 0.75rem;
+                      color: var(--text-secondary);
+                    "
+                  >
+                    Hace 32 minutos
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
+    <!-- Toast Container -->
+    <div id="toast" class="toast">
+      <span id="toast-message"></span>
+    </div>
+
     <style>
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
         }
+        50% {
+          opacity: 0.8;
+          box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+        }
+        100% {
+          opacity: 1;
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+        }
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1200px) {
+        .grid[style*='grid-template-columns: 2fr 1fr'] {
+          grid-template-columns: 1fr !important;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .grid[style*='grid-template-columns: repeat(auto-fit'] {
+          grid-template-columns: 1fr !important;
+        }
+
+        .grid[style*='grid-template-columns: 1fr 1fr'] {
+          grid-template-columns: 1fr !important;
+        }
+
+        main.container {
+          padding: var(--space-4) 0 !important;
+        }
+
+        .card-body {
+          padding: 1rem !important;
+        }
+
+        /* Hide some elements on mobile for better UX */
+        .updating-indicator {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.5rem !important;
+        }
+
+        .btn {
+          font-size: 0.875rem !important;
+          padding: 0.5rem 1rem !important;
+        }
+      }
     </style>
 
     <script src="../../assets/js/main.js"></script>
     <script>
-        // Real-time dashboard updates
-        function updateTimestamp() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('es-CO', {
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            document.getElementById('last-update').textContent = timeString;
-        }
-
-        function refreshDashboard() {
-            showToast('Actualizando datos...', 'info');
-
-            // Simulate API call delay
-            setTimeout(() => {
-                // Simulate small changes in KPIs
-                const totalBooks = document.getElementById('total-books');
-                const currentTotal = parseInt(totalBooks.textContent.replace(',', ''));
-                const newTotal = currentTotal + Math.floor(Math.random() * 3) - 1; // -1, 0, or +1
-                totalBooks.textContent = newTotal.toLocaleString();
-
-                const loanedBooks = document.getElementById('loaned-books');
-                const currentLoaned = parseInt(loanedBooks.textContent.replace(',', ''));
-                const newLoaned = Math.max(400, currentLoaned + Math.floor(Math.random() * 5) - 2);
-                loanedBooks.textContent = newLoaned.toLocaleString();
-
-                const availableBooks = document.getElementById('available-books');
-                const newAvailable = parseInt(totalBooks.textContent.replace(',', '')) - newLoaned - 112 - 28;
-                availableBooks.textContent = newAvailable.toLocaleString();
-
-                const reservedBooks = document.getElementById('reserved-books');
-                const currentReserved = parseInt(reservedBooks.textContent.replace(',', ''));
-                const newReserved = Math.max(100, currentReserved + Math.floor(Math.random() * 7) - 3);
-                reservedBooks.textContent = newReserved.toLocaleString();
-
-                const overdueBooks = document.getElementById('overdue-books');
-                const currentOverdue = parseInt(overdueBooks.textContent.replace(',', ''));
-                const newOverdue = Math.max(20, currentOverdue + Math.floor(Math.random() * 3) - 1);
-                overdueBooks.textContent = newOverdue.toLocaleString();
-
-                const activeUsers = document.getElementById('active-users');
-                const currentUsers = parseInt(activeUsers.textContent.replace(',', ''));
-                const newUsers = Math.max(1200, currentUsers + Math.floor(Math.random() * 11) - 5);
-                activeUsers.textContent = newUsers.toLocaleString();
-
-                updateTimestamp();
-                showToast('Datos actualizados correctamente', 'success');
-            }, 1500);
-        }
-
-        // Auto-refresh every 30 seconds
-        setInterval(() => {
-            refreshDashboard();
-        }, 30000);
-
-        // Update timestamp every second
-        setInterval(updateTimestamp, 1000);
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            updateTimestamp();
+      // Real-time dashboard updates
+      function updateTimestamp() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('es-CO', {
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
         });
+        document.getElementById('last-update').textContent = timeString;
+      }
+
+      function refreshDashboard() {
+        showToast('Actualizando datos...', 'info');
+
+        // Simulate API call delay
+        setTimeout(() => {
+          // Simulate small changes in KPIs
+          const totalBooks = document.getElementById('total-books');
+          const currentTotal = parseInt(
+            totalBooks.textContent.replace(',', '')
+          );
+          const newTotal = currentTotal + Math.floor(Math.random() * 3) - 1; // -1, 0, or +1
+          totalBooks.textContent = newTotal.toLocaleString();
+
+          const loanedBooks = document.getElementById('loaned-books');
+          const currentLoaned = parseInt(
+            loanedBooks.textContent.replace(',', '')
+          );
+          const newLoaned = Math.max(
+            400,
+            currentLoaned + Math.floor(Math.random() * 5) - 2
+          );
+          loanedBooks.textContent = newLoaned.toLocaleString();
+
+          const availableBooks = document.getElementById('available-books');
+          const newAvailable =
+            parseInt(totalBooks.textContent.replace(',', '')) -
+            newLoaned -
+            112 -
+            28;
+          availableBooks.textContent = newAvailable.toLocaleString();
+
+          const reservedBooks = document.getElementById('reserved-books');
+          const currentReserved = parseInt(
+            reservedBooks.textContent.replace(',', '')
+          );
+          const newReserved = Math.max(
+            100,
+            currentReserved + Math.floor(Math.random() * 7) - 3
+          );
+          reservedBooks.textContent = newReserved.toLocaleString();
+
+          const overdueBooks = document.getElementById('overdue-books');
+          const currentOverdue = parseInt(
+            overdueBooks.textContent.replace(',', '')
+          );
+          const newOverdue = Math.max(
+            20,
+            currentOverdue + Math.floor(Math.random() * 3) - 1
+          );
+          overdueBooks.textContent = newOverdue.toLocaleString();
+
+          const activeUsers = document.getElementById('active-users');
+          const currentUsers = parseInt(
+            activeUsers.textContent.replace(',', '')
+          );
+          const newUsers = Math.max(
+            1200,
+            currentUsers + Math.floor(Math.random() * 11) - 5
+          );
+          activeUsers.textContent = newUsers.toLocaleString();
+
+          updateTimestamp();
+          showToast('Datos actualizados correctamente', 'success');
+        }, 1500);
+      }
+
+      // Auto-refresh every 30 seconds
+      setInterval(() => {
+        refreshDashboard();
+      }, 30000);
+
+      // Update timestamp every second
+      setInterval(updateTimestamp, 1000);
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', function () {
+        updateTimestamp();
+      });
     </script>
-</body>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
 </html>
