@@ -5,6 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Perfil - SGBU</title>
     <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <style>
+      /* Profile Page Styles */
+      .profile-header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #003d66 100%
+        );
+        color: white;
+        padding: 2rem;
+        margin: -2rem -2rem 2rem -2rem;
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color) 0%,
+          #00e5d0 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-weight: 700;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+      }
+
+      .profile-info h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 2rem;
+      }
+
+      .profile-info p {
+        margin: 0.25rem 0;
+        opacity: 0.9;
+      }
+
+      .profile-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--accent-color);
+        transition: width 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-card:hover::before {
+        width: 100%;
+        opacity: 0.05;
+      }
+
+      .stat-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--icon-bg);
+      }
+
+      .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--stat-color);
+        margin-bottom: 0.5rem;
+        line-height: 1;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .settings-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .settings-item:hover {
+        background: var(--background-color);
+        border-color: var(--primary-color);
+      }
+
+      .settings-item h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--text-primary);
+      }
+
+      .settings-item p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 967px) {
+        .profile-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .profile-avatar {
+          width: 100px;
+          height: 100px;
+          font-size: 2.5rem;
+        }
+
+        .profile-info h1 {
+          font-size: 1.75rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .profile-header {
+          margin: -1rem -1rem 1.5rem -1rem;
+          padding: 1.5rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .settings-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="navbar">
@@ -43,12 +226,148 @@
       </div>
     </header>
 
-    <main style="max-width: 800px; margin: 2rem auto; padding: 0 1rem">
+    <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem">
+      <!-- Profile Header -->
+      <div class="card" style="padding: 0; margin-bottom: 2rem">
+        <div class="profile-header">
+          <div class="profile-avatar">JL</div>
+          <div class="profile-info">
+            <h1>Jose Losada</h1>
+            <p>📧 jose.losada@estudiante.fup.edu.co</p>
+            <p>🎓 Ingeniería de Sistemas - 6° Semestre</p>
+            <span class="profile-badge">✓ Cuenta Activa</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Statistics -->
+      <div class="stats-grid">
+        <div
+          class="stat-card"
+          style="
+            --accent-color: var(--primary-color);
+            --icon-bg: rgba(0, 87, 144, 0.1);
+            --stat-color: var(--primary-color);
+          "
+        >
+          <div class="stat-icon">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--primary-color)"
+              stroke-width="2"
+            >
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </div>
+          <div class="stat-value">47</div>
+          <div class="stat-label">Libros Prestados</div>
+        </div>
+
+        <div
+          class="stat-card"
+          style="
+            --accent-color: var(--secondary-color);
+            --icon-bg: rgba(0, 180, 165, 0.1);
+            --stat-color: var(--secondary-color);
+          "
+        >
+          <div class="stat-icon">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--secondary-color)"
+              stroke-width="2"
+            >
+              <path
+                d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+              ></path>
+            </svg>
+          </div>
+          <div class="stat-value">12</div>
+          <div class="stat-label">Reservas Realizadas</div>
+        </div>
+
+        <div
+          class="stat-card"
+          style="
+            --accent-color: var(--warning-color);
+            --icon-bg: rgba(245, 158, 11, 0.1);
+            --stat-color: var(--warning-color);
+          "
+        >
+          <div class="stat-icon">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--warning-color)"
+              stroke-width="2"
+            >
+              <path
+                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+              ></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="stat-value">3</div>
+          <div class="stat-label">Sanciones Totales</div>
+        </div>
+
+        <div
+          class="stat-card"
+          style="
+            --accent-color: var(--success-color);
+            --icon-bg: rgba(16, 185, 129, 0.1);
+            --stat-color: var(--success-color);
+          "
+        >
+          <div class="stat-icon">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--success-color)"
+              stroke-width="2"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="stat-value">98%</div>
+          <div class="stat-label">Tasa de Cumplimiento</div>
+        </div>
+      </div>
+
       <h1>Mi Perfil</h1>
 
       <!-- Profile Information -->
       <div class="card" style="margin-bottom: 2rem">
-        <div class="card-header">Información Personal</div>
+        <div
+          class="card-header"
+          style="display: flex; align-items: center; gap: 0.75rem"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Información Personal
+        </div>
         <div class="card-body">
           <form id="profile-form">
             <div
@@ -170,7 +489,23 @@
 
       <!-- Change Password -->
       <div class="card" style="margin-bottom: 2rem">
-        <div class="card-header">Cambiar Contraseña</div>
+        <div
+          class="card-header"
+          style="display: flex; align-items: center; gap: 0.75rem"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Cambiar Contraseña
+        </div>
         <div class="card-body">
           <form id="password-form">
             <div class="form-group">
@@ -217,127 +552,32 @@
         </div>
       </div>
 
-      <!-- Account Statistics -->
-      <div class="card">
-        <div class="card-header">Estadísticas de Cuenta</div>
-        <div class="card-body">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-              gap: 1rem;
-            "
-          >
-            <div
-              style="
-                text-align: center;
-                padding: 1rem;
-                border: 1px solid var(--border-color);
-                border-radius: 0.375rem;
-              "
-            >
-              <div
-                style="
-                  font-size: 2rem;
-                  font-weight: 700;
-                  color: var(--primary-color);
-                "
-              >
-                47
-              </div>
-              <div style="color: var(--text-secondary)">Libros Prestados</div>
-            </div>
-            <div
-              style="
-                text-align: center;
-                padding: 1rem;
-                border: 1px solid var(--border-color);
-                border-radius: 0.375rem;
-              "
-            >
-              <div
-                style="
-                  font-size: 2rem;
-                  font-weight: 700;
-                  color: var(--secondary-color);
-                "
-              >
-                12
-              </div>
-              <div style="color: var(--text-secondary)">
-                Reservas Realizadas
-              </div>
-            </div>
-            <div
-              style="
-                text-align: center;
-                padding: 1rem;
-                border: 1px solid var(--border-color);
-                border-radius: 0.375rem;
-              "
-            >
-              <div
-                style="
-                  font-size: 2rem;
-                  font-weight: 700;
-                  color: var(--warning-color);
-                "
-              >
-                3
-              </div>
-              <div style="color: var(--text-secondary)">Sanciones Totales</div>
-            </div>
-            <div
-              style="
-                text-align: center;
-                padding: 1rem;
-                border: 1px solid var(--border-color);
-                border-radius: 0.375rem;
-              "
-            >
-              <div
-                style="
-                  font-size: 2rem;
-                  font-weight: 700;
-                  color: var(--success-color);
-                "
-              >
-                98%
-              </div>
-              <div style="color: var(--text-secondary)">
-                Tasa de Cumplimiento
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Account Settings -->
       <div class="card" style="margin-top: 2rem">
-        <div class="card-header">Configuración de Cuenta</div>
-        <div class="card-body">
-          <div
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 1rem;
-              border: 1px solid var(--border-color);
-              border-radius: 0.375rem;
-              margin-bottom: 1rem;
-            "
+        <div
+          class="card-header"
+          style="display: flex; align-items: center; gap: 0.75rem"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
           >
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M12 1v6m0 6v6m-9-9h6m6 0h6m-13.4-5.4l4.2 4.2m4.2 4.2l4.2 4.2M6.6 17.4l4.2-4.2m4.2-4.2l4.2-4.2"
+            ></path>
+          </svg>
+          Configuración de Cuenta
+        </div>
+        <div class="card-body">
+          <div class="settings-item">
             <div>
-              <h4 style="margin: 0 0 0.5rem 0">Notificaciones por Email</h4>
-              <p
-                style="
-                  margin: 0;
-                  color: var(--text-secondary);
-                  font-size: 0.9rem;
-                "
-              >
-                Recibe recordatorios de vencimiento y otras notificaciones
-              </p>
+              <h4>📧 Notificaciones por Email</h4>
+              <p>Recibe recordatorios de vencimiento y otras notificaciones</p>
             </div>
             <label class="switch">
               <input type="checkbox" checked />
@@ -345,27 +585,10 @@
             </label>
           </div>
 
-          <div
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 1rem;
-              border: 1px solid var(--border-color);
-              border-radius: 0.375rem;
-            "
-          >
+          <div class="settings-item">
             <div>
-              <h4 style="margin: 0 0 0.5rem 0">Notificaciones Push</h4>
-              <p
-                style="
-                  margin: 0;
-                  color: var(--text-secondary);
-                  font-size: 0.9rem;
-                "
-              >
-                Recibe notificaciones en el navegador
-              </p>
+              <h4>🔔 Notificaciones Push</h4>
+              <p>Recibe notificaciones en el navegador</p>
             </div>
             <label class="switch">
               <input type="checkbox" checked />
@@ -375,6 +598,9 @@
         </div>
       </div>
     </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
 
     <script src="../../assets/js/main.js"></script>
     <script>

@@ -9,6 +9,106 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      /* Index Page Responsive Styles */
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          #005790 0%,
+          #003d66 50%,
+          #004a73 100%
+        );
+        color: white;
+        min-height: 600px;
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .search-container {
+        max-width: 650px;
+        margin: 0 auto 3rem;
+      }
+
+      .search-bar {
+        display: flex;
+        gap: 0;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+      }
+
+      .hero-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 900px;
+        margin: 0 auto;
+        gap: 1.5rem;
+      }
+
+      .hero-card {
+        text-decoration: none;
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        border-radius: 12px;
+      }
+
+      .hero-card:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      @media (max-width: 1024px) {
+        .hero-cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .hero-section {
+          min-height: auto;
+          padding: 3rem 0;
+        }
+
+        .hero-cards {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .search-bar {
+          flex-direction: column;
+        }
+
+        .search-bar input {
+          border-radius: 12px 12px 0 0 !important;
+        }
+
+        .search-bar button {
+          border-radius: 0 0 12px 12px !important;
+        }
+
+        .grid-cols-3,
+        .grid-cols-4 {
+          grid-template-columns: 1fr !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.75rem !important;
+        }
+
+        h2 {
+          font-size: 1.5rem !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="navbar">
@@ -27,42 +127,22 @@
             <li><a href="views/public/catalog.html">Catálogo</a></li>
             <li><a href="views/user/dashboard.html">Panel Usuario</a></li>
             <li><a href="views/admin/dashboard.html">Panel Admin</a></li>
-           <!--  <li><a href="style-guide.html">Guía de Estilos</a></li> -->
+            <!--  <li><a href="style-guide.html">Guía de Estilos</a></li> -->
           </ul>
         </nav>
-        <div class="navbar-mobile-menu" id="mobile-menu">
+        <div class="navbar-mobile-menu" id="mobileMenu">
           <ul class="navbar-nav">
-            <li><a href="#services">Servicios</a></li>
-            <li><a href="#catalog">Catálogo</a></li>
-            <li><a href="#about">Acerca de</a></li>
-            <li><a href="#contact">Contacto</a></li>
-            <li>
-              <a href="views/public/login.html" class="btn btn-primary btn-sm"
-                >Acceder</a
-              >
-            </li>
+            <li><a href="views/public/login.html">Iniciar Sesión</a></li>
+            <li><a href="views/public/catalog.html">Catálogo</a></li>
+            <li><a href="views/user/dashboard.html">Panel Usuario</a></li>
+            <li><a href="views/admin/dashboard.html">Panel Admin</a></li>
           </ul>
         </div>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section
-      style="
-        background: linear-gradient(
-          135deg,
-          #005790 0%,
-          #003d66 50%,
-          #004a73 100%
-        );
-        color: white;
-        min-height: 500px;
-        padding: var(--space-8) 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      "
-    >
+    <section class="hero-section">
       <!-- Decorative Background Elements -->
       <div
         style="
@@ -140,17 +220,8 @@
         </p>
 
         <!-- Prominent Search Bar -->
-        <div style="max-width: 650px; margin: 0 auto var(--space-7)">
-          <div
-            style="
-              display: flex;
-              gap: 0;
-              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-              border-radius: var(--border-radius-lg);
-              overflow: hidden;
-              background: white;
-            "
-          >
+        <div class="search-container">
+          <div class="search-bar">
             <input
               type="text"
               placeholder="Buscar libros, autores, ISBN..."
@@ -204,28 +275,9 @@
         </div>
 
         <!-- Role-based Access Shortcuts -->
-        <div
-          class="grid grid-cols-4"
-          style="max-width: 900px; margin: 0 auto; gap: var(--space-4)"
-        >
-          <a
-            href="views/public/catalog.html"
-            class="card"
-            style="
-              text-decoration: none;
-              color: white;
-              background: rgba(255, 255, 255, 0.1);
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              backdrop-filter: blur(10px);
-              transition: all 0.3s ease;
-            "
-            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
-            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
-          >
-            <div
-              class="card-body"
-              style="text-align: center; padding: var(--space-5)"
-            >
+        <div class="hero-cards">
+          <a href="views/public/catalog.html" class="hero-card">
+            <div class="card-body" style="text-align: center; padding: 2rem">
               <div
                 style="
                   font-size: 3rem;
@@ -278,24 +330,8 @@
             </div>
           </a>
 
-          <a
-            href="views/user/dashboard.html"
-            class="card"
-            style="
-              text-decoration: none;
-              color: white;
-              background: rgba(255, 255, 255, 0.1);
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              backdrop-filter: blur(10px);
-              transition: all 0.3s ease;
-            "
-            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
-            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
-          >
-            <div
-              class="card-body"
-              style="text-align: center; padding: var(--space-5)"
-            >
+          <a href="views/user/dashboard.html" class="hero-card">
+            <div class="card-body" style="text-align: center; padding: 2rem">
               <div
                 style="
                   font-size: 3rem;
@@ -346,24 +382,8 @@
             </div>
           </a>
 
-          <a
-            href="views/admin/dashboard.html"
-            class="card"
-            style="
-              text-decoration: none;
-              color: white;
-              background: rgba(255, 255, 255, 0.1);
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              backdrop-filter: blur(10px);
-              transition: all 0.3s ease;
-            "
-            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
-            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
-          >
-            <div
-              class="card-body"
-              style="text-align: center; padding: var(--space-5)"
-            >
+          <a href="views/admin/dashboard.html" class="hero-card">
+            <div class="card-body" style="text-align: center; padding: 2rem">
               <div
                 style="
                   font-size: 3rem;
@@ -416,24 +436,8 @@
             </div>
           </a>
 
-          <a
-            href="views/public/login.html"
-            class="card"
-            style="
-              text-decoration: none;
-              color: white;
-              background: rgba(255, 255, 255, 0.1);
-              border: 1px solid rgba(255, 255, 255, 0.2);
-              backdrop-filter: blur(10px);
-              transition: all 0.3s ease;
-            "
-            onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.3)';"
-            onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
-          >
-            <div
-              class="card-body"
-              style="text-align: center; padding: var(--space-5)"
-            >
+          <a href="views/public/login.html" class="hero-card">
+            <div class="card-body" style="text-align: center; padding: 2rem">
               <div
                 style="
                   font-size: 3rem;
@@ -547,30 +551,49 @@
             class="card border-left-primary"
             style="
               text-align: center;
-              background-color: var(--primary-color);
+              background: linear-gradient(
+                135deg,
+                var(--primary-color) 0%,
+                #003d66 100%
+              );
               color: white;
             "
           >
-            <div class="card-body" style="padding: var(--space-4)">
+            <div class="card-body" style="padding: 2rem">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-3);
-                  color: var(--secondary-color);
+                  margin-bottom: 1.25rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(0, 180, 165, 0.2);
+                  border-radius: 50%;
                 "
               >
-                📖
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--secondary-color)"
+                  stroke-width="2"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
               </div>
               <div
                 style="
-                  font-size: var(--font-size-3xl);
-                  font-weight: var(--font-weight-bold);
-                  margin-bottom: var(--space-2);
+                  font-size: 2.5rem;
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
                 "
               >
                 15,000+
               </div>
-              <div style="font-size: var(--font-size-base)">
+              <div style="font-size: 1rem; opacity: 0.9">
                 Libros en colección
               </div>
             </div>
@@ -580,32 +603,51 @@
             class="card border-left-success"
             style="
               text-align: center;
-              background-color: var(--success-color);
+              background: linear-gradient(
+                135deg,
+                var(--success-color) 0%,
+                #059669 100%
+              );
               color: white;
             "
           >
-            <div class="card-body" style="padding: var(--space-4)">
+            <div class="card-body" style="padding: 2rem">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-3);
-                  color: var(--primary-color);
+                  margin-bottom: 1.25rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(255, 255, 255, 0.2);
+                  border-radius: 50%;
                 "
               >
-                👥
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
               </div>
               <div
                 style="
-                  font-size: var(--font-size-3xl);
-                  font-weight: var(--font-weight-bold);
-                  margin-bottom: var(--space-2);
+                  font-size: 2.5rem;
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
                 "
               >
                 2,500+
               </div>
-              <div style="font-size: var(--font-size-base)">
-                Usuarios activos
-              </div>
+              <div style="font-size: 1rem; opacity: 0.9">Usuarios activos</div>
             </div>
           </div>
 
@@ -613,63 +655,106 @@
             class="card border-left-warning"
             style="
               text-align: center;
-              background-color: var(--warning-color);
-              color: var(--almost-black);
+              background: linear-gradient(
+                135deg,
+                var(--warning-color) 0%,
+                #d97706 100%
+              );
+              color: white;
             "
           >
-            <div class="card-body" style="padding: var(--space-4)">
+            <div class="card-body" style="padding: 2rem">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-3);
-                  color: var(--primary-color);
+                  margin-bottom: 1.25rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(255, 255, 255, 0.2);
+                  border-radius: 50%;
                 "
               >
-                📋
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
               </div>
               <div
                 style="
-                  font-size: var(--font-size-3xl);
-                  font-weight: var(--font-weight-bold);
-                  margin-bottom: var(--space-2);
+                  font-size: 2.5rem;
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
                 "
               >
                 850
               </div>
-              <div style="font-size: var(--font-size-base)">
-                Préstamos mensuales
-              </div>
+              <div style="font-size: 1rem; opacity: 0.9">Préstamos activos</div>
             </div>
           </div>
 
           <div
-            class="card border-left-secondary"
+            class="card"
             style="
               text-align: center;
-              background-color: var(--secondary-color);
+              background: linear-gradient(
+                135deg,
+                var(--secondary-color) 0%,
+                #008f82 100%
+              );
               color: white;
+              border: none;
             "
           >
-            <div class="card-body" style="padding: var(--space-4)">
+            <div class="card-body" style="padding: 2rem">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-3);
-                  color: var(--primary-color);
+                  margin-bottom: 1.25rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: rgba(255, 255, 255, 0.2);
+                  border-radius: 50%;
                 "
               >
-                ⭐
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                  ></path>
+                </svg>
               </div>
               <div
                 style="
-                  font-size: var(--font-size-3xl);
-                  font-weight: var(--font-weight-bold);
-                  margin-bottom: var(--space-2);
+                  font-size: 2.5rem;
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
                 "
               >
                 98%
               </div>
-              <div style="font-size: var(--font-size-base)">
+              <div style="font-size: 1rem; opacity: 0.9">
                 Satisfacción usuario
               </div>
             </div>
@@ -687,15 +772,34 @@
             <div class="card-body" style="text-align: center">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-4);
-                  color: var(--primary-color);
+                  margin-bottom: 1.5rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: linear-gradient(
+                    135deg,
+                    rgba(0, 87, 144, 0.1) 0%,
+                    rgba(0, 87, 144, 0.2) 100%
+                  );
+                  border-radius: 50%;
                 "
               >
-                🔍
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--primary-color)"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="M21 21l-4.35-4.35"></path>
+                </svg>
               </div>
-              <h3>Búsqueda Avanzada</h3>
-              <p>
+              <h3 style="margin-bottom: 1rem">Búsqueda Avanzada</h3>
+              <p style="color: var(--text-muted)">
                 Encuentra libros por título, autor, ISBN o categoría con filtros
                 inteligentes y resultados instantáneos.
               </p>
@@ -706,15 +810,35 @@
             <div class="card-body" style="text-align: center">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-4);
-                  color: var(--secondary-color);
+                  margin-bottom: 1.5rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: linear-gradient(
+                    135deg,
+                    rgba(0, 180, 165, 0.1) 0%,
+                    rgba(0, 180, 165, 0.2) 100%
+                  );
+                  border-radius: 50%;
                 "
               >
-                🔖
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--secondary-color)"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+                  ></path>
+                </svg>
               </div>
-              <h3>Reservas en Tiempo Real</h3>
-              <p>
+              <h3 style="margin-bottom: 1rem">Reservas en Tiempo Real</h3>
+              <p style="color: var(--text-muted)">
                 Reserva libros con 48 horas de anticipación y recibe
                 notificaciones cuando estén disponibles.
               </p>
@@ -725,15 +849,35 @@
             <div class="card-body" style="text-align: center">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-4);
-                  color: var(--success-color);
+                  margin-bottom: 1.5rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: linear-gradient(
+                    135deg,
+                    rgba(16, 185, 129, 0.1) 0%,
+                    rgba(16, 185, 129, 0.2) 100%
+                  );
+                  border-radius: 50%;
                 "
               >
-                📊
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--success-color)"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
               </div>
-              <h3>Dashboard Personalizado</h3>
-              <p>
+              <h3 style="margin-bottom: 1rem">Dashboard Personalizado</h3>
+              <p style="color: var(--text-muted)">
                 Visualiza tus préstamos activos, historial y límites con
                 indicadores visuales claros.
               </p>
@@ -744,15 +888,34 @@
             <div class="card-body" style="text-align: center">
               <div
                 style="
-                  font-size: var(--font-size-4xl);
-                  margin-bottom: var(--space-4);
-                  color: var(--warning-color);
+                  margin-bottom: 1.5rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 70px;
+                  height: 70px;
+                  background: linear-gradient(
+                    135deg,
+                    rgba(245, 158, 11, 0.1) 0%,
+                    rgba(245, 158, 11, 0.2) 100%
+                  );
+                  border-radius: 50%;
                 "
               >
-                📱
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--warning-color)"
+                  stroke-width="2"
+                >
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
               </div>
-              <h3>Acceso Móvil</h3>
-              <p>
+              <h3 style="margin-bottom: 1rem">Acceso Móvil</h3>
+              <p style="color: var(--text-muted)">
                 Utiliza el sistema desde cualquier dispositivo con una
                 experiencia optimizada para móviles y tablets.
               </p>
@@ -761,6 +924,9 @@
         </div>
       </section>
     </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
 
     <script src="assets/js/main.js"></script>
   </body>

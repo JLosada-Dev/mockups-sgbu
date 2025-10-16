@@ -5,6 +5,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis Sanciones - SGBU</title>
     <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <style>
+      /* Sanctions Page Styles */
+      .sanctions-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .summary-card {
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .summary-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--card-color);
+      }
+
+      .summary-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .summary-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--icon-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .summary-content h3 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--card-color);
+        line-height: 1;
+      }
+
+      .summary-content p {
+        margin: 0.5rem 0 0 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .alert-box {
+        background: linear-gradient(135deg, var(--error-color) 0%, #dc2626 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+      }
+
+      .alert-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .sanction-card {
+        padding: 1.5rem;
+        border: 2px solid var(--error-color);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        background: white;
+        transition: all 0.3s ease;
+      }
+
+      .sanction-card:hover {
+        box-shadow: 0 8px 25px rgba(239, 68, 68, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .sanction-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .sanction-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+
+      .sanction-detail-item {
+        padding: 0.75rem;
+        background: var(--surface-color);
+        border-radius: 8px;
+      }
+
+      .sanction-detail-item strong {
+        display: block;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .sanction-amount {
+        text-align: right;
+      }
+
+      .sanction-amount-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--error-color);
+        margin-bottom: 1rem;
+      }
+
+      .info-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .info-box {
+        padding: 1.5rem;
+        background: var(--surface-color);
+        border-radius: 12px;
+        border-left: 4px solid var(--primary-color);
+      }
+
+      .info-box h4 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .info-box ul {
+        margin: 0;
+        padding-left: 1.25rem;
+      }
+
+      .info-box ul li {
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      @media (max-width: 967px) {
+        .sanctions-summary {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .sanction-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .sanction-amount {
+          text-align: left;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .sanction-amount-value {
+          font-size: 1.75rem;
+          margin-bottom: 0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .sanctions-summary {
+          grid-template-columns: 1fr;
+        }
+
+        .alert-box {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .sanction-details {
+          grid-template-columns: 1fr;
+        }
+
+        .info-section {
+          grid-template-columns: 1fr;
+        }
+
+        .table-container {
+          overflow-x: auto;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="navbar">
@@ -46,85 +260,127 @@
     <main style="max-width: 1000px; margin: 2rem auto; padding: 0 1rem">
       <h1>Mis Sanciones</h1>
 
+      <!-- Summary Cards -->
+      <div class="sanctions-summary">
+        <div class="summary-card" style="--card-color: var(--error-color); --icon-bg: rgba(239, 68, 68, 0.1);">
+          <div class="summary-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--error-color)" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="summary-content">
+            <h3>1</h3>
+            <p>Sanciones Activas</p>
+          </div>
+        </div>
+
+        <div class="summary-card" style="--card-color: var(--warning-color); --icon-bg: rgba(245, 158, 11, 0.1);">
+          <div class="summary-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="summary-content">
+            <h3>$25.000</h3>
+            <p>Monto Pendiente</p>
+          </div>
+        </div>
+
+        <div class="summary-card" style="--card-color: var(--success-color); --icon-bg: rgba(16, 185, 129, 0.1);">
+          <div class="summary-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <div class="summary-content">
+            <h3>2</h3>
+            <p>Sanciones Pagadas</p>
+          </div>
+        </div>
+
+        <div class="summary-card" style="--card-color: var(--primary-color); --icon-bg: rgba(0, 87, 144, 0.1);">
+          <div class="summary-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <div class="summary-content">
+            <h3>$185k</h3>
+            <p>Total Histórico</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Active Sanctions -->
       <div class="card" style="margin-bottom: 2rem">
-        <div class="card-header">Sanciones Activas</div>
+        <div class="card-header" style="display: flex; align-items: center; gap: 0.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          Sanciones Activas
+        </div>
         <div class="card-body">
-          <div
-            style="
-              background-color: var(--error-color);
-              color: white;
-              padding: 1rem;
-              border-radius: 0.5rem;
-              margin-bottom: 1.5rem;
-            "
-          >
-            <h3 style="margin: 0 0 0.5rem 0">⚠️ Tienes sanciones pendientes</h3>
-            <p style="margin: 0">
-              Algunas funcionalidades pueden estar restringidas hasta que pagues
-              tus sanciones.
-            </p>
+          <div class="alert-box">
+            <div class="alert-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 style="margin: 0 0 0.5rem 0; font-size: 1.25rem;">Tienes sanciones pendientes</h3>
+              <p style="margin: 0; opacity: 0.95;">
+                Algunas funcionalidades pueden estar restringidas hasta que pagues
+                tus sanciones.
+              </p>
+            </div>
           </div>
 
-          <div
-            style="
-              padding: 1.5rem;
-              border: 2px solid var(--error-color);
-              border-radius: 0.5rem;
-              margin-bottom: 1rem;
-            "
-          >
-            <div
-              style="
-                display: grid;
-                grid-template-columns: 1fr auto;
-                gap: 2rem;
-                align-items: start;
-              "
-            >
+          <div class="sanction-card">
+            <div class="sanction-grid">
               <div>
-                <h3 style="margin: 0 0 1rem 0; color: var(--error-color)">
+                <h3 style="margin: 0 0 1rem 0; color: var(--error-color); display: flex; align-items: center; gap: 0.5rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
                   Sanción por Retraso
                 </h3>
-                <div
-                  style="
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                    gap: 1rem;
-                    margin-bottom: 1rem;
-                  "
-                >
-                  <div>
-                    <strong>Libro:</strong><br />
+                <div class="sanction-details">
+                  <div class="sanction-detail-item">
+                    <strong>📚 Libro</strong>
                     Breve historia del tiempo
                   </div>
-                  <div>
-                    <strong>Fecha:</strong><br />
+                  <div class="sanction-detail-item">
+                    <strong>📚 Libro</strong>
+                    Breve historia del tiempo
+                  </div>
+                  <div class="sanction-detail-item">
+                    <strong>📅 Fecha</strong>
                     20/08/2023
                   </div>
-                  <div>
-                    <strong>Motivo:</strong><br />
+                  <div class="sanction-detail-item">
+                    <strong>⚠️ Motivo</strong>
                     Devolución tardía (15 días)
                   </div>
                 </div>
-                <p style="margin: 0; color: var(--text-secondary)">
-                  Devolución programada: 01/08/2023<br />
-                  Devolución real: 16/08/2023
+                <p style="margin: 0; color: var(--text-secondary); padding: 0.75rem; background: var(--surface-color); border-radius: 8px;">
+                  <strong>Devolución programada:</strong> 01/08/2023<br />
+                  <strong>Devolución real:</strong> 16/08/2023
                 </p>
               </div>
-              <div style="text-align: right">
-                <div
-                  style="
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                    color: var(--error-color);
-                    margin-bottom: 0.5rem;
-                  "
-                >
-                  $25.000
-                </div>
-                <button class="btn btn-primary" onclick="simulatePaySanction()">
-                  Pagar Sanción
+              <div class="sanction-amount">
+                <div class="sanction-amount-value">$25.000</div>
+                <button class="btn btn-primary" onclick="simulatePaySanction()" style="width: 100%;">
+                  💳 Pagar Sanción
                 </button>
               </div>
             </div>
@@ -134,9 +390,16 @@
 
       <!-- Sanctions History -->
       <div class="card">
-        <div class="card-header">Historial de Sanciones</div>
+        <div class="card-header" style="display: flex; align-items: center; gap: 0.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Historial de Sanciones
+        </div>
         <div class="card-body">
-          <table class="table">
+          <div class="table-container">
+            <table class="table">
             <thead>
               <tr>
                 <th>Fecha</th>
@@ -152,9 +415,11 @@
                 <td>20/08/2023</td>
                 <td>Retraso en devolución</td>
                 <td>Breve historia del tiempo</td>
-                <td>$25.000</td>
+                <td><strong>$25.000</strong></td>
                 <td>
-                  <span style="color: var(--error-color)">Pendiente</span>
+                  <span class="badge" style="background: rgba(239, 68, 68, 0.1); color: var(--error-color); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem;">
+                    ⚠️ Pendiente
+                  </span>
                 </td>
                 <td>-</td>
               </tr>
@@ -162,24 +427,36 @@
                 <td>15/06/2023</td>
                 <td>Daño al libro</td>
                 <td>Rayuela</td>
-                <td>$50.000</td>
-                <td><span style="color: var(--success-color)">Pagada</span></td>
+                <td><strong>$50.000</strong></td>
+                <td>
+                  <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--success-color); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem;">
+                    ✓ Pagada
+                  </span>
+                </td>
                 <td>20/06/2023</td>
               </tr>
               <tr>
                 <td>10/04/2023</td>
                 <td>Retraso en devolución</td>
                 <td>Cien años de soledad</td>
-                <td>$15.000</td>
-                <td><span style="color: var(--info-color)">Condonada</span></td>
+                <td><strong>$15.000</strong></td>
+                <td>
+                  <span class="badge" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem;">
+                    ℹ️ Condonada
+                  </span>
+                </td>
                 <td>15/04/2023</td>
               </tr>
               <tr>
                 <td>05/02/2023</td>
                 <td>Pérdida de libro</td>
                 <td>El principito</td>
-                <td>$120.000</td>
-                <td><span style="color: var(--success-color)">Pagada</span></td>
+                <td><strong>$120.000</strong></td>
+                <td>
+                  <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--success-color); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.85rem;">
+                    ✓ Pagada
+                  </span>
+                </td>
                 <td>10/02/2023</td>
               </tr>
             </tbody>
@@ -189,26 +466,39 @@
 
       <!-- Payment Information -->
       <div class="card" style="margin-top: 2rem">
-        <div class="card-header">Información de Pago</div>
+        <div class="card-header" style="display: flex; align-items: center; gap: 0.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4"></path>
+            <path d="M12 8h.01"></path>
+          </svg>
+          Información de Pago
+        </div>
         <div class="card-body">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-              gap: 2rem;
-            "
-          >
-            <div>
-              <h4>Métodos de Pago</h4>
+          <div class="info-section">
+            <div class="info-box">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                Métodos de Pago
+              </h4>
               <ul>
-                <li>Pago en efectivo en la biblioteca</li>
-                <li>Transferencia bancaria</li>
-                <li>Pago en línea (próximamente)</li>
+                <li>💵 Pago en efectivo en la biblioteca</li>
+                <li>🏦 Transferencia bancaria</li>
+                <li>💳 Pago en línea (próximamente)</li>
               </ul>
             </div>
-            <div>
-              <h4>Cuenta Bancaria</h4>
-              <p>
+            <div class="info-box">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Cuenta Bancaria
+              </h4>
+              <p style="margin: 0; line-height: 1.8;">
                 <strong>Banco:</strong> Banco de la República<br />
                 <strong>Cuenta:</strong> 123-456789-0<br />
                 <strong>A nombre de:</strong> Fundación Universitaria de
@@ -219,23 +509,43 @@
           </div>
           <div
             style="
-              margin-top: 1rem;
-              padding: 1rem;
-              background-color: var(--surface-color);
-              border-radius: 0.375rem;
+              margin-top: 1.5rem;
+              padding: 1.25rem;
+              background: linear-gradient(135deg, rgba(0, 87, 144, 0.05) 0%, rgba(0, 180, 165, 0.05) 100%);
+              border-radius: 12px;
+              border-left: 4px solid var(--secondary-color);
             "
           >
-            <p style="margin: 0">
-              <strong>Importante:</strong> Una vez realizado el pago, presenta
-              el comprobante en la biblioteca para que actualicen tu estado. Las
-              sanciones pendientes pueden restringir la renovación de libros y
-              nuevas reservas.
+            <p style="margin: 0; display: flex; gap: 1rem; align-items: start;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--secondary-color)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
+              <span>
+              <span>
+                <strong>Importante:</strong> Una vez realizado el pago, presenta
+                el comprobante en la biblioteca para que actualicen tu estado. Las
+                sanciones pendientes pueden restringir la renovación de libros y
+                nuevas reservas.
+              </span>
             </p>
           </div>
         </div>
       </div>
     </main>
 
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
     <script src="../../assets/js/main.js"></script>
+    <script>
+      function simulatePaySanction() {
+        showToast('Redirigiendo a pasarela de pago...', 'info');
+        setTimeout(() => {
+          showToast('Pago procesado exitosamente', 'success');
+        }, 2000);
+      }
+    </script>
   </body>
 </html>
